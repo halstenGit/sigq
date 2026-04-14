@@ -1,0 +1,24 @@
+.aprovacoesSc {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #0078d4;
+
+    h2 {
+      margin: 0;
+      color: #323130;
+    }
+
+    .userInfo {
+      font-size: 12px;
+      color: #666;
+    }
+  }
+}

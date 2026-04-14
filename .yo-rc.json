@@ -1,0 +1,19 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "useGulp": false,
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "22.17.0",
+    "sdksVersions": {},
+    "version": "1.22.2",
+    "libraryName": "marcelo-sena",
+    "libraryId": "a8923d7c-4bc8-4e35-b670-91fdc8acb6b5",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "marcelo-sena",
+    "solutionShortDescription": "marcelo-sena description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
