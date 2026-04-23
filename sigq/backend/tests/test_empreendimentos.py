@@ -6,6 +6,7 @@ from uuid import uuid4
 
 from app.main import app
 from app.core.database import Base, get_db, engine as main_engine
+from app.core.auth import get_current_user
 from app.core.config import settings
 
 # Override database URL for testing
@@ -22,7 +23,13 @@ def override_get_db():
         db.close()
 
 
+def override_get_current_user():
+    """Mock authentication for tests"""
+    return "test_user@example.com"
+
+
 app.dependency_overrides[get_db] = override_get_db
+app.dependency_overrides[get_current_user] = override_get_current_user
 
 
 @pytest.fixture(scope="session", autouse=True)

@@ -19,7 +19,7 @@ class Evidencia(Base):
     mime_type = Column(String(50), default="image/jpeg")
 
     # Metadata EXIF
-    metadata = Column(JSON, nullable=True)
+    exif_data = Column(JSON, nullable=True)
 
     ativo = Column(Boolean, default=True, nullable=False)
     created_at = Column(

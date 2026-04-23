@@ -6,6 +6,7 @@ from typing import List
 from uuid import UUID
 
 from app.core.database import get_db
+from app.core.auth import get_current_user
 from app.core.exceptions import NotFoundException, InternalServerError
 from app.schemas.empreendimento import (
     EmpreendimentoCreate,
@@ -22,6 +23,7 @@ router = APIRouter(prefix="/v1/empreendimentos", tags=["empreendimentos"])
 async def criar_empreendimento(
     obj_in: EmpreendimentoCreate,
     db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
     try:
         logger.info(f"Criando empreendimento: {obj_in.nome}")
@@ -41,6 +43,7 @@ async def listar_empreendimentos(
     skip: int = 0,
     limit: int = 100,
     db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
     try:
         logger.debug(f"Listando empreendimentos: skip={skip}, limit={limit}")
@@ -59,6 +62,7 @@ async def listar_empreendimentos(
 async def obter_empreendimento(
     empreendimento_id: UUID,
     db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
     try:
         logger.debug(f"Obtendo empreendimento: {empreendimento_id}")
@@ -83,6 +87,7 @@ async def atualizar_empreendimento(
     empreendimento_id: UUID,
     obj_in: EmpreendimentoUpdate,
     db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
     try:
         logger.info(f"Atualizando empreendimento: {empreendimento_id}")
@@ -107,6 +112,7 @@ async def atualizar_empreendimento(
 async def deletar_empreendimento(
     empreendimento_id: UUID,
     db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
     try:
         logger.info(f"Deletando empreendimento: {empreendimento_id}")

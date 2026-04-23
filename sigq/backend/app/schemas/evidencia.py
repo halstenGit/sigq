@@ -18,7 +18,7 @@ class EvidenciaCreate(EvidenciaBase):
 class EvidenciaResponse(EvidenciaBase):
     id: UUID
     url_r2: str
-    metadata: Optional[dict] = None
+    exif_data: Optional[dict] = None
     ativo: bool
     created_at: datetime
     updated_at: datetime

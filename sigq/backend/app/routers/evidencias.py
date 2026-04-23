@@ -2,6 +2,7 @@ import logging
 from fastapi import APIRouter, UploadFile, File, Depends
 from sqlalchemy.orm import Session
 from app.core.database import get_db
+from app.core.auth import get_current_user
 from app.core.exceptions import InternalServerError
 from app.core.storage import get_storage
 from app.models.evidencia import Evidencia
@@ -17,6 +18,7 @@ async def upload_evidencia(
     file: UploadFile = File(...),
     metadata: str = None,  # JSON string com EXIF, coordenadas, etc
     db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
     """Upload foto para Cloudflare R2"""
     try:
@@ -55,7 +57,7 @@ async def upload_evidencia(
             url_r2=url_r2,
             tamanho_bytes=str(tamanho_bytes),
             mime_type=file.content_type or "image/jpeg",
-            metadata=metadata_dict,
+            exif_data=metadata_dict,
         )
 
         db.add(evidencia)
@@ -77,6 +79,7 @@ async def upload_evidencia(
 async def obter_evidencia(
     evidencia_id: str,
     db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
     """Obter URL da evidência"""
     try:

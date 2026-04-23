@@ -1,60 +1,44 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+class ApiService {
+  private instance: AxiosInstance
 
-export const api = axios.create({
-  baseURL: API_BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-})
-
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    console.error('API Error:', error)
-    return Promise.reject(error)
-  }
-)
-
-export interface Empreendimento {
-  id: string
-  nome: string
-  descricao?: string
-  localizacao?: string
-  id_sienge?: string
-  ativo: boolean
-  created_at: string
-  updated_at: string
-}
-
-export const empreendimentoService = {
-  async listar(skip = 0, limit = 100): Promise<Empreendimento[]> {
-    const { data } = await api.get('/v1/empreendimentos', {
-      params: { skip, limit },
+  constructor() {
+    this.instance = axios.create({
+      baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
-    return data
-  },
+  }
 
-  async obter(id: string): Promise<Empreendimento> {
-    const { data } = await api.get(`/v1/empreendimentos/${id}`)
-    return data
-  },
+  setAuthToken(token: string) {
+    this.instance.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  }
 
-  async criar(obj: Omit<Empreendimento, 'id' | 'ativo' | 'created_at' | 'updated_at'>) {
-    const { data } = await api.post('/v1/empreendimentos', obj)
-    return data
-  },
+  clearAuthToken() {
+    delete this.instance.defaults.headers.common['Authorization']
+  }
 
-  async atualizar(
-    id: string,
-    obj: Partial<Omit<Empreendimento, 'id' | 'created_at' | 'updated_at'>>
-  ) {
-    const { data } = await api.put(`/v1/empreendimentos/${id}`, obj)
-    return data
-  },
+  get(url: string, config = {}) {
+    return this.instance.get(url, config)
+  }
 
-  async deletar(id: string) {
-    await api.delete(`/v1/empreendimentos/${id}`)
-  },
+  post(url: string, data = {}, config = {}) {
+    return this.instance.post(url, data, config)
+  }
+
+  put(url: string, data = {}, config = {}) {
+    return this.instance.put(url, data, config)
+  }
+
+  delete(url: string, config = {}) {
+    return this.instance.delete(url, config)
+  }
+
+  getAxiosInstance() {
+    return this.instance
+  }
 }
+
+export const apiService = new ApiService()
