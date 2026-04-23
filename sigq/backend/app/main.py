@@ -8,7 +8,7 @@ from app.core.config import settings
 from app.core.logging import setup_logging
 from app.core.migrations import run_migrations
 from app.core.exceptions import InternalServerError
-from app.routers import empreendimentos
+from app.routers import empreendimentos, evidencias
 
 logger = setup_logging()
 
@@ -67,6 +67,7 @@ async def sqlalchemy_exception_handler(request: Request, exc: SQLAlchemyError):
 
 
 app.include_router(empreendimentos.router)
+app.include_router(evidencias.router)
 
 
 @app.get("/health")
