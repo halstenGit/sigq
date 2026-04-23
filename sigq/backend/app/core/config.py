@@ -7,8 +7,8 @@ class Settings(BaseSettings):
     DEBUG: bool = True
     APP_NAME: str = "SIGQ"
 
-    # Database
-    DATABASE_URL: str = "postgresql://user:password@localhost/sigq"
+    # Database (SQLite for local dev, PostgreSQL for production on Railway)
+    DATABASE_URL: str = "sqlite:///./sigq.db"
 
     # JWT
     SECRET_KEY: str = "your-secret-key-change-in-production"

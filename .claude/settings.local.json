@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wrangler --version)",
+      "Bash(wrangler dns:*)",
+      "Bash(python3)"
+    ]
+  }
+}
