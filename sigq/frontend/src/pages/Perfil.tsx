@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query'
 import { apiService } from '../services/api'
 import { useAuth } from '../contexts/AuthContext'
 import { HalstenCard } from '../components/HalstenCard'
-import { HalstenButton } from '../components/HalstenButton'
 
 interface UserInfo {
   username: string
@@ -33,85 +32,45 @@ export function Perfil() {
 
       {isLoading ? (
         <div style={{ textAlign: 'center', color: 'var(--ink-2)', padding: 'var(--sp-12) var(--sp-6)' }}>
-          Carregando informações...
+          Carregando...
         </div>
       ) : userInfo ? (
         <>
-          {/* Avatar Card */}
           <HalstenCard>
-            <div style={{ textAlign: 'center' }}>
-              <div
-                style={{
-                  width: 80,
-                  height: 80,
-                  background: 'linear-gradient(135deg, var(--ink), var(--ink-1))',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  margin: '0 auto var(--sp-4)',
-                  fontSize: 32,
-                }}
-              >
-                👤
-              </div>
-              <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--ink)', margin: 0, marginBottom: 'var(--sp-1)' }}>
-                {userInfo.username}
-              </h2>
-              <p style={{ fontSize: 12, color: 'var(--ink-2)', margin: 0 }}>{userInfo.email}</p>
-            </div>
-          </HalstenCard>
-
-          {/* Info Card */}
-          <HalstenCard title="Informações da Conta">
             <div style={{ marginBottom: 'var(--sp-6)' }}>
-              <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--muted-1)', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: 'var(--sp-2)' }}>
-                Nome de Usuário
-              </label>
-              <div
-                style={{
-                  fontSize: 13,
-                  color: 'var(--ink)',
-                  background: 'var(--bg-1)',
-                  padding: 'var(--sp-2) var(--sp-3)',
-                  borderRadius: 4,
-                  fontWeight: 600,
-                }}
-              >
-                {userInfo.username}
-              </div>
+              <div style={{ fontSize: 12, color: 'var(--ink-2)', marginBottom: 'var(--sp-1)' }}>Usuário</div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>{userInfo.username}</div>
             </div>
 
-            <div>
-              <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--muted-1)', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: 'var(--sp-2)' }}>
-                Email
-              </label>
-              <div
-                style={{
-                  fontSize: 13,
-                  color: 'var(--ink)',
-                  background: 'var(--bg-1)',
-                  padding: 'var(--sp-2) var(--sp-3)',
-                  borderRadius: 4,
-                  fontWeight: 600,
-                  wordBreak: 'break-all',
-                }}
-              >
-                {userInfo.email}
-              </div>
+            <div style={{ marginBottom: 'var(--sp-6)' }}>
+              <div style={{ fontSize: 12, color: 'var(--ink-2)', marginBottom: 'var(--sp-1)' }}>Email</div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>{userInfo.email}</div>
             </div>
-          </HalstenCard>
 
-          {/* Actions Card */}
-          <HalstenCard title="Ações">
-            <HalstenButton variant="primary" fullWidth onClick={handleLogout}>
-              🚪 Sair da Conta
-            </HalstenButton>
+            <button
+              onClick={handleLogout}
+              style={{
+                width: '100%',
+                padding: 'var(--sp-3)',
+                background: 'var(--ink)',
+                color: '#fff',
+                border: 'none',
+                borderRadius: 4,
+                fontSize: 14,
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'opacity 0.15s',
+              }}
+              onMouseEnter={e => ((e.target as HTMLElement).style.opacity = '0.9')}
+              onMouseLeave={e => ((e.target as HTMLElement).style.opacity = '1')}
+            >
+              Sair
+            </button>
           </HalstenCard>
         </>
       ) : (
-        <div style={{ textAlign: 'center', color: 'var(--bad)', padding: 'var(--sp-12) var(--sp-6)' }}>
-          Erro ao carregar informações do perfil
+        <div style={{ textAlign: 'center', color: 'var(--ink-2)', padding: 'var(--sp-6)' }}>
+          Erro ao carregar perfil
         </div>
       )}
     </div>
