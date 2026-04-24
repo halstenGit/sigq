@@ -14,15 +14,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('sigq-theme') as Theme | null
-    if (savedTheme) {
-      setTheme(savedTheme)
-      applyTheme(savedTheme)
-    } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      const initialTheme = prefersDark ? 'dark' : 'light'
-      setTheme(initialTheme)
-      applyTheme(initialTheme)
-    }
+    const themeToApply = savedTheme || 'light'
+    setTheme(themeToApply)
+    applyTheme(themeToApply)
   }, [])
 
   const applyTheme = (t: Theme) => {

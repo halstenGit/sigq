@@ -32,28 +32,6 @@
   --sp-8: 32px;
   --sp-10: 40px;
   --sp-12: 48px;
-
-  /* Legacy/Compatibility Variables - mapped to Halsten colors */
-  --hs-bg: var(--bg);
-  --hs-surface: var(--bg-1);
-  --hs-surface-alt: var(--bg-2);
-  --hs-text-primary: var(--ink);
-  --hs-text-secondary: var(--ink-1);
-  --hs-text-tertiary: var(--ink-2);
-  --hs-border: var(--bg-2);
-  --hs-error: var(--bad);
-  --hs-success: var(--ok);
-  --hs-warning: var(--warn);
-  --hs-font-body: var(--font-body);
-  --hs-font-display: var(--font-display);
-  --hs-radius-md: 4px;
-  --hs-space-1: var(--sp-1);
-  --hs-space-2: var(--sp-2);
-  --hs-space-3: var(--sp-3);
-  --hs-space-4: var(--sp-4);
-  --hs-space-5: var(--sp-5);
-  --hs-space-6: var(--sp-6);
-  --hs-space-8: var(--sp-8);
 }
 
 /* Reset */
