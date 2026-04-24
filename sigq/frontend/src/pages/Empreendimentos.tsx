@@ -1,122 +1,70 @@
-import { Card } from '../components/Card'
-import { colors } from '../styles/theme'
+import { HalstenButton } from '../components/HalstenButton'
+import { HalstenCard } from '../components/HalstenCard'
+import { HalstenBadge } from '../components/HalstenBadge'
 import { EMPREENDIMENTOS } from '../data/mockData'
 
 export function Empreendimentos() {
   return (
-    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '24px' }}>
+    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'var(--hs-space-6)' }}>
       {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--hs-space-6)' }}>
         <div>
-          <div style={{ fontSize: 22, fontWeight: 700, color: colors.primaryDark }}>Empreendimentos</div>
-          <div style={{ fontSize: 13, color: colors.textMuted, marginTop: 2 }}>
+          <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hs-text-primary)', margin: 0 }}>Empreendimentos</h1>
+          <p style={{ fontSize: '14px', color: 'var(--hs-text-tertiary)', margin: 'var(--hs-space-1) 0 0 0' }}>
             {EMPREENDIMENTOS.length} obras ativas
-          </div>
+          </p>
         </div>
-        <button
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 6,
-            padding: '9px 16px',
-            background: colors.primary,
-            color: '#fff',
-            border: 'none',
-            borderRadius: 8,
-            fontSize: 13,
-            fontWeight: 600,
-            cursor: 'pointer',
-            transition: 'background .15s',
-          }}
-          onMouseEnter={e => {
-            (e.target as HTMLElement).style.background = colors.primaryDark
-          }}
-          onMouseLeave={e => {
-            (e.target as HTMLElement).style.background = colors.primary
-          }}
-        >
-          <span style={{ fontSize: 16 }}>+</span> Novo empreendimento
-        </button>
+        <HalstenButton variant="primary">+ Novo empreendimento</HalstenButton>
       </div>
 
       {/* Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))', gap: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))', gap: 'var(--hs-space-4)' }}>
         {EMPREENDIMENTOS.map(e => (
-          <Card
-            key={e.id}
-            borderColor={colors.border}
-            padding="24px"
-          >
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'flex-start',
-                marginBottom: 16,
-              }}
-            >
+          <HalstenCard key={e.id}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--hs-space-4)' }}>
               <div>
-                <div style={{ fontSize: 16, fontWeight: 700, color: colors.primaryDark }}>{e.nome}</div>
-                <div style={{ fontSize: 12, color: colors.textMuted, marginTop: 2 }}>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--hs-text-primary)', margin: 0 }}>{e.nome}</h3>
+                <p style={{ fontSize: '12px', color: 'var(--hs-text-tertiary)', margin: 'var(--hs-space-1) 0 0 0' }}>
                   {e.cidade} · {e.blocos} bloco{e.blocos > 1 ? 's' : ''} · {e.unidades} unidades
-                </div>
+                </p>
               </div>
-              <span
-                style={{
-                  fontSize: 11,
-                  padding: '3px 10px',
-                  background: '#e8f5e9',
-                  color: colors.success,
-                  borderRadius: 99,
-                  fontWeight: 600,
-                }}
-              >
-                Em andamento
-              </span>
+              <HalstenBadge variant="success">Em andamento</HalstenBadge>
             </div>
 
             {/* Progress */}
-            <div style={{ marginBottom: 12 }}>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  fontSize: 11,
-                  color: colors.textMuted,
-                  marginBottom: 4,
-                }}
-              >
+            <div style={{ marginBottom: 'var(--hs-space-3)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--hs-text-tertiary)', marginBottom: 'var(--hs-space-1)' }}>
                 <span>Progresso geral</span>
-                <span style={{ fontWeight: 600, color: colors.primaryDark }}>{e.progresso}%</span>
+                <span style={{ fontWeight: 600, color: 'var(--hs-text-primary)' }}>{e.progresso}%</span>
               </div>
-              <div style={{ height: 8, background: colors.border, borderRadius: 99 }}>
+              <div style={{ height: '8px', background: 'var(--hs-border)', borderRadius: '99px' }}>
                 <div
                   style={{
                     height: '100%',
                     width: `${e.progresso}%`,
-                    background: colors.primary,
-                    borderRadius: 99,
-                    transition: 'width .6s',
+                    background: 'var(--hs-text-primary)',
+                    borderRadius: '99px',
+                    transition: 'width 600ms cubic-bezier(0.4, 0, 0.2, 1)',
                   }}
                 />
               </div>
             </div>
 
             {/* Stats */}
-            <div style={{ display: 'flex', gap: 16, borderTop: `1px solid ${colors.border}`, paddingTop: 12 }}>
+            <div style={{ display: 'flex', gap: 'var(--hs-space-4)', borderTop: '1px solid var(--hs-border)', paddingTop: 'var(--hs-space-3)' }}>
               <div style={{ flex: 1, textAlign: 'center' }}>
-                <div style={{ fontSize: 22, fontWeight: 700, color: colors.primaryDark }}>{e.fvs}</div>
-                <div style={{ fontSize: 11, color: colors.textMuted }}>FVS realizadas</div>
+                <div style={{ fontSize: '22px', fontWeight: 700, color: 'var(--hs-text-primary)' }}>{e.fvs}</div>
+                <div style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)' }}>FVS realizadas</div>
               </div>
-              <div style={{ width: 1, background: colors.border }} />
+              <div style={{ width: '1px', background: 'var(--hs-border)' }} />
               <div style={{ flex: 1, textAlign: 'center' }}>
-                <div style={{ fontSize: 22, fontWeight: 700, color: e.rncs > 5 ? colors.error : colors.primaryDark }}>
+                <div style={{ fontSize: '22px', fontWeight: 700, color: e.rncs > 5 ? 'var(--hs-error)' : 'var(--hs-text-primary)' }}>
                   {e.rncs}
                 </div>
-                <div style={{ fontSize: 11, color: colors.textMuted }}>RNCs abertas</div>
+                <div style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)' }}>RNCs abertas</div>
               </div>
             </div>
-          </Card>
+          </HalstenCard>
         ))}
       </div>
     </div>

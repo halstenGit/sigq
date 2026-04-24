@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { apiService } from '../services/api'
 import { useAuth } from '../contexts/AuthContext'
-import { Card } from '../components/Card'
-import { colors } from '../styles/theme'
+import { HalstenCard } from '../components/HalstenCard'
+import { HalstenButton } from '../components/HalstenButton'
 
 interface UserInfo {
   username: string
@@ -26,57 +26,55 @@ export function Perfil() {
   }
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '24px' }}>
-      <div style={{ fontSize: 22, fontWeight: 700, color: colors.primaryDark, marginBottom: 24 }}>
+    <div style={{ maxWidth: '600px', margin: '0 auto', padding: 'var(--hs-space-6)' }}>
+      <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hs-text-primary)', marginBottom: 'var(--hs-space-6)', margin: 0 }}>
         Meu Perfil
-      </div>
+      </h1>
 
       {isLoading ? (
-        <div style={{ textAlign: 'center', color: colors.textMuted, padding: '48px 24px' }}>
+        <div style={{ textAlign: 'center', color: 'var(--hs-text-tertiary)', padding: '48px 24px' }}>
           Carregando informações...
         </div>
       ) : userInfo ? (
         <>
           {/* Avatar Card */}
-          <Card borderColor={colors.primary} padding="32px" style={{ textAlign: 'center', marginBottom: 24 }}>
-            <div
-              style={{
-                width: 80,
-                height: 80,
-                background: `linear-gradient(135deg, ${colors.primary}, ${colors.primaryLight})`,
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 16px',
-                fontSize: 32,
-              }}
-            >
-              👤
+          <HalstenCard>
+            <div style={{ textAlign: 'center' }}>
+              <div
+                style={{
+                  width: 80,
+                  height: 80,
+                  background: 'linear-gradient(135deg, var(--hs-text-primary), var(--hs-text-secondary))',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto var(--hs-space-4)',
+                  fontSize: 32,
+                }}
+              >
+                👤
+              </div>
+              <h2 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--hs-text-primary)', marginBottom: 'var(--hs-space-1)', margin: 0 }}>
+                {userInfo.username}
+              </h2>
+              <p style={{ fontSize: '12px', color: 'var(--hs-text-tertiary)', margin: 0 }}>{userInfo.email}</p>
             </div>
-            <div style={{ fontSize: 18, fontWeight: 700, color: colors.primaryDark, marginBottom: 4 }}>
-              {userInfo.username}
-            </div>
-            <div style={{ fontSize: 12, color: colors.textMuted }}>{userInfo.email}</div>
-          </Card>
+          </HalstenCard>
 
           {/* Info Card */}
-          <Card borderColor={colors.border} padding="24px" style={{ marginBottom: 24 }}>
-            <div style={{ fontSize: 14, fontWeight: 700, color: colors.primaryDark, marginBottom: 16 }}>
-              Informações da Conta
-            </div>
-
-            <div style={{ marginBottom: 16 }}>
-              <label style={{ fontSize: 11, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: 6 }}>
+          <HalstenCard title="Informações da Conta">
+            <div style={{ marginBottom: 'var(--hs-space-4)' }}>
+              <label style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: 'var(--hs-space-1)' }}>
                 Nome de Usuário
               </label>
               <div
                 style={{
-                  fontSize: 14,
-                  color: colors.text,
-                  background: colors.bgLight,
+                  fontSize: '14px',
+                  color: 'var(--hs-text-primary)',
+                  background: 'var(--hs-surface-alt)',
                   padding: '12px 14px',
-                  borderRadius: 6,
+                  borderRadius: 'var(--hs-radius-md)',
                   fontWeight: 600,
                 }}
               >
@@ -85,16 +83,16 @@ export function Perfil() {
             </div>
 
             <div>
-              <label style={{ fontSize: 11, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: 6 }}>
+              <label style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: 'var(--hs-space-1)' }}>
                 Email
               </label>
               <div
                 style={{
-                  fontSize: 14,
-                  color: colors.text,
-                  background: colors.bgLight,
+                  fontSize: '14px',
+                  color: 'var(--hs-text-primary)',
+                  background: 'var(--hs-surface-alt)',
                   padding: '12px 14px',
-                  borderRadius: 6,
+                  borderRadius: 'var(--hs-radius-md)',
                   fontWeight: 600,
                   wordBreak: 'break-all',
                 }}
@@ -102,41 +100,17 @@ export function Perfil() {
                 {userInfo.email}
               </div>
             </div>
-          </Card>
+          </HalstenCard>
 
           {/* Actions Card */}
-          <Card borderColor={colors.border} padding="24px">
-            <div style={{ fontSize: 14, fontWeight: 700, color: colors.primaryDark, marginBottom: 16 }}>
-              Ações
-            </div>
-
-            <button
-              onClick={handleLogout}
-              style={{
-                width: '100%',
-                padding: '12px 16px',
-                background: colors.error,
-                color: '#fff',
-                border: 'none',
-                borderRadius: 8,
-                fontSize: 14,
-                fontWeight: 600,
-                cursor: 'pointer',
-                transition: 'background .15s',
-              }}
-              onMouseEnter={e => {
-                (e.target as HTMLElement).style.background = '#a61818'
-              }}
-              onMouseLeave={e => {
-                (e.target as HTMLElement).style.background = colors.error
-              }}
-            >
+          <HalstenCard title="Ações">
+            <HalstenButton variant="danger" fullWidth onClick={handleLogout}>
               🚪 Sair da Conta
-            </button>
-          </Card>
+            </HalstenButton>
+          </HalstenCard>
         </>
       ) : (
-        <div style={{ textAlign: 'center', color: colors.error, padding: '48px 24px' }}>
+        <div style={{ textAlign: 'center', color: 'var(--hs-error)', padding: '48px 24px' }}>
           Erro ao carregar informações do perfil
         </div>
       )}

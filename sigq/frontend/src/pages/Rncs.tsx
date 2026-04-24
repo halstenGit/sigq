@@ -1,139 +1,94 @@
-import { Card } from '../components/Card'
+import { HalstenCard } from '../components/HalstenCard'
+import { HalstenButton } from '../components/HalstenButton'
 import { Badge } from '../components/Badge'
-import { colors } from '../styles/theme'
 import { RNC_LIST } from '../data/mockData'
 
 export function Rncs() {
   return (
-    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '24px' }}>
+    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'var(--hs-space-6)' }}>
       {/* Header */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-          marginBottom: 24,
-        }}
-      >
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--hs-space-6)' }}>
         <div>
-          <div style={{ fontSize: 22, fontWeight: 700, color: colors.primaryDark }}>
+          <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hs-text-primary)', margin: 0 }}>
             Registros de Não Conformidade (RNC)
-          </div>
-          <div style={{ fontSize: 13, color: colors.textMuted, marginTop: 2 }}>
+          </h1>
+          <p style={{ fontSize: '14px', color: 'var(--hs-text-tertiary)', margin: 'var(--hs-space-1) 0 0 0' }}>
             {RNC_LIST.length} RNCs registradas
-          </div>
+          </p>
         </div>
-        <button
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 6,
-            padding: '9px 16px',
-            background: colors.error,
-            color: '#fff',
-            border: 'none',
-            borderRadius: 8,
-            fontSize: 13,
-            fontWeight: 600,
-            cursor: 'pointer',
-            transition: 'background .15s',
-          }}
-          onMouseEnter={e => {
-            (e.target as HTMLElement).style.background = '#a61818'
-          }}
-          onMouseLeave={e => {
-            (e.target as HTMLElement).style.background = colors.error
-          }}
-        >
-          <span style={{ fontSize: 16 }}>+</span> Nova RNC
-        </button>
+        <HalstenButton variant="danger">+ Nova RNC</HalstenButton>
       </div>
 
       {/* Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))', gap: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))', gap: 'var(--hs-space-4)' }}>
         {RNC_LIST.map(rnc => (
-          <Card key={rnc.id} borderColor={colors.border} padding="20px" shadow={true}>
+          <HalstenCard key={rnc.id}>
             {/* Header */}
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'flex-start',
-                marginBottom: 12,
-              }}
-            >
-              <div style={{ fontSize: 14, fontWeight: 700, color: colors.primaryDark }}>{rnc.id}</div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--hs-space-3)' }}>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--hs-text-primary)' }}>{rnc.id}</div>
               <Badge type="gravidade" value={rnc.gravidade} />
             </div>
 
             {/* Empreendimento */}
-            <div style={{ marginBottom: 12 }}>
-              <div style={{ fontSize: 11, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            <div style={{ marginBottom: 'var(--hs-space-3)' }}>
+              <div style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 Empreendimento
               </div>
-              <div style={{ fontSize: 12, fontWeight: 600, color: colors.text }}>{rnc.empreendimento}</div>
+              <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--hs-text-primary)' }}>{rnc.empreendimento}</div>
             </div>
 
             {/* Serviço */}
-            <div style={{ marginBottom: 12 }}>
-              <div style={{ fontSize: 11, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            <div style={{ marginBottom: 'var(--hs-space-3)' }}>
+              <div style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 Serviço
               </div>
-              <div style={{ fontSize: 12, fontWeight: 600, color: colors.text }}>{rnc.servico}</div>
+              <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--hs-text-primary)' }}>{rnc.servico}</div>
             </div>
 
             {/* Descrição */}
-            <div style={{ marginBottom: 12 }}>
-              <div style={{ fontSize: 11, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            <div style={{ marginBottom: 'var(--hs-space-3)' }}>
+              <div style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 Descrição
               </div>
-              <div style={{ fontSize: 12, color: colors.text, lineHeight: '1.4' }}>{rnc.descricao}</div>
+              <div style={{ fontSize: '12px', color: 'var(--hs-text-primary)', lineHeight: '1.4' }}>{rnc.descricao}</div>
             </div>
 
             {/* Status e Responsável */}
-            <div
-              style={{
-                display: 'flex',
-                gap: 12,
-                marginBottom: 12,
-                paddingBottom: 12,
-                borderBottom: `1px solid ${colors.border}`,
-              }}
-            >
+            <div style={{ display: 'flex', gap: 'var(--hs-space-3)', marginBottom: 'var(--hs-space-3)', paddingBottom: 'var(--hs-space-3)', borderBottom: '1px solid var(--hs-border)' }}>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 11, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                <div style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                   Status
                 </div>
-                <div style={{ marginTop: 4 }}>
+                <div style={{ marginTop: 'var(--hs-space-1)' }}>
                   <Badge type="rnc" value={rnc.status} />
                 </div>
               </div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 11, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                <div style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                   Responsável
                 </div>
-                <div style={{ fontSize: 12, fontWeight: 600, color: colors.text, marginTop: 4 }}>
+                <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--hs-text-primary)', marginTop: 'var(--hs-space-1)' }}>
                   {rnc.responsavel}
                 </div>
               </div>
             </div>
 
             {/* Datas */}
-            <div style={{ display: 'flex', gap: 12 }}>
+            <div style={{ display: 'flex', gap: 'var(--hs-space-3)' }}>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 11, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                <div style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                   Abertura
                 </div>
-                <div style={{ fontSize: 12, color: colors.text, marginTop: 4 }}>{rnc.abertura}</div>
+                <div style={{ fontSize: '12px', color: 'var(--hs-text-primary)', marginTop: 'var(--hs-space-1)' }}>{rnc.abertura}</div>
               </div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 11, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                <div style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                   Prazo
                 </div>
-                <div style={{ fontSize: 12, fontWeight: 600, color: colors.text, marginTop: 4 }}>{rnc.prazo}</div>
+                <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--hs-text-primary)', marginTop: 'var(--hs-space-1)' }}>{rnc.prazo}</div>
               </div>
             </div>
-          </Card>
+          </HalstenCard>
         ))}
       </div>
     </div>
