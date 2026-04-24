@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { Card } from '../components/Card'
-import { Badge } from '../components/Badge'
 import { HalstenButton } from '../components/HalstenButton'
 import { HalstenCard } from '../components/HalstenCard'
+import { HalstenBadge } from '../components/HalstenBadge'
+import { HalstenTable, HalstenTableRow, HalstenTableCell } from '../components/HalstenTable'
+import { HalstenModal } from '../components/HalstenModal'
 import { FVS_LIST } from '../data/mockData'
 import { useFvs } from '../contexts/FvsContext'
 
@@ -15,52 +16,40 @@ export function Fvs({ onNavigate }: FvsProps) {
   const [selectedFvs, setSelectedFvs] = useState<any>(null)
   const { fvsList } = useFvs()
 
-  // Combinar mock data com FVS criadas (FVS criadas primeiro)
   const allFvs = [...fvsList, ...FVS_LIST]
-
   const filtered = filter === 'todos' ? allFvs : allFvs.filter(f => f.status === filter)
 
+  const getStatusBadgeVariant = (status: string) => {
+    if (status === 'finalizada') return 'success'
+    if (status === 'rascunho') return 'default'
+    return 'warning'
+  }
+
+  const getNotaBg = (nota: number) => {
+    if (nota >= 7) return '#4CAF50'
+    if (nota >= 4) return '#FFC107'
+    return '#F44336'
+  }
+
   return (
-    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '24px' }}>
+    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'var(--sp-8)' }}>
       {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--sp-8)' }}>
         <div>
-          <div style={{ fontSize: 22, fontWeight: 700, color: 'var(--hs-text-primary)' }}>
+          <h1 style={{ fontSize: 28, fontWeight: 700, color: 'var(--ink)', margin: 0 }}>
             Fichas de Verificação (FVS)
-          </div>
-          <div style={{ fontSize: 13, color: 'var(--hs-text-tertiary)', marginTop: 2 }}>
-            {FVS_LIST.length} fichas registradas
-          </div>
+          </h1>
+          <p style={{ fontSize: 13, color: 'var(--ink-2)', margin: 'var(--sp-1) 0 0 0' }}>
+            {filtered.length} fichas encontradas
+          </p>
         </div>
-        <button
-          onClick={() => onNavigate?.('nova-fvs')}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 6,
-            padding: '9px 16px',
-            background: 'var(--hs-text-primary)',
-            color: '#fff',
-            border: 'none',
-            borderRadius: 8,
-            fontSize: 13,
-            fontWeight: 600,
-            cursor: 'pointer',
-            transition: 'background .15s',
-          }}
-          onMouseEnter={e => {
-            (e.target as HTMLElement).style.background = 'var(--hs-text-primary)'
-          }}
-          onMouseLeave={e => {
-            (e.target as HTMLElement).style.background = 'var(--hs-text-primary)'
-          }}
-        >
-          <span style={{ fontSize: 16 }}>+</span> Nova FVS
-        </button>
+        <HalstenButton variant="primary" onClick={() => onNavigate?.('nova-fvs')}>
+          + Nova FVS
+        </HalstenButton>
       </div>
 
       {/* Filters */}
-      <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+      <div style={{ display: 'flex', gap: 'var(--sp-2)', marginBottom: 'var(--sp-6)' }}>
         {[
           ['todos', 'Todas'],
           ['rascunho', 'Rascunho'],
@@ -71,11 +60,11 @@ export function Fvs({ onNavigate }: FvsProps) {
             key={v}
             onClick={() => setFilter(v)}
             style={{
-              padding: '6px 14px',
-              borderRadius: 6,
-              border: `1.5px solid ${filter === v ? 'var(--hs-text-primary)' : 'var(--hs-border)'}`,
-              background: filter === v ? 'var(--hs-text-primary)' : 'var(--hs-surface)',
-              color: filter === v ? '#fff' : 'var(--hs-text-primary)',
+              padding: 'var(--sp-2) var(--sp-3)',
+              borderRadius: 4,
+              border: `1.5px solid ${filter === v ? 'var(--ink)' : 'var(--bg-2)'}`,
+              background: filter === v ? 'var(--ink)' : 'var(--bg)',
+              color: filter === v ? '#fff' : 'var(--ink)',
               fontSize: 12,
               fontWeight: 600,
               cursor: 'pointer',
@@ -88,251 +77,68 @@ export function Fvs({ onNavigate }: FvsProps) {
       </div>
 
       {/* Table */}
-      <Card padding="0" borderColor={'var(--hs-border)'}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
-          <thead>
-            <tr style={{ background: 'var(--hs-surface-alt)', borderBottom: `1px solid ${'var(--hs-border)'}` }}>
-              {['Nº FVS', 'Empreendimento', 'Serviço', 'Local', 'Inspetor', 'Data', 'Nota', 'Status'].map(h => (
-                <th
-                  key={h}
-                  style={{
-                    padding: '10px 14px',
-                    textAlign: 'left',
-                    color: 'var(--hs-text-primary)',
-                    fontWeight: 600,
-                    fontSize: 11,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.4px',
-                  }}
-                >
-                  {h}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.map((f, i) => {
-              const nota = f.nota || 0
-              const notaBg = nota >= 7 ? '#4caf50' : nota >= 4 ? '#ff9800' : '#f44336'
-              return (
-                <tr
-                  key={f.id}
-                  onClick={() => setSelectedFvs(f)}
-                  style={{
-                    borderBottom: `1px solid ${'var(--hs-border)'}`,
-                    background: i % 2 === 0 ? 'var(--hs-surface)' : 'var(--hs-surface-alt)',
-                    cursor: 'pointer',
-                    transition: 'background .1s',
-                  }}
-                  onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.background = '#f0f7f2'
-                  }}
-                  onMouseLeave={e => {
-                    (e.currentTarget as HTMLElement).style.background = i % 2 === 0 ? 'var(--hs-surface)' : 'var(--hs-surface-alt)'
-                  }}
-                >
-                  <td style={{ padding: '10px 14px', fontWeight: 600, color: 'var(--hs-text-primary)' }}>{f.id}</td>
-                  <td style={{ padding: '10px 14px', color: 'var(--hs-text-primary)' }}>{f.empreendimento}</td>
-                  <td style={{ padding: '10px 14px', color: 'var(--hs-text-primary)' }}>{f.servico}</td>
-                  <td style={{ padding: '10px 14px', color: 'var(--hs-text-tertiary)', fontSize: 11 }}>{f.local || f.pavimento}</td>
-                  <td style={{ padding: '10px 14px', color: 'var(--hs-text-primary)' }}>{f.inspetor}</td>
-                  <td style={{ padding: '10px 14px', color: 'var(--hs-text-tertiary)' }}>{f.dataRealizacao || '-'}</td>
-                  <td style={{ padding: '10px 14px', textAlign: 'center' }}>
-                    <span
-                      style={{
-                        display: 'inline-block',
-                        padding: '4px 8px',
-                        background: notaBg,
-                        color: '#fff',
-                        borderRadius: 4,
-                        fontSize: 11,
-                        fontWeight: 600,
-                      }}
-                    >
-                      {nota}
-                    </span>
-                  </td>
-                  <td style={{ padding: '10px 14px' }}>
-                    <Badge type="fvs" value={f.status} />
-                  </td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
-      </Card>
+      <HalstenCard>
+        <HalstenTable headers={['Nº FVS', 'Empreendimento', 'Serviço', 'Local', 'Inspetor', 'Data', 'Nota', 'Status']}>
+          {filtered.map(f => (
+            <HalstenTableRow key={f.id} onClick={() => setSelectedFvs(f)}>
+              <HalstenTableCell variant="header">{f.id}</HalstenTableCell>
+              <HalstenTableCell>{f.empreendimento}</HalstenTableCell>
+              <HalstenTableCell>{f.servico}</HalstenTableCell>
+              <HalstenTableCell>{f.local || f.pavimento}</HalstenTableCell>
+              <HalstenTableCell>{f.inspetor}</HalstenTableCell>
+              <HalstenTableCell>{f.dataRealizacao || '-'}</HalstenTableCell>
+              <HalstenTableCell variant="numeric">
+                <span style={{ display: 'inline-block', padding: '4px 8px', background: getNotaBg(f.nota || 0), color: '#fff', borderRadius: 4, fontSize: 11, fontWeight: 600 }}>
+                  {f.nota || 0}
+                </span>
+              </HalstenTableCell>
+              <HalstenTableCell>
+                <HalstenBadge variant={getStatusBadgeVariant(f.status)}>
+                  {f.status}
+                </HalstenBadge>
+              </HalstenTableCell>
+            </HalstenTableRow>
+          ))}
+        </HalstenTable>
+      </HalstenCard>
 
-      {/* Modal de Detalhes */}
-      {selectedFvs && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'rgba(0,0,0,0.5)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000,
-            padding: '20px',
-          }}
-          onClick={() => setSelectedFvs(null)}
-        >
-          <Card
-            borderColor={'var(--hs-text-primary)'}
-            padding="32px"
-            style={{
-              maxWidth: '700px',
-              width: '100%',
-              maxHeight: '80vh',
-              overflow: 'auto',
-              background: 'var(--hs-surface)',
-            }}
-            onClick={e => e.stopPropagation()}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-              <div>
-                <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--hs-text-primary)' }}>
-                  {selectedFvs.id} - {selectedFvs.empreendimento}
-                </div>
-                <div style={{ fontSize: 12, color: 'var(--hs-text-tertiary)', marginTop: 4 }}>
-                  {selectedFvs.servico} • {selectedFvs.dataRealizacao || 'Data não informada'}
-                </div>
-              </div>
-              <button
-                onClick={() => setSelectedFvs(null)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  fontSize: 24,
-                  cursor: 'pointer',
-                  color: 'var(--hs-text-tertiary)',
-                }}
-              >
-                ✕
-              </button>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 24 }}>
-              <div>
-                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', marginBottom: 6 }}>
-                  Local
-                </div>
-                <div style={{ fontSize: 14, color: 'var(--hs-text-primary)', fontWeight: 500 }}>
-                  {selectedFvs.local || selectedFvs.pavimento}
-                </div>
-              </div>
-
-              <div>
-                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', marginBottom: 6 }}>
-                  Nota
-                </div>
-                <div style={{ fontSize: 14, color: 'var(--hs-text-primary)', fontWeight: 500 }}>
-                  {selectedFvs.nota || 0} / 10
-                </div>
-              </div>
-
-              <div>
-                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', marginBottom: 6 }}>
-                  Inspetor
-                </div>
-                <div style={{ fontSize: 14, color: 'var(--hs-text-primary)', fontWeight: 500 }}>
-                  {selectedFvs.inspetor}
-                </div>
-              </div>
-
-              <div>
-                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', marginBottom: 6 }}>
-                  Empreiteira
-                </div>
-                <div style={{ fontSize: 14, color: 'var(--hs-text-primary)', fontWeight: 500 }}>
-                  {selectedFvs.empreiteira || '—'}
-                </div>
-              </div>
-
-              <div>
-                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', marginBottom: 6 }}>
-                  Pavimento
-                </div>
-                <div style={{ fontSize: 14, color: 'var(--hs-text-primary)', fontWeight: 500 }}>
-                  {selectedFvs.pavimento}
-                </div>
-              </div>
-
-              <div>
-                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', marginBottom: 6 }}>
-                  Status
-                </div>
-                <Badge type="fvs" value={selectedFvs.status} />
-              </div>
-            </div>
-
-            {selectedFvs.observacoes && (
-              <div style={{ marginBottom: 24, paddingBottom: 24, borderBottom: `1px solid ${'var(--hs-border)'}` }}>
-                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', marginBottom: 8 }}>
-                  Observações
-                </div>
-                <div style={{ fontSize: 13, color: 'var(--hs-text-primary)', lineHeight: '1.5' }}>
-                  {selectedFvs.observacoes}
-                </div>
-              </div>
-            )}
-
-            {selectedFvs.localAvaliado && (
-              <div style={{ marginBottom: 24, paddingBottom: 24, borderBottom: `1px solid ${'var(--hs-border)'}` }}>
-                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', marginBottom: 8 }}>
-                  Local Avaliado
-                </div>
-                <div style={{ fontSize: 13, color: 'var(--hs-text-primary)' }}>
-                  {selectedFvs.localAvaliado}
-                </div>
-              </div>
-            )}
-
-            {selectedFvs.colaboradorAvaliado && (
-              <div style={{ marginBottom: 24 }}>
-                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', marginBottom: 8 }}>
-                  Colaborador Avaliado
-                </div>
-                <div style={{ fontSize: 13, color: 'var(--hs-text-primary)' }}>
-                  {selectedFvs.colaboradorAvaliado}
-                </div>
-              </div>
-            )}
-
-            <div style={{ display: 'flex', gap: 12, marginTop: 24, paddingTop: 24, borderTop: `1px solid ${'var(--hs-border)'}` }}>
-              <button
-                onClick={() => setSelectedFvs(null)}
-                style={{
-                  flex: 1,
-                  padding: '10px 16px',
-                  background: 'var(--hs-text-primary)',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: 8,
-                  fontSize: 13,
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  transition: 'background .15s',
-                }}
-                onMouseEnter={e => {
-                  (e.target as HTMLElement).style.background = 'var(--hs-text-primary)'
-                }}
-                onMouseLeave={e => {
-                  (e.target as HTMLElement).style.background = 'var(--hs-text-primary)'
-                }}
-              >
-                Fechar
-              </button>
-            </div>
-          </Card>
+      {/* Modal */}
+      <HalstenModal isOpen={!!selectedFvs} onClose={() => setSelectedFvs(null)} title={`${selectedFvs?.id} - ${selectedFvs?.empreendimento}`} maxWidth="700px">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--sp-6)', marginBottom: 'var(--sp-6)' }}>
+          <div>
+            <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--muted-1)', textTransform: 'uppercase', display: 'block', marginBottom: 'var(--sp-2)' }}>Local</label>
+            <div style={{ fontSize: 14, color: 'var(--ink)', fontWeight: 500 }}>{selectedFvs?.local || selectedFvs?.pavimento}</div>
+          </div>
+          <div>
+            <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--muted-1)', textTransform: 'uppercase', display: 'block', marginBottom: 'var(--sp-2)' }}>Nota</label>
+            <div style={{ fontSize: 14, color: 'var(--ink)', fontWeight: 500 }}>{selectedFvs?.nota || 0} / 10</div>
+          </div>
+          <div>
+            <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--muted-1)', textTransform: 'uppercase', display: 'block', marginBottom: 'var(--sp-2)' }}>Inspetor</label>
+            <div style={{ fontSize: 14, color: 'var(--ink)', fontWeight: 500 }}>{selectedFvs?.inspetor}</div>
+          </div>
+          <div>
+            <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--muted-1)', textTransform: 'uppercase', display: 'block', marginBottom: 'var(--sp-2)' }}>Empreiteira</label>
+            <div style={{ fontSize: 14, color: 'var(--ink)', fontWeight: 500 }}>{selectedFvs?.empreiteira || '—'}</div>
+          </div>
         </div>
-      )}
+
+        {selectedFvs?.observacoes && (
+          <div style={{ marginBottom: 'var(--sp-6)', paddingBottom: 'var(--sp-6)', borderBottom: '1px solid var(--bg-2)' }}>
+            <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--muted-1)', textTransform: 'uppercase', display: 'block', marginBottom: 'var(--sp-2)' }}>Observações</label>
+            <div style={{ fontSize: 13, color: 'var(--ink-2)', lineHeight: 1.5 }}>{selectedFvs.observacoes}</div>
+          </div>
+        )}
+
+        <div style={{ display: 'flex', gap: 'var(--sp-3)', marginTop: 'var(--sp-6)', paddingTop: 'var(--sp-6)', borderTop: '1px solid var(--bg-2)' }}>
+          <HalstenButton variant="primary" onClick={() => setSelectedFvs(null)}>
+            Fechar
+          </HalstenButton>
+        </div>
+      </HalstenModal>
 
       {filtered.length === 0 && (
-        <div style={{ textAlign: 'center', padding: '48px 24px', color: 'var(--hs-text-tertiary)' }}>
+        <div style={{ textAlign: 'center', padding: 'var(--sp-12)', color: 'var(--ink-2)' }}>
           Nenhuma FVS encontrada com esse filtro.
         </div>
       )}

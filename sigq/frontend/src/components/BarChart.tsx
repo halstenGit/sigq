@@ -1,5 +1,3 @@
-import { colors } from '../styles/theme'
-
 interface ChartData {
   mes: string
   fvs: number
@@ -15,20 +13,20 @@ export function BarChart({ data, title }: BarChartProps) {
   const maxFvs = Math.max(...data.map(d => d.fvs || 0), 1)
 
   return (
-    <div style={{ background: colors.bgWhite, border: `1px solid ${colors.border}`, borderRadius: 10, padding: 24 }}>
-      <div style={{ fontSize: 13, fontWeight: 600, color: colors.primaryDark, marginBottom: 20 }}>
+    <div style={{ background: 'var(--hs-bg)', border: '1px solid var(--hs-border)', borderRadius: 6, padding: 24 }}>
+      <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--hs-text-primary)', marginBottom: 20 }}>
         {title}
       </div>
 
       <div style={{ display: 'flex', alignItems: 'flex-end', gap: 16, height: 120 }}>
         {data.map(d => (
           <div key={d.mes} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-            <div style={{ fontSize: 11, color: colors.primaryDark, fontWeight: 600 }}>{d.fvs || ''}</div>
+            <div style={{ fontSize: 11, color: 'var(--hs-text-primary)', fontWeight: 600 }}>{d.fvs || ''}</div>
             <div style={{ width: '100%', display: 'flex', gap: 3, alignItems: 'flex-end', height: 90 }}>
               <div
                 style={{
                   flex: 1,
-                  background: d.fvs ? colors.primary : colors.border,
+                  background: d.fvs ? 'var(--ok)' : 'var(--hs-border)',
                   height: `${(d.fvs / maxFvs) * 90}px`,
                   borderRadius: '3px 3px 0 0',
                   transition: 'height .3s',
@@ -37,25 +35,25 @@ export function BarChart({ data, title }: BarChartProps) {
               <div
                 style={{
                   flex: 1,
-                  background: d.nc ? '#c62828' : colors.border,
+                  background: d.nc ? 'var(--bad)' : 'var(--hs-border)',
                   height: `${(d.nc / maxFvs) * 90}px`,
                   borderRadius: '3px 3px 0 0',
                   opacity: 0.7,
                 }}
               />
             </div>
-            <div style={{ fontSize: 11, color: colors.textLight }}>{d.mes}</div>
+            <div style={{ fontSize: 11, color: 'var(--hs-text-tertiary)' }}>{d.mes}</div>
           </div>
         ))}
       </div>
 
       <div style={{ display: 'flex', gap: 16, marginTop: 12 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: colors.textMuted }}>
-          <div style={{ width: 10, height: 10, borderRadius: 2, background: colors.primary }} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: 'var(--hs-text-tertiary)' }}>
+          <div style={{ width: 10, height: 10, borderRadius: 2, background: 'var(--ok)' }} />
           FVS realizadas
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: colors.textMuted }}>
-          <div style={{ width: 10, height: 10, borderRadius: 2, background: '#c62828', opacity: 0.7 }} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: 'var(--hs-text-tertiary)' }}>
+          <div style={{ width: 10, height: 10, borderRadius: 2, background: 'var(--bad)', opacity: 0.7 }} />
           Com NCs
         </div>
       </div>

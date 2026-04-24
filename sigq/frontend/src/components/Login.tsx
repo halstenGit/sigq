@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import axios from 'axios'
-import { colors } from '../styles/theme'
 
 interface LoginProps {
   onSuccess: (token: string) => void
@@ -38,13 +37,13 @@ export function Login({ onSuccess, onError }: LoginProps) {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        background: `linear-gradient(160deg, ${colors.primaryDark} 0%, ${colors.primary} 60%, ${colors.primaryLight} 100%)`,
+        background: 'linear-gradient(160deg, #0A0A0A 0%, #1A1A1A 60%, #52524E 100%)',
         padding: 24,
       }}
     >
       <div
         style={{
-          background: colors.bgWhite,
+          background: '#FAFAF7',
           borderRadius: 12,
           padding: '48px 40px',
           width: '100%',
@@ -58,7 +57,7 @@ export function Login({ onSuccess, onError }: LoginProps) {
             style={{
               width: 38,
               height: 38,
-              background: colors.primary,
+              background: '#0A0A0A',
               borderRadius: 8,
               display: 'flex',
               alignItems: 'center',
@@ -76,16 +75,16 @@ export function Login({ onSuccess, onError }: LoginProps) {
             </svg>
           </div>
           <div>
-            <div style={{ fontSize: 18, fontWeight: 700, color: colors.primaryDark, letterSpacing: '-0.3px' }}>
+            <div style={{ fontSize: 18, fontWeight: 700, color: '#0A0A0A', letterSpacing: '-0.3px' }}>
               SIGQ
             </div>
-            <div style={{ fontSize: 11, color: colors.textMuted, marginTop: -2 }}>Halsten Incorporadora</div>
+            <div style={{ fontSize: 11, color: '#999999', marginTop: -2 }}>Halsten Incorporadora</div>
           </div>
         </div>
 
         {/* Heading */}
-        <div style={{ fontSize: 22, fontWeight: 700, color: colors.text, marginBottom: 6 }}>Bem-vindo</div>
-        <div style={{ fontSize: 13, color: colors.textMuted, marginBottom: 28 }}>
+        <div style={{ fontSize: 22, fontWeight: 700, color: '#0A0A0A', marginBottom: 6 }}>Bem-vindo</div>
+        <div style={{ fontSize: 13, color: '#999999', marginBottom: 28 }}>
           Acesse com sua conta corporativa Microsoft
         </div>
 
@@ -96,7 +95,7 @@ export function Login({ onSuccess, onError }: LoginProps) {
               marginBottom: 16,
               padding: '12px 14px',
               background: '#ffebee',
-              border: '1px solid #ef5350',
+              border: '1px solid #F44336',
               borderRadius: 6,
               color: '#c62828',
               fontSize: 12,
@@ -117,13 +116,13 @@ export function Login({ onSuccess, onError }: LoginProps) {
             justifyContent: 'center',
             gap: 10,
             padding: '12px 20px',
-            border: `1.5px solid ${isLoading ? colors.border : colors.border}`,
+            border: '1.5px solid #EFEFEB',
             borderRadius: 8,
-            background: colors.bgWhite,
+            background: '#FAFAF7',
             cursor: isLoading ? 'not-allowed' : 'pointer',
             fontSize: 14,
             fontWeight: 600,
-            color: colors.text,
+            color: '#0A0A0A',
             transition: 'all .15s',
             opacity: isLoading ? 0.6 : 1,
           }}
@@ -138,7 +137,7 @@ export function Login({ onSuccess, onError }: LoginProps) {
         </button>
 
         {/* Footer */}
-        <div style={{ marginTop: 24, fontSize: 12, color: colors.textMuted, textAlign: 'center' }}>
+        <div style={{ marginTop: 24, fontSize: 12, color: '#999999', textAlign: 'center' }}>
           Autenticação via Microsoft Entra ID · SSO corporativo
         </div>
       </div>

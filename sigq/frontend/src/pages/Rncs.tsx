@@ -1,91 +1,79 @@
 import { HalstenCard } from '../components/HalstenCard'
 import { HalstenButton } from '../components/HalstenButton'
-import { Badge } from '../components/Badge'
+import { HalstenBadge } from '../components/HalstenBadge'
 import { RNC_LIST } from '../data/mockData'
 
 export function Rncs() {
+  const getGravidadeBadge = (gravidade: string) => {
+    if (gravidade === 'Crítica') return 'error'
+    if (gravidade === 'Alta') return 'warning'
+    return 'default'
+  }
+
+  const getStatusBadge = (status: string) => {
+    if (status === 'Resolvida') return 'success'
+    if (status === 'Em progresso') return 'warning'
+    return 'error'
+  }
+
   return (
-    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'var(--hs-space-6)' }}>
+    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'var(--sp-8)' }}>
       {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--hs-space-6)' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--sp-8)' }}>
         <div>
-          <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hs-text-primary)', margin: 0 }}>
+          <h1 style={{ fontSize: 28, fontWeight: 700, color: 'var(--ink)', margin: 0 }}>
             Registros de Não Conformidade (RNC)
           </h1>
-          <p style={{ fontSize: '14px', color: 'var(--hs-text-tertiary)', margin: 'var(--hs-space-1) 0 0 0' }}>
+          <p style={{ fontSize: 13, color: 'var(--ink-2)', margin: 'var(--sp-1) 0 0 0' }}>
             {RNC_LIST.length} RNCs registradas
           </p>
         </div>
-        <HalstenButton variant="danger">+ Nova RNC</HalstenButton>
+        <HalstenButton variant="primary">+ Nova RNC</HalstenButton>
       </div>
 
       {/* Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))', gap: 'var(--hs-space-4)' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: 'var(--sp-6)' }}>
         {RNC_LIST.map(rnc => (
           <HalstenCard key={rnc.id}>
-            {/* Header */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--hs-space-3)' }}>
-              <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--hs-text-primary)' }}>{rnc.id}</div>
-              <Badge type="gravidade" value={rnc.gravidade} />
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--sp-4)' }}>
+              <h3 style={{ fontSize: 14, fontWeight: 700, color: 'var(--ink)', margin: 0 }}>{rnc.id}</h3>
+              <HalstenBadge variant={getGravidadeBadge(rnc.gravidade)}>{rnc.gravidade}</HalstenBadge>
             </div>
 
-            {/* Empreendimento */}
-            <div style={{ marginBottom: 'var(--hs-space-3)' }}>
-              <div style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                Empreendimento
-              </div>
-              <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--hs-text-primary)' }}>{rnc.empreendimento}</div>
+            <div style={{ marginBottom: 'var(--sp-4)' }}>
+              <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--muted-1)', textTransform: 'uppercase', display: 'block', marginBottom: 'var(--sp-1)' }}>Empreendimento</label>
+              <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink)' }}>{rnc.empreendimento}</div>
             </div>
 
-            {/* Serviço */}
-            <div style={{ marginBottom: 'var(--hs-space-3)' }}>
-              <div style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                Serviço
-              </div>
-              <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--hs-text-primary)' }}>{rnc.servico}</div>
+            <div style={{ marginBottom: 'var(--sp-4)' }}>
+              <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--muted-1)', textTransform: 'uppercase', display: 'block', marginBottom: 'var(--sp-1)' }}>Serviço</label>
+              <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink)' }}>{rnc.servico}</div>
             </div>
 
-            {/* Descrição */}
-            <div style={{ marginBottom: 'var(--hs-space-3)' }}>
-              <div style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                Descrição
-              </div>
-              <div style={{ fontSize: '12px', color: 'var(--hs-text-primary)', lineHeight: '1.4' }}>{rnc.descricao}</div>
+            <div style={{ marginBottom: 'var(--sp-4)' }}>
+              <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--muted-1)', textTransform: 'uppercase', display: 'block', marginBottom: 'var(--sp-1)' }}>Descrição</label>
+              <div style={{ fontSize: 12, color: 'var(--ink-2)', lineHeight: 1.4 }}>{rnc.descricao}</div>
             </div>
 
-            {/* Status e Responsável */}
-            <div style={{ display: 'flex', gap: 'var(--hs-space-3)', marginBottom: 'var(--hs-space-3)', paddingBottom: 'var(--hs-space-3)', borderBottom: '1px solid var(--hs-border)' }}>
+            <div style={{ display: 'flex', gap: 'var(--sp-4)', marginBottom: 'var(--sp-4)', paddingBottom: 'var(--sp-4)', borderBottom: '1px solid var(--bg-2)' }}>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  Status
-                </div>
-                <div style={{ marginTop: 'var(--hs-space-1)' }}>
-                  <Badge type="rnc" value={rnc.status} />
-                </div>
+                <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--muted-1)', textTransform: 'uppercase', display: 'block', marginBottom: 'var(--sp-1)' }}>Status</label>
+                <HalstenBadge variant={getStatusBadge(rnc.status)}>{rnc.status}</HalstenBadge>
               </div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  Responsável
-                </div>
-                <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--hs-text-primary)', marginTop: 'var(--hs-space-1)' }}>
-                  {rnc.responsavel}
-                </div>
+                <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--muted-1)', textTransform: 'uppercase', display: 'block', marginBottom: 'var(--sp-1)' }}>Responsável</label>
+                <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink)' }}>{rnc.responsavel}</div>
               </div>
             </div>
 
-            {/* Datas */}
-            <div style={{ display: 'flex', gap: 'var(--hs-space-3)' }}>
+            <div style={{ display: 'flex', gap: 'var(--sp-4)' }}>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  Abertura
-                </div>
-                <div style={{ fontSize: '12px', color: 'var(--hs-text-primary)', marginTop: 'var(--hs-space-1)' }}>{rnc.abertura}</div>
+                <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--muted-1)', textTransform: 'uppercase', display: 'block', marginBottom: 'var(--sp-1)' }}>Abertura</label>
+                <div style={{ fontSize: 12, color: 'var(--ink-2)' }}>{rnc.abertura}</div>
               </div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '11px', color: 'var(--hs-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  Prazo
-                </div>
-                <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--hs-text-primary)', marginTop: 'var(--hs-space-1)' }}>{rnc.prazo}</div>
+                <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--muted-1)', textTransform: 'uppercase', display: 'block', marginBottom: 'var(--sp-1)' }}>Prazo</label>
+                <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink)' }}>{rnc.prazo}</div>
               </div>
             </div>
           </HalstenCard>

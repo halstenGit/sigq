@@ -2,14 +2,15 @@ import { KPICard } from '../components/KPICard'
 import { BarChart } from '../components/BarChart'
 import { HalstenCard } from '../components/HalstenCard'
 import { HalstenBadge } from '../components/HalstenBadge'
+import { HalstenTable, HalstenTableRow, HalstenTableCell } from '../components/HalstenTable'
 import { EMPREENDIMENTOS, RNC_LIST } from '../data/mockData'
 
 export function Dashboard() {
   const kpis = [
-    { label: 'FVS este mês', value: 38, delta: '+12%', icon: '📋', color: '#0A0A0A' },
-    { label: 'Conformidades', value: '86%', delta: '+2pp', icon: '✅', color: '#4CAF50' },
-    { label: 'RNCs abertas', value: 4, delta: '-3', icon: '⚠️', color: '#FFC107' },
-    { label: 'RNCs críticas', value: 2, delta: '=', icon: '🚨', color: '#F44336' },
+    { label: 'FVS este mês', value: 38, delta: '+12%', icon: '📋', color: 'var(--ok)' },
+    { label: 'Conformidades', value: '86%', delta: '+2pp', icon: '✅', color: 'var(--ok)' },
+    { label: 'RNCs abertas', value: 4, delta: '-3', icon: '⚠️', color: 'var(--warn)' },
+    { label: 'RNCs críticas', value: 2, delta: '=', icon: '🚨', color: 'var(--bad)' },
   ]
 
   const chartData = [
@@ -33,19 +34,19 @@ export function Dashboard() {
   }
 
   return (
-    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'var(--hs-space-6)' }}>
+    <div style={{ maxWidth: 1400, margin: '0 auto', padding: 'var(--sp-8)' }}>
       {/* Header */}
-      <div className="hs-mb-6">
-        <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hs-text-primary)', margin: 0 }}>
+      <div style={{ marginBottom: 'var(--sp-8)' }}>
+        <h1 style={{ fontSize: 28, fontWeight: 700, color: 'var(--ink)', margin: 0 }}>
           Dashboard
         </h1>
-        <p style={{ fontSize: '14px', color: 'var(--hs-text-tertiary)', margin: 'var(--hs-space-1) 0 0 0' }}>
+        <p style={{ fontSize: 13, color: 'var(--ink-2)', margin: 'var(--sp-1) 0 0 0' }}>
           Visão geral · Abril 2026
         </p>
       </div>
 
       {/* KPIs Grid */}
-      <div className="hs-grid hs-grid-4 hs-mb-6">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--sp-4)', marginBottom: 'var(--sp-8)' }}>
         {kpis.map(k => (
           <KPICard
             key={k.label}
@@ -59,25 +60,25 @@ export function Dashboard() {
       </div>
 
       {/* Chart + Sidebar */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: 'var(--hs-space-4)', marginBottom: 'var(--hs-space-6)' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: 'var(--sp-6)', marginBottom: 'var(--sp-8)' }}>
         {/* Bar Chart */}
         <BarChart data={chartData} title="FVS realizadas por mês" />
 
         {/* Empreendimentos */}
         <HalstenCard title="Empreendimentos ativos">
           {EMPREENDIMENTOS.map(e => (
-            <div key={e.id} style={{ marginBottom: 'var(--hs-space-4)', paddingBottom: 'var(--hs-space-4)', borderBottom: '1px solid var(--hs-border)' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 'var(--hs-space-1)' }}>
-                <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--hs-text-primary)' }}>{e.nome}</div>
-                <div style={{ fontSize: '12px', color: 'var(--hs-text-tertiary)' }}>{e.progresso}%</div>
+            <div key={e.id} style={{ marginBottom: 'var(--sp-4)', paddingBottom: 'var(--sp-4)', borderBottom: '1px solid var(--bg-2)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 'var(--sp-1)' }}>
+                <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink)' }}>{e.nome}</div>
+                <div style={{ fontSize: 12, color: 'var(--ink-2)' }}>{e.progresso}%</div>
               </div>
-              <div style={{ height: '6px', background: 'var(--hs-border)', borderRadius: '99px' }}>
+              <div style={{ height: 6, background: 'var(--bg-2)', borderRadius: 99 }}>
                 <div
                   style={{
                     height: '100%',
                     width: `${e.progresso}%`,
-                    background: 'var(--hs-text-primary)',
-                    borderRadius: '99px',
+                    background: 'var(--ink)',
+                    borderRadius: 99,
                     transition: 'width 600ms cubic-bezier(0.4, 0, 0.2, 1)',
                   }}
                 />
@@ -89,33 +90,22 @@ export function Dashboard() {
 
       {/* Recent RNCs */}
       <HalstenCard title="RNCs recentes">
-        <div style={{ overflowX: 'auto' }}>
-          <table className="hs-tbl">
-            <thead>
-              <tr>
-                {['ID', 'Empreendimento', 'Serviço', 'Gravidade', 'Status', 'Prazo'].map(h => (
-                  <th key={h}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {RNC_LIST.slice(0, 4).map(r => (
-                <tr key={r.id}>
-                  <td style={{ fontWeight: 600, color: 'var(--hs-text-primary)' }}>{r.id}</td>
-                  <td>{r.empreendimento}</td>
-                  <td>{r.servico}</td>
-                  <td>
-                    <HalstenBadge variant={getGravityBadgeVariant(r.gravidade)}>{r.gravidade}</HalstenBadge>
-                  </td>
-                  <td>
-                    <HalstenBadge variant={getStatusBadgeVariant(r.status)}>{r.status}</HalstenBadge>
-                  </td>
-                  <td style={{ color: 'var(--hs-text-tertiary)' }}>{r.prazo}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <HalstenTable headers={['ID', 'Empreendimento', 'Serviço', 'Gravidade', 'Status', 'Prazo']}>
+          {RNC_LIST.slice(0, 4).map(r => (
+            <HalstenTableRow key={r.id}>
+              <HalstenTableCell variant="header">{r.id}</HalstenTableCell>
+              <HalstenTableCell>{r.empreendimento}</HalstenTableCell>
+              <HalstenTableCell>{r.servico}</HalstenTableCell>
+              <HalstenTableCell>
+                <HalstenBadge variant={getGravityBadgeVariant(r.gravidade)}>{r.gravidade}</HalstenBadge>
+              </HalstenTableCell>
+              <HalstenTableCell>
+                <HalstenBadge variant={getStatusBadgeVariant(r.status)}>{r.status}</HalstenBadge>
+              </HalstenTableCell>
+              <HalstenTableCell>{r.prazo}</HalstenTableCell>
+            </HalstenTableRow>
+          ))}
+        </HalstenTable>
       </HalstenCard>
     </div>
   )
