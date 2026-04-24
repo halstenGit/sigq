@@ -1,39 +1,22 @@
-import { useEffect, useState } from 'react'
-import { MsalProvider, useIsAuthenticated } from '@azure/msal-react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Network } from '@capacitor/network'
-import { msalInstance } from './config/msalConfig'
+import { useState, useEffect } from 'react'
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
+import { FvsProvider } from './contexts/FvsContext'
+import { apiService } from './services/api'
+import { Navigation } from './components/Navigation'
 import { Login } from './components/Login'
+import { Dashboard } from './pages/Dashboard'
 import { Empreendimentos } from './pages/Empreendimentos'
 import { Rncs } from './pages/Rncs'
-import { Navigation } from './components/Navigation'
-import { apiService } from './services/api'
+import { Perfil } from './pages/Perfil'
+import { Fvs } from './pages/Fvs'
+import { NovaFvs } from './pages/NovaFvs'
 
 const queryClient = new QueryClient()
 
 function AppContent() {
-  const isEntraAuthenticated = useIsAuthenticated()
-  const { token, setToken, logout } = useAuth()
-  const [isOnline, setIsOnline] = useState(true)
-  const [currentPage, setCurrentPage] = useState('empreendimentos')
-
-  useEffect(() => {
-    const checkNetworkStatus = async () => {
-      const status = await Network.getStatus()
-      setIsOnline(status.connected)
-    }
-
-    checkNetworkStatus()
-
-    const unsubscribe = Network.addListener('networkStatusChange', (status) => {
-      setIsOnline(status.connected)
-    })
-
-    return () => {
-      unsubscribe.then((e) => e())
-    }
-  }, [])
+  const { token, setToken, logout, isAuthenticated } = useAuth()
+  const [currentPage, setCurrentPage] = useState('dashboard')
 
   useEffect(() => {
     if (token) {
@@ -43,58 +26,43 @@ function AppContent() {
     }
   }, [token])
 
-  const handleLoginSuccess = (jwtToken: string) => {
-    setToken(jwtToken)
+  const handleLoginSuccess = (newToken: string) => {
+    setToken(newToken)
+    setCurrentPage('dashboard')
   }
 
   const handleLogout = () => {
     logout()
   }
 
-  if (!isEntraAuthenticated || !token) {
-    return (
-      <Login
-        onSuccess={handleLoginSuccess}
-        onError={(error) => {
-          console.error('Login error:', error)
-        }}
-      />
-    )
+  if (!isAuthenticated) {
+    return <Login onSuccess={handleLoginSuccess} />
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navigation
-        currentPage={currentPage}
-        onNavigate={setCurrentPage}
-        onLogout={handleLogout}
-      />
+    <div style={{ background: 'var(--hs-bg)', minHeight: '100vh' }}>
+      <Navigation currentPage={currentPage} onNavigate={setCurrentPage} onLogout={handleLogout} />
 
       <main>
+        {currentPage === 'dashboard' && <Dashboard />}
         {currentPage === 'empreendimentos' && <Empreendimentos />}
+        {currentPage === 'fvs' && <Fvs onNavigate={setCurrentPage} />}
+        {currentPage === 'nova-fvs' && <NovaFvs onSuccess={() => setCurrentPage('fvs')} />}
         {currentPage === 'rncs' && <Rncs />}
+        {currentPage === 'perfil' && <Perfil />}
       </main>
-
-      {!isOnline && (
-        <div className="fixed bottom-0 left-0 right-0 bg-yellow-500 text-white p-4 text-center">
-          ⚠️ Você está offline. Seus dados serão sincronizados quando a
-          conexão for restabelecida.
-        </div>
-      )}
     </div>
   )
 }
 
-function App() {
+export default function App() {
   return (
-    <MsalProvider instance={msalInstance}>
+    <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <QueryClientProvider client={queryClient}>
+        <FvsProvider>
           <AppContent />
-        </QueryClientProvider>
+        </FvsProvider>
       </AuthProvider>
-    </MsalProvider>
+    </QueryClientProvider>
   )
 }
-
-export default App

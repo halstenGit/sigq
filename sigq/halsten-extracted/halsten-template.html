@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HALSTEN TEMPLATE · Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<style>/* vietnamese */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("bf5111ff-c77f-40ec-8d96-63f2bcd97a6b") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("c08adad9-3967-4650-bea7-2bd0a3fbb12e") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("accd0948-182f-409c-8d10-60c659064aa8") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("bf5111ff-c77f-40ec-8d96-63f2bcd97a6b") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("c08adad9-3967-4650-bea7-2bd0a3fbb12e") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("accd0948-182f-409c-8d10-60c659064aa8") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("bf5111ff-c77f-40ec-8d96-63f2bcd97a6b") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("c08adad9-3967-4650-bea7-2bd0a3fbb12e") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("accd0948-182f-409c-8d10-60c659064aa8") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("bf5111ff-c77f-40ec-8d96-63f2bcd97a6b") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("c08adad9-3967-4650-bea7-2bd0a3fbb12e") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("accd0948-182f-409c-8d10-60c659064aa8") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("bf5111ff-c77f-40ec-8d96-63f2bcd97a6b") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("c08adad9-3967-4650-bea7-2bd0a3fbb12e") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("accd0948-182f-409c-8d10-60c659064aa8") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 900;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("bf5111ff-c77f-40ec-8d96-63f2bcd97a6b") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 900;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("c08adad9-3967-4650-bea7-2bd0a3fbb12e") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 900;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("accd0948-182f-409c-8d10-60c659064aa8") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("c96dc4af-48b7-4a81-b79e-005eadb9e998") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("6591fd1a-0f99-44eb-984a-ed9c837ec331") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("e0468c30-1082-4bb8-9cc4-c10870ce8c5d") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("c96dc4af-48b7-4a81-b79e-005eadb9e998") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("6591fd1a-0f99-44eb-984a-ed9c837ec331") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("e0468c30-1082-4bb8-9cc4-c10870ce8c5d") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("c96dc4af-48b7-4a81-b79e-005eadb9e998") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("6591fd1a-0f99-44eb-984a-ed9c837ec331") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("e0468c30-1082-4bb8-9cc4-c10870ce8c5d") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("a07885ed-84ce-49d9-82bb-5a332b2d305e") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("bd367549-355d-4da6-adac-1bccbb57152d") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("e1532432-c595-4e80-92f2-77c0ad38ad07") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("270bdf0b-1945-42d3-8bb9-e13f4f329bb7") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("a8318849-e1d9-4176-87c1-2ad8801ed448") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("72b721fe-04c1-43d2-8c75-f020eb4c3084") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("51f49aa1-24d6-4405-b0f5-a24ceb9e83fe") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("4a983403-29e2-4c2e-9f2b-61f904b091f2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("c1222666-7973-4e08-b71a-c141ee961b16") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("a216e129-3a51-417a-bd95-ce380b86ce64") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("f09f0aae-6c65-4831-8bd7-3ecf31c29d2b") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("6b35b6f0-2a9a-4c2f-8d56-f0ad6f993d0f") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("b1469301-c598-4951-b401-d24f7944c3cc") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("60323d1c-acce-49ec-a422-8d2bc5d115ea") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("dfabc988-91e8-497c-bca6-1c1becdf5760") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("dc07c65a-9849-45fb-a5c3-ffc89dd1b3e9") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("f09f0aae-6c65-4831-8bd7-3ecf31c29d2b") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("6b35b6f0-2a9a-4c2f-8d56-f0ad6f993d0f") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("b1469301-c598-4951-b401-d24f7944c3cc") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("60323d1c-acce-49ec-a422-8d2bc5d115ea") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("dfabc988-91e8-497c-bca6-1c1becdf5760") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("dc07c65a-9849-45fb-a5c3-ffc89dd1b3e9") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("f09f0aae-6c65-4831-8bd7-3ecf31c29d2b") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("6b35b6f0-2a9a-4c2f-8d56-f0ad6f993d0f") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("b1469301-c598-4951-b401-d24f7944c3cc") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("60323d1c-acce-49ec-a422-8d2bc5d115ea") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("dfabc988-91e8-497c-bca6-1c1becdf5760") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("dc07c65a-9849-45fb-a5c3-ffc89dd1b3e9") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("f09f0aae-6c65-4831-8bd7-3ecf31c29d2b") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("6b35b6f0-2a9a-4c2f-8d56-f0ad6f993d0f") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("b1469301-c598-4951-b401-d24f7944c3cc") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("60323d1c-acce-49ec-a422-8d2bc5d115ea") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("dfabc988-91e8-497c-bca6-1c1becdf5760") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("dc07c65a-9849-45fb-a5c3-ffc89dd1b3e9") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("2a4bf9f7-0b3e-42bd-bef5-3202807ae3de") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("01301ee1-61e5-4d26-b5d9-8f0ab438b253") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("0a4c50c8-fa66-447e-838b-924b32d75d99") format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("d7c585f1-9301-4d9f-a687-fd18c9c07992") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("1fd7b702-a5b3-4ee4-8d19-6c7ebfba787b") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("5b6fea3e-a269-44ef-b125-f9168472fa5e") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("dfd2d829-140c-4c5d-ad8e-cf19a3393ace") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("2a4bf9f7-0b3e-42bd-bef5-3202807ae3de") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("01301ee1-61e5-4d26-b5d9-8f0ab438b253") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("0a4c50c8-fa66-447e-838b-924b32d75d99") format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("d7c585f1-9301-4d9f-a687-fd18c9c07992") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("1fd7b702-a5b3-4ee4-8d19-6c7ebfba787b") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("5b6fea3e-a269-44ef-b125-f9168472fa5e") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("dfd2d829-140c-4c5d-ad8e-cf19a3393ace") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("2a4bf9f7-0b3e-42bd-bef5-3202807ae3de") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("01301ee1-61e5-4d26-b5d9-8f0ab438b253") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("0a4c50c8-fa66-447e-838b-924b32d75d99") format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("d7c585f1-9301-4d9f-a687-fd18c9c07992") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("1fd7b702-a5b3-4ee4-8d19-6c7ebfba787b") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("5b6fea3e-a269-44ef-b125-f9168472fa5e") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("dfd2d829-140c-4c5d-ad8e-cf19a3393ace") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("2a4bf9f7-0b3e-42bd-bef5-3202807ae3de") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("01301ee1-61e5-4d26-b5d9-8f0ab438b253") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("0a4c50c8-fa66-447e-838b-924b32d75d99") format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("d7c585f1-9301-4d9f-a687-fd18c9c07992") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("1fd7b702-a5b3-4ee4-8d19-6c7ebfba787b") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("5b6fea3e-a269-44ef-b125-f9168472fa5e") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("dfd2d829-140c-4c5d-ad8e-cf19a3393ace") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("66fe7d9f-512a-4c5f-91fe-5673527dcb7f") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("d720063b-ceaf-42c2-a8c7-f0ee4a1ffb0a") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("ffcda093-74c9-4ed1-9fb8-f8a42ef705db") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("9867ebb5-f82f-42a5-aa4c-10a211c7a8d0") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("d5a1a60a-cb3f-4178-9ba6-00778c2891dd") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("6b7fb79c-0161-455f-8f71-a27f5985ef06") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("66fe7d9f-512a-4c5f-91fe-5673527dcb7f") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("d720063b-ceaf-42c2-a8c7-f0ee4a1ffb0a") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("ffcda093-74c9-4ed1-9fb8-f8a42ef705db") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("9867ebb5-f82f-42a5-aa4c-10a211c7a8d0") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("d5a1a60a-cb3f-4178-9ba6-00778c2891dd") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("6b7fb79c-0161-455f-8f71-a27f5985ef06") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("66fe7d9f-512a-4c5f-91fe-5673527dcb7f") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("d720063b-ceaf-42c2-a8c7-f0ee4a1ffb0a") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("ffcda093-74c9-4ed1-9fb8-f8a42ef705db") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("9867ebb5-f82f-42a5-aa4c-10a211c7a8d0") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("d5a1a60a-cb3f-4178-9ba6-00778c2891dd") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("6b7fb79c-0161-455f-8f71-a27f5985ef06") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("10c8f05c-3e80-40e9-af9c-26b98ebf6187") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("36411f4f-4acb-4756-a000-87a5ae28f3c0") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("dff9b4a2-0407-42a8-b3a7-a9612251983c") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("10c8f05c-3e80-40e9-af9c-26b98ebf6187") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("36411f4f-4acb-4756-a000-87a5ae28f3c0") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("dff9b4a2-0407-42a8-b3a7-a9612251983c") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+
+
+
+<script>
+// Defaults do sistema. O bloco abaixo vira o payload server-side (ver seção "Distribuição").
+window.__HT_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "brand": "HALSTEN",
+  "product": "TEMPLATE",
+  "tagline": "CONSTRUINDO O QUE IMPORTA.",
+  "signature": "© 2026 HALSTEN · Sistema construído para durar",
+  "ink": "#0A0A0A",
+  "bg": "#FAFAF7",
+  "bgRaised": "#FFFFFF",
+  "bgSunken": "#F3F3EE",
+  "rule": "#E4E4DC",
+  "ok": "oklch(0.62 0.09 155)",
+  "warn": "oklch(0.73 0.13 75)",
+  "bad": "oklch(0.58 0.17 25)",
+  "fontDisplay": "Archivo",
+  "fontBody": "Inter",
+  "fontMono": "JetBrains Mono",
+  "radius": 0,
+  "density": "compact",
+  "theme": "light"
+}/*EDITMODE-END*/;
+</script>
+
+<style>
+:root{
+  --bg:#FAFAF7; --bg-raised:#FFF; --bg-sunken:#F3F3EE;
+  --ink:#0A0A0A; --ink-2:#1E1E1E;
+  --muted-1:#52524E; --muted-2:#8A8A83; --muted-3:#BDBDB5;
+  --rule:#E4E4DC; --rule-strong:#C9C9BE; --chip:#EFEFE8;
+  --ok:oklch(0.62 0.09 155); --ok-soft:oklch(0.93 0.04 155);
+  --warn:oklch(0.73 0.13 75); --warn-soft:oklch(0.95 0.06 80);
+  --bad:oklch(0.58 0.17 25); --bad-soft:oklch(0.94 0.05 25);
+  --font-display:"Archivo",system-ui,sans-serif;
+  --font-body:"Inter",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,monospace;
+  --radius:0px;
+  --pad-y:9px; --pad-x:14px;
+}
+html[data-theme="dark"]{
+  --bg:#0A0A0A; --bg-raised:#121212; --bg-sunken:#060606;
+  --ink:#F4F4EE; --ink-2:#E2E2DC;
+  --muted-1:#A9A9A2; --muted-2:#70706A; --muted-3:#4A4A45;
+  --rule:#232321; --rule-strong:#363632; --chip:#1A1A19;
+  --ok-soft:oklch(0.30 0.06 155);
+  --warn-soft:oklch(0.32 0.08 80);
+  --bad-soft:oklch(0.28 0.09 25);
+}
+html[data-density="comfortable"]{ --pad-y:13px; --pad-x:18px; }
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:13px;line-height:1.45}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+input,select,textarea{font:inherit;color:inherit}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.tabular{font-variant-numeric:tabular-nums}
+
+/* Shell */
+.shell{display:grid;grid-template-columns:248px 1fr;min-height:100vh}
+.side{position:sticky;top:0;height:100vh;border-right:1px solid var(--rule);background:var(--bg);display:flex;flex-direction:column}
+.side .brand{padding:24px 22px 18px;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:4px}
+.side .brand .logo{font-family:var(--font-display);font-weight:800;font-size:22px;letter-spacing:0.22em}
+.side .brand .product{font-family:var(--font-display);font-weight:600;font-size:10.5px;letter-spacing:0.20em;color:var(--muted-1);text-transform:uppercase}
+.side .brand .ver{font-family:var(--font-mono);font-size:10px;color:var(--muted-2);margin-top:8px}
+.side .nav{padding:16px 10px;overflow-y:auto}
+.side .nav-group{margin-bottom:16px}
+.side .nav-label{font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted-2);padding:0 12px 8px}
+.side .nav a{display:flex;align-items:center;gap:10px;padding:7px 12px;margin:1px 0;color:var(--ink-2);font-size:12.5px;font-weight:500;text-decoration:none;border-radius:var(--radius)}
+.side .nav a:hover{background:var(--chip)}
+.side .nav a.on{background:var(--ink);color:var(--bg)}
+.side .nav a .idx{font-family:var(--font-mono);font-size:10.5px;color:var(--muted-2);width:20px}
+.side .nav a.on .idx{color:var(--bg);opacity:0.55}
+.side .foot{margin-top:auto;padding:14px 18px;border-top:1px solid var(--rule);font-family:var(--font-mono);font-size:10px;color:var(--muted-2)}
+
+.main{min-width:0}
+.top{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--rule);padding:14px 32px;display:flex;align-items:center;gap:14px}
+.crumbs{font-family:var(--font-display);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--muted-1);display:flex;gap:8px}
+.crumbs .here{color:var(--ink)}
+.crumbs .sep{opacity:0.4}
+.top .grow{flex:1}
+.top .search{display:flex;align-items:center;gap:8px;background:var(--bg-sunken);border:1px solid var(--rule);padding:6px 10px;min-width:280px;border-radius:var(--radius)}
+.top .search input{background:transparent;border:0;outline:0;width:100%;font-size:12.5px}
+.top .search .kbd{font-family:var(--font-mono);font-size:10px;color:var(--muted-2);border:1px solid var(--rule-strong);padding:1px 5px;border-radius:var(--radius)}
+.pill-seg{display:flex;border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden}
+.pill-seg button{padding:6px 10px;font-size:11.5px;font-weight:500;color:var(--muted-1);border-right:1px solid var(--rule)}
+.pill-seg button:last-child{border-right:0}
+.pill-seg button.on{background:var(--ink);color:var(--bg)}
+
+/* Section scaffolding */
+.content{padding:28px 32px 80px}
+.sec{padding-bottom:56px;border-bottom:1px solid var(--rule);margin-bottom:48px}
+.sec:last-child{border-bottom:0}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-bottom:22px}
+.sec-head .no{font-family:var(--font-mono);font-size:11px;color:var(--muted-2);letter-spacing:0.10em}
+.sec-head h2{margin:6px 0 0;font-family:var(--font-display);font-weight:800;font-size:44px;letter-spacing:-0.025em;line-height:1}
+.sec-head .lede{max-width:58ch;color:var(--muted-1);font-size:13.5px;line-height:1.55;margin-top:10px}
+
+.sub{margin-top:36px}
+.sub h3{margin:0 0 12px;font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;display:flex;gap:12px;align-items:baseline}
+.sub h3 .c{font-family:var(--font-mono);color:var(--muted-2);font-weight:500;font-size:11px}
+.sub .note{color:var(--muted-1);max-width:62ch;margin:0 0 14px;font-size:13px}
+
+/* Examples frame */
+.demo{border:1px solid var(--rule);background:var(--bg-raised);border-radius:var(--radius);overflow:hidden}
+.demo .frame{padding:22px 24px}
+.demo .foot{display:flex;align-items:center;gap:10px;border-top:1px solid var(--rule);background:var(--bg-sunken);padding:8px 14px;font-family:var(--font-mono);font-size:10.5px;color:var(--muted-2);letter-spacing:0.04em}
+.demo .foot .tag{border:1px solid var(--rule-strong);padding:1px 6px;text-transform:uppercase;letter-spacing:0.10em;font-size:9.5px;font-weight:600;color:var(--muted-1);border-radius:var(--radius)}
+
+/* Color tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--radius)}
+.tile{background:var(--bg-raised);padding:16px;display:flex;flex-direction:column;gap:10px;min-height:140px}
+.tile .swatch{width:100%;aspect-ratio:1.8;border:1px solid var(--rule-strong);border-radius:var(--radius)}
+.tile .nm{font-family:var(--font-display);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700}
+.tile .v{font-family:var(--font-mono);font-size:11px;color:var(--muted-1)}
+.tile .role{font-size:11px;color:var(--muted-1);line-height:1.4}
+
+/* Type specimens */
+.type-row{display:grid;grid-template-columns:130px 1fr;padding:18px 0;border-bottom:1px dashed var(--rule);gap:24px;align-items:baseline}
+.type-row:last-child{border-bottom:0}
+.type-row .ml{font-family:var(--font-mono);font-size:10.5px;color:var(--muted-1);letter-spacing:0.04em}
+.type-row .ml b{color:var(--ink);font-weight:600}
+.type-row .sp{font-family:var(--font-display);font-weight:800;letter-spacing:-0.025em;line-height:0.95}
+.type-row .sp.body{font-family:var(--font-body);font-weight:400;letter-spacing:0;line-height:1.5}
+.type-row .sp.mono{font-family:var(--font-mono);font-weight:500;letter-spacing:0}
+
+/* Spacing ramp */
+.space-grid{display:flex;flex-direction:column;gap:6px}
+.space-row{display:grid;grid-template-columns:60px 80px 1fr;gap:16px;align-items:center;padding:6px 0;font-size:12px}
+.space-row .lbl{font-family:var(--font-display);font-size:10.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-1)}
+.space-row .px{font-family:var(--font-mono);color:var(--muted-1)}
+.space-row .bar{height:14px;background:var(--ink)}
+
+/* Components grid */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;font-family:var(--font-display);font-weight:700;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;border:1px solid var(--rule-strong);color:var(--ink);background:var(--bg-raised);border-radius:var(--radius);cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--muted-1)}
+.btn:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.ghost:hover{background:var(--chip);color:var(--ink)}
+.btn[disabled]{opacity:0.4;cursor:not-allowed}
+.btn.sm{padding:5px 10px;font-size:10px}
+
+/* Chips */
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border:1px solid var(--rule-strong);font-family:var(--font-mono);font-size:10.5px;text-transform:uppercase;color:var(--muted-1);border-radius:var(--radius)}
+.chip .d{width:6px;height:6px;background:var(--ink);border-radius:50%}
+.chip.ok{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)} .chip.ok .d{background:var(--ok)}
+.chip.warn{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)} .chip.warn .d{background:var(--warn)}
+.chip.bad{background:var(--bad-soft);color:var(--bad);border-color:var(--bad)} .chip.bad .d{background:var(--bad)}
+.chip.solid{background:var(--ink);color:var(--bg);border-color:var(--ink)} .chip.solid .d{background:var(--bg)}
+
+/* Grade letter */
+.grade{display:inline-block;padding:2px 7px;font-family:var(--font-mono);font-weight:700;font-size:11px;border:1px solid var(--rule-strong);border-radius:var(--radius)}
+.grade.A{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grade.B{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.grade.C{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}
+.grade.D{background:var(--bad-soft);color:var(--bad);border-color:var(--bad)}
+
+/* Form */
+.fld{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.fld label{font-family:var(--font-display);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-1)}
+.fld input,.fld select,.fld textarea{padding:9px 11px;border:1px solid var(--rule-strong);background:var(--bg-raised);outline:0;font-size:13px;border-radius:var(--radius);font-family:var(--font-mono)}
+.fld input:focus{border-color:var(--ink);box-shadow:0 0 0 2px var(--chip)}
+.fld .hint{font-size:11px;color:var(--muted-2)}
+
+/* Tables */
+.tbl{border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden;background:var(--bg-raised)}
+.tbl .th,.tbl .tr{display:grid;grid-template-columns:90px 1fr 140px 100px 80px;gap:14px;padding:var(--pad-y) var(--pad-x);border-bottom:1px solid var(--rule);align-items:center}
+.tbl .th{background:var(--bg-sunken);font-family:var(--font-display);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-1);font-weight:700}
+.tbl .tr{font-size:12.5px}
+.tbl .tr:hover{background:var(--chip)}
+.tbl .tr:last-child{border-bottom:0}
+.tbl .ref{font-family:var(--font-mono);font-size:11.5px}
+.tbl .val{font-family:var(--font-mono);text-align:right;font-weight:600}
+
+/* KPI card */
+.kpi{border:1px solid var(--rule);padding:18px;display:flex;flex-direction:column;gap:8px;background:var(--bg-raised);border-radius:var(--radius)}
+.kpi .k-name{font-family:var(--font-display);font-size:10.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-1)}
+.kpi .k-val{font-family:var(--font-display);font-weight:800;font-size:30px;letter-spacing:-0.02em;line-height:1}
+.kpi .k-unit{font-size:14px;color:var(--muted-1);margin-left:4px;font-weight:500}
+.kpi .k-meta{display:flex;gap:10px;font-family:var(--font-mono);font-size:11px;color:var(--muted-2);margin-top:auto}
+.kpi .delta{padding:1px 6px;font-weight:600}
+.kpi .delta.up{background:var(--ok-soft);color:var(--ok)}
+.kpi .delta.dn{background:var(--bad-soft);color:var(--bad)}
+.kpi .bar{height:3px;background:var(--bg-sunken)}
+.kpi .bar>i{display:block;height:100%;background:var(--ink)}
+
+/* Sparkline */
+.spark{height:28px;width:100%;display:block;color:var(--ink)}
+
+/* Score bar */
+.score-bar{position:relative;height:8px;background:var(--bg-sunken);border-radius:var(--radius)}
+.score-bar>i{display:block;height:100%;background:var(--ink)}
+.score-bar>s{position:absolute;top:-3px;width:2px;height:14px;background:var(--muted-1)}
+
+/* Timeline horizontal */
+.timeline{position:relative;padding:30px 14px 10px;margin-top:6px}
+.timeline .line{position:absolute;top:46px;left:14px;right:14px;height:2px;background:var(--rule)}
+.timeline .line>i{display:block;height:100%;background:var(--ink)}
+.timeline .nodes{position:relative;display:flex;justify-content:space-between}
+.timeline .node{display:flex;flex-direction:column;align-items:center;gap:8px;z-index:1;min-width:0;flex:1}
+.timeline .dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--rule-strong);background:var(--bg-raised);display:grid;place-items:center;font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--muted-2)}
+.timeline .node.done .dot{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.timeline .node.cur .dot{border-color:var(--ink);color:var(--ink);box-shadow:0 0 0 4px var(--chip)}
+.timeline .node.rej .dot{background:var(--bad);border-color:var(--bad);color:var(--bg)}
+.timeline .cap{font-family:var(--font-display);font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-1);font-weight:700;text-align:center}
+.timeline .nm{font-size:11.5px;font-weight:600;text-align:center}
+.timeline .ts{font-family:var(--font-mono);font-size:10px;color:var(--muted-2);text-align:center}
+
+/* Drawer */
+.fake-drawer{border:1px solid var(--rule);background:var(--bg-raised);border-radius:var(--radius);display:grid;grid-template-columns:1fr 400px;overflow:hidden}
+.fake-drawer .fd-body{padding:18px 22px;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:10px}
+.fake-drawer .fd-panel{padding:18px 22px;background:var(--bg-sunken)}
+.fake-drawer .fd-panel h4{margin:0 0 10px;font-family:var(--font-display);font-size:11px;letter-spacing:0.16em;text-transform:uppercase}
+
+/* Dashboard demo */
+.dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--radius)}
+.dash-grid>.kpi{border:0;border-radius:0}
+
+/* Login */
+.login-demo{display:grid;grid-template-columns:1.1fr 1fr;min-height:440px;border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden}
+.login-demo .ll{background:var(--ink);color:var(--bg);padding:32px;display:flex;flex-direction:column;justify-content:space-between}
+.login-demo .ll .mk{font-family:var(--font-display);font-weight:800;letter-spacing:0.22em;font-size:18px}
+.login-demo .ll .big{font-family:var(--font-display);font-weight:900;font-size:54px;line-height:0.9;letter-spacing:-0.035em}
+.login-demo .ll .big span{color:var(--muted-3)}
+.login-demo .ll .rl{font-family:var(--font-mono);font-size:11px;color:var(--muted-2)}
+.login-demo .lr{padding:32px;display:grid;place-items:center;background:var(--bg-raised)}
+.login-demo .lr form{width:100%;max-width:280px}
+
+/* Boardbook */
+.board{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;padding:30px 24px;border:1px solid var(--rule);background:var(--bg-raised);border-radius:var(--radius)}
+.board .mega{font-family:var(--font-display);font-weight:900;font-size:120px;line-height:0.85;letter-spacing:-0.05em}
+.board .mega span{color:var(--muted-3)}
+.board .body p{margin:0;font-size:14px;line-height:1.55;max-width:52ch}
+.board .body .eyebrow{font-family:var(--font-display);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted-1);margin-bottom:10px}
+
+/* Empty & Error */
+.state{border:1px dashed var(--rule-strong);background:var(--bg-raised);padding:40px 24px;display:grid;place-items:center;text-align:center;border-radius:var(--radius);min-height:220px}
+.state .gl{font-family:var(--font-display);font-weight:800;font-size:44px;letter-spacing:-0.02em;color:var(--muted-2)}
+.state .hd{font-family:var(--font-display);font-weight:700;font-size:15px;margin-top:14px}
+.state .sd{color:var(--muted-1);max-width:38ch;font-size:12.5px;margin-top:6px}
+.state.err .gl{color:var(--bad)}
+
+/* Code block */
+.code{background:var(--bg-sunken);border:1px solid var(--rule);border-radius:var(--radius);padding:14px 16px;overflow-x:auto;font-family:var(--font-mono);font-size:12px;line-height:1.55;color:var(--ink-2);white-space:pre;max-height:380px}
+.code-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.code-head h4{margin:0;font-family:var(--font-display);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:700}
+.copy-btn{padding:4px 10px;font-family:var(--font-display);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;border:1px solid var(--rule-strong);border-radius:var(--radius)}
+.copy-btn.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* Do/Don't */
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden}
+.dd>div{background:var(--bg-raised);padding:18px 20px}
+.dd h4{margin:0 0 8px;font-family:var(--font-display);font-size:11px;letter-spacing:0.16em;text-transform:uppercase}
+.dd .do h4::before{content:"✓ ";color:var(--ok);font-weight:800}
+.dd .dont h4::before{content:"✕ ";color:var(--bad);font-weight:800}
+.dd p{margin:0;color:var(--muted-1);font-size:12.5px;line-height:1.5}
+.dd .mini{margin-top:12px;padding:10px;border:1px solid var(--rule);background:var(--bg-sunken);font-size:12px;border-radius:var(--radius)}
+
+/* Tweaks panel */
+.tw-fab{position:fixed;right:20px;bottom:20px;z-index:70;background:var(--ink);color:var(--bg);padding:10px 14px;font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;border-radius:var(--radius);cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,0.25);display:flex;gap:8px;align-items:center}
+.tw{position:fixed;right:20px;bottom:20px;z-index:71;width:360px;max-height:min(86vh,720px);background:var(--bg-raised);border:1px solid var(--rule-strong);box-shadow:0 20px 60px rgba(0,0,0,0.22);border-radius:var(--radius);display:none;flex-direction:column}
+.tw.on{display:flex}
+.tw .th{padding:14px 18px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:10px}
+.tw .th h3{margin:0;font-family:var(--font-display);font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:800}
+.tw .th .x{margin-left:auto;width:28px;height:28px;border:1px solid var(--rule);display:grid;place-items:center;border-radius:var(--radius)}
+.tw .bd{padding:12px 16px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.tw .grp{display:flex;flex-direction:column;gap:6px}
+.tw .grp-lbl{font-family:var(--font-display);font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted-2);font-weight:700;border-bottom:1px dashed var(--rule);padding-bottom:6px}
+.tw .ctl{display:grid;grid-template-columns:100px 1fr;gap:10px;align-items:center}
+.tw .ctl label{font-size:11px;color:var(--muted-1)}
+.tw .ctl input[type="text"],.tw .ctl input[type="color"],.tw .ctl select{padding:6px 8px;border:1px solid var(--rule-strong);background:var(--bg);color:var(--ink);font-size:12px;outline:0;width:100%;border-radius:var(--radius);font-family:var(--font-mono)}
+.tw .ctl input[type="color"]{padding:2px;height:28px;cursor:pointer}
+.tw .seg{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--rule-strong);border-radius:var(--radius);overflow:hidden}
+.tw .seg button{padding:6px 4px;font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;color:var(--muted-1);border-right:1px solid var(--rule-strong)}
+.tw .seg button:last-child{border-right:0}
+.tw .seg button.on{background:var(--ink);color:var(--bg)}
+.tw .ft{padding:12px 16px;border-top:1px solid var(--rule);display:flex;gap:8px}
+.tw .ft button{flex:1;padding:8px;font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;border:1px solid var(--rule-strong);border-radius:var(--radius)}
+.tw .ft button.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* Scroll spy active marker */
+.side .nav a.live{background:var(--chip)}
+
+/* Print */
+@media print{
+  .side,.top,.tw-fab,.tw{display:none!important}
+  .shell{grid-template-columns:1fr}
+  .sec{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <aside class="side">
+    <div class="brand">
+      <div class="logo" id="ht-logo">HALSTEN</div>
+      <div class="product" id="ht-product">TEMPLATE · DESIGN SYSTEM</div>
+      <div class="ver">v1.0 · editorial · 2026</div>
+    </div>
+    <nav class="nav" id="nav">
+      <div class="nav-group">
+        <div class="nav-label">Início</div>
+        <a href="#intro" class="on"><span class="idx">00</span>Introdução</a>
+        <a href="#principles"><span class="idx">01</span>Princípios</a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-label">Foundations</div>
+        <a href="#colors"><span class="idx">02</span>Cores</a>
+        <a href="#typography"><span class="idx">03</span>Tipografia</a>
+        <a href="#spacing"><span class="idx">04</span>Espaçamento &amp; grid</a>
+        <a href="#motion"><span class="idx">05</span>Movimento</a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-label">Componentes</div>
+        <a href="#buttons"><span class="idx">06</span>Botões</a>
+        <a href="#chips"><span class="idx">07</span>Chips &amp; grades</a>
+        <a href="#forms"><span class="idx">08</span>Formulários</a>
+        <a href="#tables"><span class="idx">09</span>Tabelas densas</a>
+        <a href="#kpis"><span class="idx">10</span>KPI &amp; sparkline</a>
+        <a href="#timeline"><span class="idx">11</span>Timeline</a>
+        <a href="#drawer"><span class="idx">12</span>Drawer</a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-label">Patterns</div>
+        <a href="#p-login"><span class="idx">13</span>Login</a>
+        <a href="#p-dashboard"><span class="idx">14</span>Dashboard</a>
+        <a href="#p-list"><span class="idx">15</span>Lista + detalhe</a>
+        <a href="#p-board"><span class="idx">16</span>Boardbook</a>
+        <a href="#p-states"><span class="idx">17</span>Empty &amp; Error</a>
+        <a href="#p-print"><span class="idx">18</span>Print / PDF</a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-label">Biblioteca</div>
+        <a href="#voice"><span class="idx">19</span>Voz &amp; Microcopy</a>
+        <a href="#dodont"><span class="idx">20</span>Do's &amp; Don'ts</a>
+        <a href="#exports"><span class="idx">21</span>Exports</a>
+      </div>
+    </nav>
+    <div class="foot">HALSTEN · construído para durar</div>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <div class="crumbs"><span>HALSTEN</span><span class="sep">/</span><span>Template</span><span class="sep">/</span><span class="here" id="ht-crumb-here">Introdução</span></div>
+      <span class="grow"></span>
+      <div class="search"><span class="mono" style="color:var(--muted-2);font-size:11px">⌕</span><input placeholder="Buscar no guia… (tokens, componentes)"><span class="kbd">⌘K</span></div>
+      <div class="pill-seg" id="theme-seg">
+        <button data-theme-set="light">Light</button>
+        <button data-theme-set="dark">Dark</button>
+      </div>
+    </header>
+
+    <div class="content" id="content">
+
+      <section id="intro" class="sec">
+        <div class="sec-head">
+          <div>
+            <div class="no">00 · Introdução</div>
+            <h2><span id="ht-title">HALSTEN TEMPLATE.</span></h2>
+            <p class="lede" id="ht-lede">Sistema de design editorial usado no Controle de Metas, apCompras e próximos produtos internos da Halsten. Tipografia forte, densidade compacta, escala de cinza quente, zero decoração. Este documento é a referência canônica — clone, ajuste o branding no painel Tweaks e gere o export para começar um novo produto em horas, não semanas.</p>
+          </div>
+          <div style="text-align:right">
+            <div class="mono" style="font-size:10.5px;color:var(--muted-2);letter-spacing:0.04em">versão</div>
+            <div style="font-family:var(--font-display);font-weight:900;font-size:58px;letter-spacing:-0.03em;line-height:1">1.0</div>
+            <div class="mono" style="font-size:10.5px;color:var(--muted-2);margin-top:6px">abr/2026</div>
+          </div>
+        </div>
+        <div class="grid-3" style="margin-top:32px">
+          <div>
+            <div style="font-family:var(--font-display);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted-1);margin-bottom:8px">Para quem</div>
+            <p style="margin:0;font-size:13px;line-height:1.55;color:var(--ink-2)">Devs e designers da Halsten implementando novos produtos internos. Ponto de partida, não gaiola — variações são bem-vindas quando há razão.</p>
+          </div>
+          <div>
+            <div style="font-family:var(--font-display);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted-1);margin-bottom:8px">Como usar</div>
+            <p style="margin:0;font-size:13px;line-height:1.55;color:var(--ink-2)">Abra o painel <b>Tweaks</b>, ajuste branding e tokens. Exporte CSS, JSON ou Tailwind config na seção 21. Cole no seu novo projeto e referencie este guia.</p>
+          </div>
+          <div>
+            <div style="font-family:var(--font-display);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted-1);margin-bottom:8px">Quando divergir</div>
+            <p style="margin:0;font-size:13px;line-height:1.55;color:var(--ink-2)">Apenas com justificativa escrita. Se três produtos precisam da mesma divergência, ela vira padrão aqui. Rarely. Rarely.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="principles" class="sec">
+        <div class="sec-head">
+          <div><div class="no">01 · Princípios</div><h2>Como pensamos o produto.</h2></div>
+        </div>
+        <div class="grid-2">
+          <div class="demo"><div class="frame">
+            <div style="font-family:var(--font-display);font-weight:800;font-size:28px;letter-spacing:-0.02em;line-height:1.05">Editorial antes de decorativo.</div>
+            <p style="color:var(--muted-1);margin-top:10px">Tipografia carrega o peso. Cores, sombras e ornamentos aparecem apenas quando o significado muda. Um documento bem editado vale mais que um dashboard bonito.</p>
+          </div><div class="foot"><span class="tag">Regra 1</span> Menos é mais — mas <i>intencional</i>, não preguiçoso.</div></div>
+          <div class="demo"><div class="frame">
+            <div style="font-family:var(--font-display);font-weight:800;font-size:28px;letter-spacing:-0.02em;line-height:1.05">Densidade é respeito.</div>
+            <p style="color:var(--muted-1);margin-top:10px">Usuários internos são fluentes. Mostre o máximo de informação útil por tela. Espaço em branco tem função — não preenche, separa.</p>
+          </div><div class="foot"><span class="tag">Regra 2</span> ERP não é SaaS de VC — é ferramenta de trabalho.</div></div>
+          <div class="demo"><div class="frame">
+            <div style="font-family:var(--font-display);font-weight:800;font-size:28px;letter-spacing:-0.02em;line-height:1.05">Números tabulares, sempre.</div>
+            <p style="color:var(--muted-1);margin-top:10px">Toda grandeza numérica usa JetBrains Mono com <code class="mono">tabular-nums</code>. Alinhamento à direita em tabelas. Moeda com espaço não-quebrável. Previne o olho cansado em relatórios longos.</p>
+          </div><div class="foot"><span class="tag">Regra 3</span> Números são conteúdo, não decoração.</div></div>
+          <div class="demo"><div class="frame">
+            <div style="font-family:var(--font-display);font-weight:800;font-size:28px;letter-spacing:-0.02em;line-height:1.05">Cor pesa. Use com parcimônia.</div>
+            <p style="color:var(--muted-1);margin-top:10px">Preto conta a maior parte da história. Cor só aparece onde semântica exige: status, delta, nota de grade. Gradientes não existem neste sistema.</p>
+          </div><div class="foot"><span class="tag">Regra 4</span> Se tudo é colorido, nada é importante.</div></div>
+        </div>
+      </section>
+
+      <section id="colors" class="sec">
+        <div class="sec-head">
+          <div><div class="no">02 · Cores</div><h2>Paleta funcional.</h2>
+          <p class="lede">Os tokens abaixo são variáveis CSS (<code class="mono">--bg</code>, <code class="mono">--ink</code>…) e reagem ao tema claro/escuro. Cores de accent usam <code class="mono">oklch()</code> pra garantir contraste perceptual consistente em light e dark.</p>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>Neutros <span class="c">6 tokens</span></h3>
+          <div class="tiles" id="neutrals-grid"></div>
+        </div>
+
+        <div class="sub">
+          <h3>Semânticos <span class="c">3 tokens · ok · warn · bad</span></h3>
+          <div class="tiles" id="semantic-grid"></div>
+        </div>
+
+        <div class="sub">
+          <h3>Uso — exemplos ao vivo</h3>
+          <div class="grid-3">
+            <div class="demo"><div class="frame" style="display:flex;gap:10px;flex-wrap:wrap"><span class="chip solid"><span class="d"></span>Em aprovação</span><span class="chip ok"><span class="d"></span>Aprovado</span><span class="chip warn"><span class="d"></span>Pendente</span><span class="chip bad"><span class="d"></span>Reprovado</span><span class="chip"><span class="d"></span>Rascunho</span></div><div class="foot"><span class="tag">Status chip</span> 5 variantes cobrem 95% dos casos</div></div>
+            <div class="demo"><div class="frame" style="display:flex;gap:10px"><span class="grade A">A</span><span class="grade B">B</span><span class="grade C">C</span><span class="grade D">D</span></div><div class="foot"><span class="tag">Grade</span> Atingimento ≥100 / ≥90 / ≥75 / resto</div></div>
+            <div class="demo"><div class="frame"><div style="display:flex;flex-direction:column;gap:12px"><div><div class="mono" style="font-size:10px;color:var(--muted-1);margin-bottom:4px">META 100%</div><div class="score-bar"><i style="width:112%;background:var(--ok)"></i><s style="left:100%"></s></div></div><div><div class="mono" style="font-size:10px;color:var(--muted-1);margin-bottom:4px">META 100%</div><div class="score-bar"><i style="width:82%"></i><s style="left:100%"></s></div></div><div><div class="mono" style="font-size:10px;color:var(--muted-1);margin-bottom:4px">META 100%</div><div class="score-bar"><i style="width:46%;background:var(--bad)"></i><s style="left:100%"></s></div></div></div></div><div class="foot"><span class="tag">ScoreBar</span> Marcação fixa no 100%</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="typography" class="sec">
+        <div class="sec-head"><div><div class="no">03 · Tipografia</div><h2>Três famílias. Uma voz.</h2><p class="lede"><b>Display</b> para títulos e números grandes, <b>body</b> para leitura, <b>mono</b> para dados tabulares e identificadores. Padrão Archivo / Inter / JetBrains Mono — combinação editorial com caráter técnico. Trocável no Tweaks (alternativas pré-aprovadas: Fraunces, IBM Plex, Space Grotesk).</p></div></div>
+
+        <div class="sub">
+          <h3>Display · <span id="ht-font-d-name">Archivo</span></h3>
+          <div>
+            <div class="type-row"><div class="ml">Hero <b>60px</b> 800</div><div class="sp" style="font-size:60px">Construindo o que importa.</div></div>
+            <div class="type-row"><div class="ml">Title <b>40px</b> 800</div><div class="sp" style="font-size:40px">Controle de Metas.</div></div>
+            <div class="type-row"><div class="ml">Section <b>28px</b> 700</div><div class="sp" style="font-size:28px;font-weight:700">Obras ativas.</div></div>
+            <div class="type-row"><div class="ml">Label <b>11px</b> 700 / 0.16em</div><div class="sp" style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:700">Atingimento · Ciclo</div></div>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>Body · <span id="ht-font-b-name">Inter</span></h3>
+          <div>
+            <div class="type-row"><div class="ml">Body <b>13px</b> 400</div><div class="sp body" style="font-size:13px">Visão consolidada das 47 metas ativas em 17 setores e 9 obras. Três setores atingiram ciclo completo; dois exigem atenção imediata.</div></div>
+            <div class="type-row"><div class="ml">Small <b>11.5px</b> 500</div><div class="sp body" style="font-size:11.5px;font-weight:500">Última sincronização há 4 min · Sienge ERP · 312 lançamentos</div></div>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>Mono · <span id="ht-font-m-name">JetBrains Mono</span></h3>
+          <div>
+            <div class="type-row"><div class="ml">Numeric <b>14px</b> 600</div><div class="sp mono" style="font-size:14px;font-weight:600">R$ 48.241.300,00 · 94,2% · 214 dias</div></div>
+            <div class="type-row"><div class="ml">Ref <b>11.5px</b> 500</div><div class="sp mono" style="font-size:11.5px">SC-202604-1023 · PC-202604-0881 · OBR-AMALUNA</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="spacing" class="sec">
+        <div class="sec-head"><div><div class="no">04 · Espaçamento &amp; Grid</div><h2>Ritmo de 4.</h2><p class="lede">Base de 4px. Valores nomeados cobrem 95% dos casos; evitar medidas arbitrárias. Densidade compacta (<b>9×14px</b> padding em linhas de tabela) é o default — confortável (<b>13×18px</b>) só em protótipos de marketing.</p></div></div>
+        <div class="demo"><div class="frame">
+          <div class="space-grid">
+            <div class="space-row"><div class="lbl">2xs</div><div class="px">4px</div><div class="bar" style="width:4px"></div></div>
+            <div class="space-row"><div class="lbl">xs</div><div class="px">8px</div><div class="bar" style="width:8px"></div></div>
+            <div class="space-row"><div class="lbl">sm</div><div class="px">12px</div><div class="bar" style="width:12px"></div></div>
+            <div class="space-row"><div class="lbl">md</div><div class="px">16px</div><div class="bar" style="width:16px"></div></div>
+            <div class="space-row"><div class="lbl">lg</div><div class="px">24px</div><div class="bar" style="width:24px"></div></div>
+            <div class="space-row"><div class="lbl">xl</div><div class="px">32px</div><div class="bar" style="width:32px"></div></div>
+            <div class="space-row"><div class="lbl">2xl</div><div class="px">48px</div><div class="bar" style="width:48px"></div></div>
+            <div class="space-row"><div class="lbl">3xl</div><div class="px">64px</div><div class="bar" style="width:64px"></div></div>
+          </div>
+        </div><div class="foot"><span class="tag">tokens</span> --sp-xs, --sp-sm … (gerados no export)</div></div>
+        <div class="sub">
+          <h3>Grids</h3>
+          <p class="note">Shells internos usam <b>sidebar fixa 232–248px</b> + conteúdo fluido. Dashboards usam grid explícito de 4 ou 5 colunas, sem breakpoints intermediários — abaixo de 1180px, colapsa em 2 ou 3.</p>
+        </div>
+      </section>
+
+      <section id="motion" class="sec">
+        <div class="sec-head"><div><div class="no">05 · Movimento</div><h2>Presente, não performático.</h2><p class="lede">Transições de estado (hover, foco, drawer) em 160–200ms com <code class="mono">cubic-bezier(0.2, 0.8, 0.2, 1)</code>. Nada cinético. Nada com bounce. Conteúdo não entra com animação; só controles de navegação (drawer, modal, toast).</p></div></div>
+        <div class="grid-3">
+          <div class="demo"><div class="frame"><div class="mono" style="color:var(--muted-1);font-size:11px;margin-bottom:6px">DURATION</div><div style="font-family:var(--font-display);font-weight:800;font-size:30px">160ms</div><div style="color:var(--muted-1);margin-top:4px;font-size:12px">hover, foco, toggle</div></div></div>
+          <div class="demo"><div class="frame"><div class="mono" style="color:var(--muted-1);font-size:11px;margin-bottom:6px">DURATION</div><div style="font-family:var(--font-display);font-weight:800;font-size:30px">200ms</div><div style="color:var(--muted-1);margin-top:4px;font-size:12px">drawer, modal, toast</div></div></div>
+          <div class="demo"><div class="frame"><div class="mono" style="color:var(--muted-1);font-size:11px;margin-bottom:6px">EASING</div><div style="font-family:var(--font-mono);font-weight:600;font-size:14px;margin-top:4px">cubic-bezier(.2,.8,.2,1)</div><div style="color:var(--muted-1);margin-top:4px;font-size:12px">suave na saída</div></div></div>
+        </div>
+      </section>
+
+      <section id="buttons" class="sec">
+        <div class="sec-head"><div><div class="no">06 · Botões</div><h2>Hierarquia em 3.</h2><p class="lede">Primary (ink cheio), Secondary (outline), Ghost (sem borda). Labels em <b>Archivo 700</b>, uppercase, tracking 0.14em. Sempre 11px — sem escala. Tamanho do botão é controlado por padding, não por tipografia.</p></div></div>
+        <div class="demo"><div class="frame" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+          <button class="btn primary">Salvar alterações</button>
+          <button class="btn">Cancelar</button>
+          <button class="btn ghost">Opções</button>
+          <button class="btn primary" disabled="">Salvar alterações</button>
+          <button class="btn sm">Ação secundária</button>
+          <button class="btn sm primary">Ação primária</button>
+        </div><div class="foot"><span class="tag">.btn</span> + <span class="tag">.primary</span> / <span class="tag">.ghost</span> / <span class="tag">.sm</span></div></div>
+      </section>
+
+      <section id="chips" class="sec">
+        <div class="sec-head"><div><div class="no">07 · Chips &amp; Grades</div><h2>Indicadores compactos.</h2></div></div>
+        <div class="grid-2">
+          <div class="demo"><div class="frame" style="display:flex;gap:8px;flex-wrap:wrap">
+            <span class="chip"><span class="d"></span>Rascunho</span>
+            <span class="chip solid"><span class="d"></span>Em aprovação</span>
+            <span class="chip ok"><span class="d"></span>Aprovado</span>
+            <span class="chip warn"><span class="d"></span>Pendente</span>
+            <span class="chip bad"><span class="d"></span>Reprovado</span>
+          </div><div class="foot"><span class="tag">.chip</span> status 5 variantes</div></div>
+          <div class="demo"><div class="frame" style="display:flex;gap:10px">
+            <span class="grade A">A</span><span class="grade B">B</span><span class="grade C">C</span><span class="grade D">D</span>
+          </div><div class="foot"><span class="tag">.grade</span> avaliação em letras</div></div>
+        </div>
+      </section>
+
+      <section id="forms" class="sec">
+        <div class="sec-head"><div><div class="no">08 · Formulários</div><h2>Inputs que não pedem desculpa.</h2><p class="lede">Label sempre visível, em uppercase. Bordas hairline; foco marca com anel 2px no <code class="mono">--chip</code>. Sem placeholders como label. Sem floating labels.</p></div></div>
+        <div class="demo"><div class="frame" style="max-width:520px">
+          <div class="fld"><label>E-mail corporativo</label><input type="email" value="carolina.salles@halsten.com.br"></div>
+          <div class="fld"><label>Ciclo de referência</label><select><option>Abril 2026</option><option>Março 2026</option><option>Fevereiro 2026</option></select></div>
+          <div class="fld"><label>Valor realizado · R$</label><input value="48.241.300,00"><span class="hint">Moeda brasileira, duas casas decimais. Atalho: tab para próximo.</span></div>
+          <div class="fld"><label>Observações</label><textarea rows="3">Meta superada por margem de 6,1pp em relação ao plano.</textarea></div>
+          <div style="display:flex;gap:10px;margin-top:4px"><button class="btn primary">Salvar</button><button class="btn">Cancelar</button></div>
+        </div><div class="foot"><span class="tag">.fld</span> label + input/select/textarea + hint</div></div>
+      </section>
+
+      <section id="tables" class="sec">
+        <div class="sec-head"><div><div class="no">09 · Tabelas densas</div><h2>Onde o trabalho acontece.</h2><p class="lede">ERP-like: linhas 9×14px, header <code class="mono">--bg-sunken</code>, numerais <b>tabular</b> à direita. Colunas de referência usam fonte mono. Hover destaca com <code class="mono">--chip</code>.</p></div></div>
+        <div class="demo"><div class="tbl">
+          <div class="th"><span>Ref</span><span>Descrição</span><span>Fornecedor</span><span style="text-align:right">Valor</span><span>Status</span></div>
+          <div class="tr"><span class="ref">SC-202604-1023</span><span>Concreto FCK 30 · Amaluna</span><span>Concrebras S.A.</span><span class="val">R$ 184.320,00</span><span><span class="chip solid"><span class="d"></span>EMAP</span></span></div>
+          <div class="tr"><span class="ref">PC-202604-0881</span><span>Laje nervurada · Naut Bloco B</span><span>Halfen do Brasil</span><span class="val">R$ 96.040,00</span><span><span class="chip ok"><span class="d"></span>APR</span></span></div>
+          <div class="tr"><span class="ref">CTR-202602-0045</span><span>Elétrica · instalações fase 2</span><span>ELM Engenharia</span><span class="val">R$ 1.245.000,00</span><span><span class="chip warn"><span class="d"></span>PEND</span></span></div>
+          <div class="tr"><span class="ref">MED-202604-0311</span><span>Medição 14 · fundações Cora</span><span>Pilaretec</span><span class="val">R$ 412.780,00</span><span><span class="chip bad"><span class="d"></span>REP</span></span></div>
+          <div class="tr"><span class="ref">SC-202604-1019</span><span>Aço CA-50 · estrutura Pulse</span><span>Gerdau</span><span class="val">R$ 738.220,00</span><span><span class="chip"><span class="d"></span>DRAFT</span></span></div>
+        </div></div>
+      </section>
+
+      <section id="kpis" class="sec">
+        <div class="sec-head"><div><div class="no">10 · KPI &amp; Sparkline</div><h2>Número primeiro, contexto depois.</h2></div></div>
+        <div class="demo"><div class="dash-grid" id="kpi-demo"></div></div>
+      </section>
+
+      <section id="timeline" class="sec">
+        <div class="sec-head"><div><div class="no">11 · Timeline</div><h2>Aprovação em chain, horizontal.</h2><p class="lede">Nós representam etapas ou níveis (L1, L2, L3). Estados: <b>done</b> (preto cheio), <b>cur</b> (anel com glow), <b>pending</b> (cinza), <b>rej</b> (vermelho). Linha de progresso conecta e preenche conforme o chain avança.</p></div></div>
+        <div class="demo"><div class="frame" style="padding:8px 8px 22px"><div class="timeline"><div class="line"><i style="width:66%"></i></div><div class="nodes">
+          <div class="node done"><div class="dot">✓</div><div class="cap">L1 · Gerência</div><div class="nm">Fernanda Souza</div><div class="ts">10/04 · 09:14</div></div>
+          <div class="node done"><div class="dot">✓</div><div class="cap">L2 · Diretoria</div><div class="nm">Marcos Ituassú</div><div class="ts">11/04 · 16:02</div></div>
+          <div class="node cur"><div class="dot">3</div><div class="cap">L3 · CEO</div><div class="nm">Carolina Salles</div><div class="ts">aguardando</div></div>
+          <div class="node"><div class="dot">4</div><div class="cap">L4 · Conselho</div><div class="nm">—</div><div class="ts">—</div></div>
+        </div></div></div><div class="foot"><span class="tag">.timeline</span> 3–5 níveis; acima disso, quebrar em grupos</div></div>
+      </section>
+
+      <section id="drawer" class="sec">
+        <div class="sec-head"><div><div class="no">12 · Drawer lateral</div><h2>Contexto sem perder o lugar.</h2><p class="lede">Abre no trigger, preserva a lista visível. Painel fixo à direita 380–640px, scrim escuro sobre o conteúdo. Esc fecha. URL persiste (<code class="mono">?item=xyz</code>) para links compartilháveis.</p></div></div>
+        <div class="fake-drawer">
+          <div class="fd-body">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--muted-1);letter-spacing:0.04em">Lista · 14 itens</div>
+            <div style="font-family:var(--font-display);font-weight:800;font-size:24px;letter-spacing:-0.02em;margin-top:4px">Pendências do ciclo</div>
+            <div class="tbl" style="margin-top:10px"><div class="th" style="grid-template-columns:1fr 90px 60px"><span>Item</span><span style="text-align:right">Valor</span><span>Grade</span></div>
+              <div class="tr" style="grid-template-columns:1fr 90px 60px"><span>Lucro Líquido · Abr/26</span><span class="val">R$ 48,2 Mi</span><span><span class="grade B">B</span></span></div>
+              <div class="tr" style="grid-template-columns:1fr 90px 60px;background:var(--chip)"><span><b>VGV Vendido · Abr/26</b></span><span class="val">R$ 214,0 Mi</span><span><span class="grade C">C</span></span></div>
+              <div class="tr" style="grid-template-columns:1fr 90px 60px"><span>Distrato · Abr/26</span><span class="val">7,1%</span><span><span class="grade C">C</span></span></div>
+            </div>
+          </div>
+          <div class="fd-panel">
+            <h4>VGV Vendido · Abril 2026</h4>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+              <div class="kpi" style="padding:12px"><div class="k-name">Realizado</div><div class="k-val tabular" style="font-size:22px">R$ 214<span class="k-unit">Mi</span></div></div>
+              <div class="kpi" style="padding:12px"><div class="k-name">Meta</div><div class="k-val tabular" style="font-size:22px">R$ 280<span class="k-unit">Mi</span></div></div>
+            </div>
+            <div class="mono" style="font-size:11px;color:var(--muted-1);margin-bottom:4px">ATINGIMENTO</div>
+            <div class="score-bar"><i style="width:76%"></i><s style="left:100%"></s></div>
+            <div style="display:flex;gap:10px;margin-top:14px"><button class="btn primary" style="flex:1">Registrar observação</button></div>
+            <div style="margin-top:14px;font-family:var(--font-mono);font-size:11px;color:var(--muted-1);line-height:1.6">
+              <div><b style="color:var(--ink)">10 abr</b> · Diego Arruda sinalizou risco de distrato</div>
+              <div><b style="color:var(--ink)">08 abr</b> · Sienge sincronizou pipeline</div>
+              <div><b style="color:var(--ink)">03 abr</b> · Meta definida: R$ 280 Mi</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="p-login" class="sec">
+        <div class="sec-head"><div><div class="no">13 · Pattern · Login</div><h2>Split-screen.</h2><p class="lede">Coluna esquerda preta com mark grande e frase declarativa. Direita clara com form enxuto (e-mail, senha, perfil demo, SSO). Mobile: empilha, mark no topo.</p></div></div>
+        <div class="login-demo">
+          <div class="ll">
+            <div class="mk" id="ht-login-mk">HALSTEN</div>
+            <div>
+              <div class="rl">01 · Template · v1.0</div>
+              <div class="big" style="margin-top:10px" id="ht-login-big">CONSTRUINDO<br>O QUE<br><span>IMPORTA.</span></div>
+              <div class="rl" style="margin-top:20px">17 setores · 9 obras · 47 metas ativas</div>
+            </div>
+            <div class="rl">© 2026 HALSTEN</div>
+          </div>
+          <div class="lr"><form>
+            <div style="font-family:var(--font-display);font-weight:800;font-size:24px;margin-bottom:4px">Entrar</div>
+            <div style="color:var(--muted-1);font-size:13px;margin-bottom:14px">Acesse seu painel.</div>
+            <div class="fld"><label>E-mail corporativo</label><input value="carolina.salles@halsten.com.br"></div>
+            <div class="fld"><label>Senha</label><input type="password" value="••••••••"></div>
+            <button class="btn primary" type="button" style="width:100%;justify-content:center;padding:10px">ENTRAR →</button>
+          </form></div>
+        </div>
+      </section>
+
+      <section id="p-dashboard" class="sec">
+        <div class="sec-head"><div><div class="no">14 · Pattern · Dashboard</div><h2>Hero + KPIs + lista.</h2><p class="lede">Título grande à esquerda, score gigante à direita. Grid de 4–5 KPIs abaixo. Abaixo do grid, a tabela densa com o recorte do dia. Sidebar fixa para navegação de escopo.</p></div></div>
+        <div class="demo" style="padding:22px 24px">
+          <div style="display:grid;grid-template-columns:1fr auto;gap:28px;align-items:end;padding-bottom:16px;border-bottom:1px solid var(--rule);margin-bottom:16px">
+            <div>
+              <div class="mono" style="font-size:11px;color:var(--muted-1);letter-spacing:0.06em;margin-bottom:8px">CICLO · ABRIL 2026 · COMPANHIA</div>
+              <div style="font-family:var(--font-display);font-weight:800;font-size:36px;letter-spacing:-0.025em;line-height:1.05">Bom dia, Carolina.<br>A Halsten está a <span style="color:var(--muted-2)">91%</span> da meta.</div>
+            </div>
+            <div style="text-align:right"><div style="font-family:var(--font-display);font-weight:800;font-size:64px;line-height:0.9;letter-spacing:-0.04em" class="tabular">91<span style="font-size:32px;color:var(--muted-2)">%</span></div><div style="font-family:var(--font-display);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted-1);margin-top:6px">Atingimento geral</div></div>
+          </div>
+          <div class="dash-grid" id="kpi-demo-2"></div>
+        </div>
+      </section>
+
+      <section id="p-list" class="sec">
+        <div class="sec-head"><div><div class="no">15 · Pattern · Lista + detalhe</div><h2>Master + drawer.</h2><p class="lede">Lista densa ocupa o viewport principal; clique em linha abre drawer à direita com contexto. Mantém a lista navegável por teclado (↑↓, Enter abre, Esc fecha).</p></div></div>
+        <div class="demo"><div class="frame"><p style="color:var(--muted-1);margin:0">Ver referência completa em <b>§12 Drawer</b> e nos protótipos <b>Controle de Metas</b> e <b>apCompras</b>.</p></div></div>
+      </section>
+
+      <section id="p-board" class="sec">
+        <div class="sec-head"><div><div class="no">16 · Pattern · Boardbook</div><h2>Formato conselho.</h2><p class="lede">Uma ideia por tela. Número gigante (120px+), leitura executiva (15px, line-height 1.55), no máximo <b>52ch</b> de largura. Sem cards, sem decoração. Impressão em A4 paisagem.</p></div></div>
+        <div class="board">
+          <div class="mega">91<span>/100</span></div>
+          <div class="body"><div class="eyebrow">Leitura executiva · Abril 2026</div><p>Ciclo de abril fechou acima de plano em <b>3 das 5 metas gerais</b>. Destaque: lucro líquido (<b>92%</b>) e VGV lançado (<b>86%</b>). VGV vendido pressionado por distrato em <b>7,1%</b> contra meta de 6%. Suprimentos superou economia negociada. Qualidade e Segurança mantiveram nota A.</p></div>
+        </div>
+      </section>
+
+      <section id="p-states" class="sec">
+        <div class="sec-head"><div><div class="no">17 · Empty &amp; Error</div><h2>Quando falta, quando falha.</h2><p class="lede">Sem ilustrações. Glifo tipográfico grande, título sóbrio, subtítulo curto. Ofereça sempre uma ação — nunca um beco sem saída.</p></div></div>
+        <div class="grid-2">
+          <div class="state"><div class="gl">∅</div><div class="hd">Nada aqui ainda.</div><div class="sd">Quando chegarem solicitações para sua aprovação, elas aparecem nesta lista.</div><button class="btn" style="margin-top:14px">Ir para dashboard</button></div>
+          <div class="state err"><div class="gl">!</div><div class="hd">Sienge não respondeu.</div><div class="sd">Última sincronização há 2h14. Tentando reconectar automaticamente.</div><button class="btn primary" style="margin-top:14px">Reconectar agora</button></div>
+        </div>
+      </section>
+
+      <section id="p-print" class="sec">
+        <div class="sec-head"><div><div class="no">18 · Print / PDF</div><h2>Relatório imprimível.</h2><p class="lede">Ao imprimir (Cmd/Ctrl+P), sidebar e topbar somem; conteúdo flui em coluna única. Páginas quebram entre seções. Boardbook cabe em A4 paisagem por slide.</p></div></div>
+        <div class="demo"><div class="frame"><button class="btn primary" onclick="window.print()">Imprimir este guia</button><span style="margin-left:12px;color:var(--muted-1);font-size:12.5px">gera PDF limpo, sem cromado</span></div></div>
+      </section>
+
+      <section id="voice" class="sec">
+        <div class="sec-head"><div><div class="no">19 · Voz &amp; Microcopy</div><h2>Como a Halsten fala.</h2></div></div>
+        <div class="grid-3">
+          <div class="demo"><div class="frame"><div style="font-family:var(--font-display);font-weight:800;font-size:18px">Direta, nunca seca.</div><p style="color:var(--muted-1);margin-top:8px">"Salvar" antes de "Gravar alterações no sistema". "Reprovado por estouro de WBS" antes de "Falha na validação orçamentária".</p></div></div>
+          <div class="demo"><div class="frame"><div style="font-family:var(--font-display);font-weight:800;font-size:18px">Números primeiro.</div><p style="color:var(--muted-1);margin-top:8px">"214 dias sem acidentes" antes de "Segurança do trabalho em alta". Grandeza e unidade coladas; contexto depois.</p></div></div>
+          <div class="demo"><div class="frame"><div style="font-family:var(--font-display);font-weight:800;font-size:18px">Sem entusiasmo SaaS.</div><p style="color:var(--muted-1);margin-top:8px">Nada de "Incrível! 🎉" ou "Oops, algo deu errado". Não é Slack; é ferramenta de construtora.</p></div></div>
+        </div>
+      </section>
+
+      <section id="dodont" class="sec">
+        <div class="sec-head"><div><div class="no">20 · Do's &amp; Don'ts</div><h2>Regras da casa.</h2></div></div>
+        <div class="dd">
+          <div class="do"><h4>Numerais tabulares em qualquer tabela ou KPI.</h4><p>Alinha automaticamente valores de diferentes magnitudes. Sem isso, o olho cansa em relatórios longos.</p><div class="mini mono" style="text-align:right">R$ 48.241.300,00<br>R$ 2.645,00<br>R$ 184.320,00</div></div>
+          <div class="dont"><h4>Cor para "deixar bonito".</h4><p>Cor carrega semântica. Um chip azul sem significado quebra a leitura de um dashboard inteiro. Se não muda o sentido, é preto.</p><div class="mini" style="display:flex;gap:6px"><span class="chip" style="background:#E0F0FF;color:#0066CC;border-color:#0066CC">Novo</span><span class="chip" style="background:#FFE0E0;color:#CC0000;border-color:#CC0000">Urgente</span><span style="color:var(--muted-2);font-size:11px;margin-left:auto">— pro quê?</span></div></div>
+          <div class="do"><h4>Título grande, subtítulo curto.</h4><p>Hero com 40–60px de display; subtítulo até 60ch. Leitor deve entender a página em 2 segundos.</p><div class="mini"><div style="font-family:var(--font-display);font-weight:800;font-size:24px">Controle de Metas.</div><div style="color:var(--muted-1);font-size:12px">47 metas ativas em 17 setores e 9 obras.</div></div></div>
+          <div class="dont"><h4>Gradientes, sombras grandes, cantos arredondados.</h4><p>Zero. Em todo o sistema. Cantos 0px é parte da identidade — não é descuido.</p><div class="mini" style="background:linear-gradient(90deg,#667eea,#764ba2);color:white;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,0.3)">Nope</div></div>
+          <div class="do"><h4>Hairline borders everywhere.</h4><p>1px em <code class="mono">--rule</code>. Separa sem gritar. Tabelas, cards, KPIs — tudo por hairline.</p></div>
+          <div class="dont"><h4>Emoji, ilustração, mascote.</h4><p>Glifo tipográfico resolve (✓ ✕ ∅ ! ★). Se precisa de ilustração, o problema é de copy.</p></div>
+        </div>
+      </section>
+
+      <section id="exports" class="sec">
+        <div class="sec-head"><div><div class="no">21 · Exports</div><h2>Leve pro seu projeto.</h2><p class="lede">Todos os exports refletem o estado atual dos <b>Tweaks</b>. Ajuste branding, tema e tipografia no painel, depois copie o bloco que você precisa.</p></div></div>
+
+        <div class="sub"><div class="code-head"><h4>JSON de tokens</h4><button class="copy-btn" data-copy="exp-json">Copiar</button></div><pre class="code" id="exp-json"></pre></div>
+        <div class="sub"><div class="code-head"><h4>CSS variables</h4><button class="copy-btn" data-copy="exp-css">Copiar</button></div><pre class="code" id="exp-css"></pre></div>
+        <div class="sub"><div class="code-head"><h4>Tailwind config · theme.extend</h4><button class="copy-btn" data-copy="exp-tw">Copiar</button></div><pre class="code" id="exp-tw"></pre></div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<button class="tw-fab" id="twFab" type="button">⚙ Tweaks</button>
+
+<div class="tw" id="tw">
+  <div class="th"><h3>Tweaks</h3><button class="x" id="twClose" type="button">×</button></div>
+  <div class="bd">
+    <div class="grp">
+      <div class="grp-lbl">Marca</div>
+      <div class="ctl"><label>Logo</label><input type="text" data-tw="brand"></div>
+      <div class="ctl"><label>Produto</label><input type="text" data-tw="product"></div>
+      <div class="ctl"><label>Tagline</label><input type="text" data-tw="tagline"></div>
+      <div class="ctl"><label>Rodapé</label><input type="text" data-tw="signature"></div>
+    </div>
+    <div class="grp">
+      <div class="grp-lbl">Cores neutras</div>
+      <div class="ctl"><label>Ink</label><input type="color" data-tw="ink"></div>
+      <div class="ctl"><label>BG</label><input type="color" data-tw="bg"></div>
+      <div class="ctl"><label>BG raised</label><input type="color" data-tw="bgRaised"></div>
+      <div class="ctl"><label>BG sunken</label><input type="color" data-tw="bgSunken"></div>
+      <div class="ctl"><label>Rule</label><input type="color" data-tw="rule"></div>
+    </div>
+    <div class="grp">
+      <div class="grp-lbl">Cores semânticas</div>
+      <div class="ctl"><label>OK</label><input type="text" data-tw="ok"></div>
+      <div class="ctl"><label>Warn</label><input type="text" data-tw="warn"></div>
+      <div class="ctl"><label>Bad</label><input type="text" data-tw="bad"></div>
+    </div>
+    <div class="grp">
+      <div class="grp-lbl">Tipografia</div>
+      <div class="ctl"><label>Display</label><select data-tw="fontDisplay"><option>Archivo</option><option>Fraunces</option><option>Space Grotesk</option><option>IBM Plex Sans</option></select></div>
+      <div class="ctl"><label>Body</label><select data-tw="fontBody"><option>Inter</option><option>IBM Plex Sans</option><option>Archivo</option></select></div>
+      <div class="ctl"><label>Mono</label><select data-tw="fontMono"><option>JetBrains Mono</option><option>IBM Plex Mono</option></select></div>
+    </div>
+    <div class="grp">
+      <div class="grp-lbl">Estrutura</div>
+      <div class="ctl"><label>Radius</label><div class="seg" data-seg="radius"><button data-v="0">0px</button><button data-v="4">4px</button><button data-v="8">8px</button></div></div>
+      <div class="ctl"><label>Densidade</label><div class="seg" data-seg="density" style="grid-template-columns:1fr 1fr"><button data-v="compact">Compacta</button><button data-v="comfortable">Confort.</button></div></div>
+      <div class="ctl"><label>Tema</label><div class="seg" data-seg="theme" style="grid-template-columns:1fr 1fr"><button data-v="light">Light</button><button data-v="dark">Dark</button></div></div>
+    </div>
+  </div>
+  <div class="ft">
+    <button type="button" id="twReset">Reset</button>
+    <button type="button" id="twApply" class="primary">Aplicar &amp; persistir</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var DEF = window.__HT_DEFAULTS || {};
+  var state = Object.assign({}, DEF);
+  try{ var ls = JSON.parse(localStorage.getItem("ht.state")||"null"); if(ls) state = Object.assign({}, DEF, ls); }catch(e){}
+
+  // --- Apply tokens to DOM
+  function apply(){
+    var r = document.documentElement;
+    r.setAttribute("data-theme", state.theme);
+    r.setAttribute("data-density", state.density);
+    r.style.setProperty("--bg", state.bg);
+    r.style.setProperty("--bg-raised", state.bgRaised);
+    r.style.setProperty("--bg-sunken", state.bgSunken);
+    r.style.setProperty("--ink", state.ink);
+    r.style.setProperty("--rule", state.rule);
+    r.style.setProperty("--ok", state.ok);
+    r.style.setProperty("--warn", state.warn);
+    r.style.setProperty("--bad", state.bad);
+    r.style.setProperty("--font-display", '"'+state.fontDisplay+'",system-ui,sans-serif');
+    r.style.setProperty("--font-body", '"'+state.fontBody+'",system-ui,sans-serif');
+    r.style.setProperty("--font-mono", '"'+state.fontMono+'",ui-monospace,monospace');
+    r.style.setProperty("--radius", state.radius+"px");
+
+    // brand texts
+    var $ = function(id){return document.getElementById(id)};
+    if($("ht-logo")) $("ht-logo").textContent = state.brand;
+    if($("ht-product")) $("ht-product").textContent = (state.product+" · Design System").toUpperCase();
+    if($("ht-title")) $("ht-title").textContent = (state.brand+" "+state.product+".").toUpperCase();
+    if($("ht-login-mk")) $("ht-login-mk").textContent = state.brand;
+    if($("ht-login-big")) $("ht-login-big").innerHTML = state.tagline.replace(/\s+/g,"<br/>");
+    if($("ht-font-d-name")) $("ht-font-d-name").textContent = state.fontDisplay;
+    if($("ht-font-b-name")) $("ht-font-b-name").textContent = state.fontBody;
+    if($("ht-font-m-name")) $("ht-font-m-name").textContent = state.fontMono;
+
+    // theme seg buttons
+    document.querySelectorAll("#theme-seg button").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-theme-set")===state.theme); });
+
+    renderColors();
+    renderKPIs();
+    renderExports();
+    refillTweaksUI();
+  }
+
+  function saveLocal(){ try{ localStorage.setItem("ht.state", JSON.stringify(state)); }catch(e){} }
+
+  // --- Color tiles
+  var NEUTRALS = [
+    {k:"ink", role:"Texto principal, fills em chips sólidos e botões primários"},
+    {k:"bg", role:"Background da aplicação"},
+    {k:"bgRaised", role:"Superfícies elevadas: cards, tabelas, drawer"},
+    {k:"bgSunken", role:"Fundos afundados: header de tabela, search box"},
+    {k:"rule", role:"Bordas hairline e separadores"},
+    {k:"chip", role:"Hover em linhas, fundo de pill atenuada", v:"var(--chip)"}
+  ];
+  var SEM = [
+    {k:"ok", role:"Positivo, aprovado, acima de meta"},
+    {k:"warn", role:"Atenção, pendente, abaixo mas não crítico"},
+    {k:"bad", role:"Negativo, reprovado, risco"}
+  ];
+  function tileHTML(t){
+    var v = t.v || state[t.k] || "";
+    return '<div class="tile"><div class="swatch" style="background:'+(t.v||"")+(t.v?"":('var(--'+({ink:"ink",bg:"bg",bgRaised:"bg-raised",bgSunken:"bg-sunken",rule:"rule"}[t.k]||t.k)+")"))+'"></div><div class="nm">--'+({ink:"ink",bg:"bg",bgRaised:"bg-raised",bgSunken:"bg-sunken",rule:"rule"}[t.k]||t.k)+'</div><div class="v">'+v+'</div><div class="role">'+t.role+'</div></div>';
+  }
+  function renderColors(){
+    var n = document.getElementById("neutrals-grid"); if(n) n.innerHTML = NEUTRALS.map(tileHTML).join("");
+    var s = document.getElementById("semantic-grid"); if(s) s.innerHTML = SEM.map(tileHTML).join("");
+  }
+
+  // --- KPI demos
+  function sparkSVG(seed){
+    var h = seed.split("").reduce(function(a,c){return (a*31 + c.charCodeAt(0))|0},0);
+    function rand(){ h = (h*9301+49297)%233280; return h/233280 }
+    var pts = [], v = 0.5 + rand()*0.3;
+    for(var i=0;i<14;i++){ v += (rand()-0.5)*0.14; v = Math.max(0.1, Math.min(0.95, v)); pts.push(v) }
+    var mn = Math.min.apply(null,pts), mx = Math.max.apply(null,pts), rg = (mx-mn)||1;
+    var d = pts.map(function(p,i){return (i===0?"M":"L")+(i/(pts.length-1)*120).toFixed(1)+","+(28 - ((p-mn)/rg)*24 - 2).toFixed(1)}).join(" ");
+    return '<svg class="spark" viewBox="0 0 120 28" preserveAspectRatio="none"><path d="'+d+' L 120,28 L 0,28 Z" fill="currentColor" opacity="0.08"/><path d="'+d+'" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>';
+  }
+  var KPIS = [
+    {name:"Lucro Líquido",val:"48,2",unit:"Mi R$",meta:"R$ 52 Mi",d:"+6,1%",dir:"up",pct:92,seed:"a"},
+    {name:"VGV Lançado",val:"312",unit:"Mi R$",meta:"R$ 360 Mi",d:"+12,4%",dir:"up",pct:86,seed:"b"},
+    {name:"Atend. Cronograma",val:"94,2",unit:"%",meta:"95%",d:"+1,1pp",dir:"up",pct:99,seed:"c"},
+    {name:"Distrato",val:"7,1",unit:"%",meta:"≤ 6%",d:"+1,1pp",dir:"dn",pct:85,seed:"d"}
+  ];
+  function kpiHTML(k){
+    return '<div class="kpi"><div class="k-name">'+k.name+'</div><div><span class="k-val tabular">'+k.val+'</span><span class="k-unit">'+k.unit+'</span></div><div class="k-meta"><span class="delta '+(k.dir==="up"?"up":"dn")+'">'+k.d+'</span><span>meta '+k.meta+'</span><span style="margin-left:auto">'+sparkSVG(k.seed)+'</span></div><div class="bar"><i style="width:'+Math.min(100,k.pct)+'%"></i></div></div>';
+  }
+  function renderKPIs(){
+    ["kpi-demo","kpi-demo-2"].forEach(function(id){
+      var el = document.getElementById(id); if(el) el.innerHTML = KPIS.map(kpiHTML).join("");
+    });
+  }
+
+  // --- Exports
+  function renderExports(){
+    var json = {
+      brand: { name: state.brand, product: state.product, tagline: state.tagline, signature: state.signature },
+      color: {
+        ink: state.ink, bg: state.bg, bgRaised: state.bgRaised, bgSunken: state.bgSunken, rule: state.rule,
+        ok: state.ok, warn: state.warn, bad: state.bad
+      },
+      font: { display: state.fontDisplay, body: state.fontBody, mono: state.fontMono },
+      radius: state.radius + "px",
+      density: state.density,
+      spacing: { "2xs":"4px", xs:"8px", sm:"12px", md:"16px", lg:"24px", xl:"32px", "2xl":"48px", "3xl":"64px" }
+    };
+    document.getElementById("exp-json").textContent = JSON.stringify(json, null, 2);
+
+    var css = [
+      ":root{",
+      "  --bg:"+state.bg+"; --bg-raised:"+state.bgRaised+"; --bg-sunken:"+state.bgSunken+";",
+      "  --ink:"+state.ink+"; --muted-1:#52524E; --muted-2:#8A8A83; --muted-3:#BDBDB5;",
+      "  --rule:"+state.rule+"; --rule-strong:#C9C9BE; --chip:#EFEFE8;",
+      "  --ok:"+state.ok+"; --warn:"+state.warn+"; --bad:"+state.bad+";",
+      "  --font-display:\""+state.fontDisplay+"\",system-ui,sans-serif;",
+      "  --font-body:\""+state.fontBody+"\",system-ui,sans-serif;",
+      "  --font-mono:\""+state.fontMono+"\",ui-monospace,monospace;",
+      "  --radius:"+state.radius+"px;",
+      "  --sp-2xs:4px; --sp-xs:8px; --sp-sm:12px; --sp-md:16px; --sp-lg:24px; --sp-xl:32px; --sp-2xl:48px; --sp-3xl:64px;",
+      "}"
+    ].join("\n");
+    document.getElementById("exp-css").textContent = css;
+
+    var tw = [
+      "// tailwind.config.js · theme.extend",
+      "module.exports = {",
+      "  theme: {",
+      "    extend: {",
+      "      colors: {",
+      "        bg: 'var(--bg)',",
+      "        'bg-raised': 'var(--bg-raised)',",
+      "        'bg-sunken': 'var(--bg-sunken)',",
+      "        ink: 'var(--ink)',",
+      "        rule: 'var(--rule)',",
+      "        ok:   '"+state.ok+"',",
+      "        warn: '"+state.warn+"',",
+      "        bad:  '"+state.bad+"',",
+      "      },",
+      "      fontFamily: {",
+      "        display: ['"+state.fontDisplay+"', 'system-ui', 'sans-serif'],",
+      "        body:    ['"+state.fontBody+"', 'system-ui', 'sans-serif'],",
+      "        mono:    ['"+state.fontMono+"', 'ui-monospace', 'monospace'],",
+      "      },",
+      "      borderRadius: { DEFAULT: '"+state.radius+"px' },",
+      "      fontSize: { xs:['10.5px',{lineHeight:'1.4'}], sm:['11.5px',{lineHeight:'1.4'}], base:['12.5px',{lineHeight:'1.45'}] }",
+      "    }",
+      "  }",
+      "}"
+    ].join("\n");
+    document.getElementById("exp-tw").textContent = tw;
+  }
+
+  function refillTweaksUI(){
+    document.querySelectorAll("[data-tw]").forEach(function(el){
+      var k = el.getAttribute("data-tw"); if(state[k]!=null) el.value = state[k];
+    });
+    document.querySelectorAll("[data-seg]").forEach(function(seg){
+      var k = seg.getAttribute("data-seg");
+      seg.querySelectorAll("button").forEach(function(b){ b.classList.toggle("on", String(b.getAttribute("data-v"))===String(state[k])); });
+    });
+  }
+
+  // --- Events
+  document.addEventListener("input", function(e){
+    var t = e.target; if(!t.hasAttribute || !t.hasAttribute("data-tw")) return;
+    state[t.getAttribute("data-tw")] = t.value; apply();
+  });
+  document.addEventListener("click", function(e){
+    var seg = e.target.closest && e.target.closest("[data-seg] button");
+    if(seg){
+      var k = seg.parentElement.getAttribute("data-seg");
+      var v = seg.getAttribute("data-v");
+      state[k] = (k==="radius") ? parseInt(v,10) : v;
+      apply(); return;
+    }
+    var themeBtn = e.target.closest && e.target.closest("[data-theme-set]");
+    if(themeBtn){ state.theme = themeBtn.getAttribute("data-theme-set"); apply(); return; }
+    var copyBtn = e.target.closest && e.target.closest(".copy-btn");
+    if(copyBtn){
+      var id = copyBtn.getAttribute("data-copy"); var el = document.getElementById(id);
+      if(el){ navigator.clipboard.writeText(el.textContent).then(function(){ copyBtn.textContent="Copiado"; copyBtn.classList.add("on"); setTimeout(function(){copyBtn.textContent="Copiar";copyBtn.classList.remove("on")},1400); }); }
+    }
+  });
+  document.getElementById("twFab").addEventListener("click", function(){ document.getElementById("tw").classList.add("on"); document.getElementById("twFab").style.display="none"; try{window.parent.postMessage({type:"__edit_mode_available"},"*")}catch(e){} });
+  document.getElementById("twClose").addEventListener("click", function(){ document.getElementById("tw").classList.remove("on"); document.getElementById("twFab").style.display=""; try{window.parent.postMessage({type:"__edit_mode_dismissed"},"*")}catch(e){} });
+  document.getElementById("twReset").addEventListener("click", function(){ state = Object.assign({}, DEF); saveLocal(); apply(); });
+  document.getElementById("twApply").addEventListener("click", function(){
+    saveLocal();
+    try{ window.parent.postMessage({type:"__edit_mode_set_keys", edits: state}, "*"); }catch(e){}
+    var btn = document.getElementById("twApply"); var t = btn.textContent; btn.textContent = "Salvo ✓"; setTimeout(function(){btn.textContent=t},1400);
+  });
+
+  // --- Edit mode protocol
+  window.addEventListener("message", function(e){
+    var d = e.data||{};
+    if(d.type==="__activate_edit_mode"){ document.getElementById("tw").classList.add("on"); document.getElementById("twFab").style.display="none"; }
+    if(d.type==="__deactivate_edit_mode"){ document.getElementById("tw").classList.remove("on"); document.getElementById("twFab").style.display=""; }
+  });
+  try{ window.parent.postMessage({type:"__edit_mode_available"},"*"); }catch(e){}
+
+  // --- Nav scroll spy
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".side .nav a"));
+  var sections = navLinks.map(function(a){ return document.querySelector(a.getAttribute("href")); });
+  function onScroll(){
+    var y = window.scrollY + 140;
+    var active = 0;
+    for(var i=0;i<sections.length;i++){ if(sections[i] && sections[i].offsetTop <= y) active = i; }
+    navLinks.forEach(function(a,i){ a.classList.toggle("on", i===active); });
+    var crumb = document.getElementById("ht-crumb-here");
+    if(crumb && navLinks[active]) crumb.textContent = navLinks[active].textContent.trim().replace(/^\d+/,"").trim();
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  navLinks.forEach(function(a){ a.addEventListener("click", function(e){
+    e.preventDefault(); var tgt = document.querySelector(a.getAttribute("href"));
+    if(tgt) window.scrollTo({top: tgt.offsetTop - 80, behavior:"smooth"});
+  }); });
+
+  apply();
+  onScroll();
+})();
+</script>
+
+
+</body></html>

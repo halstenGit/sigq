@@ -65,6 +65,34 @@ async def get_current_user_info(current_user: str = Depends(get_current_user)):
     }
 
 
+@router.get("/test")
+async def test_endpoint():
+    """Endpoint de teste simples"""
+    return {"status": "auth router funcionando"}
+
+
+@router.post("/test-login")
+async def test_login() -> TokenResponse:
+    """
+    Endpoint de teste para desenvolvimento local.
+    Retorna um JWT válido sem validar Entra ID.
+    ⚠️ APENAS PARA TESTES - Remover em produção!
+    """
+    if not settings.DEBUG:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Este endpoint só está disponível em modo DEBUG",
+        )
+
+    access_token = create_access_token(
+        data={"sub": "test_user@example.com"},
+        expires_delta=timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES),
+    )
+
+    logger.warning("Test login used - DEBUG mode only")
+    return TokenResponse(access_token=access_token)
+
+
 async def get_jwks_keys() -> dict:
     """Fetch and cache JWKS keys from Entra ID"""
     try:

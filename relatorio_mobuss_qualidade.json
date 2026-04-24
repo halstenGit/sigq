@@ -1,0 +1,511 @@
+{
+  "timestamp": "2026-04-24T09:12:12.735007",
+  "secoes": {
+    "Qualidade - Realizados": {
+      "url": "https://www.mobuss.com.br/ccweb/htdocs/programs/qualidade/checklist/realizado/iu01_23.jsf",
+      "titulo": "Consulta de Formulário Realizado",
+      "formularios": 60,
+      "inputs": [
+        {
+          "type": "text",
+          "name": "formHeaderConfigEmpresa:acEmpresaI02_input",
+          "id": "formHeaderConfigEmpresa:acEmpresaI02_input",
+          "placeholder": ""
+        },
+        {
+          "type": "checkbox",
+          "name": "formHeaderConfigEmpresa:checkEmpresaProxLogon_input",
+          "id": "formHeaderConfigEmpresa:checkEmpresaProxLogon_input",
+          "placeholder": ""
+        },
+        {
+          "type": "checkbox",
+          "name": "formHeaderConfigEmpresa:checkLocaldProxLogon_input",
+          "id": "formHeaderConfigEmpresa:checkLocaldProxLogon_input",
+          "placeholder": ""
+        },
+        {
+          "type": "checkbox",
+          "name": "formHeaderConfigEmpresa:checkFusoProxLogon_input",
+          "id": "formHeaderConfigEmpresa:checkFusoProxLogon_input",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:obra",
+          "id": "formIU01_23:obra",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:dataRealizacaoDe_input",
+          "id": "formIU01_23:dataRealizacaoDe_input",
+          "placeholder": "__/__/____"
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:dataRealizacaoAte_input",
+          "id": "formIU01_23:dataRealizacaoAte_input",
+          "placeholder": "__/__/____"
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:nome",
+          "id": "formIU01_23:nome",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:descricao",
+          "id": "formIU01_23:descricao",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:identificador",
+          "id": "formIU01_23:identificador",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:tipoChecklist",
+          "id": "formIU01_23:tipoChecklist",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:dataValidadeDe_input",
+          "id": "formIU01_23:dataValidadeDe_input",
+          "placeholder": "__/__/____"
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:dataValidadeAte_input",
+          "id": "formIU01_23:dataValidadeAte_input",
+          "placeholder": "__/__/____"
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:dataAtendimentoDe_input",
+          "id": "formIU01_23:dataAtendimentoDe_input",
+          "placeholder": "__/__/____"
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:dataAtendimentoAte_input",
+          "id": "formIU01_23:dataAtendimentoAte_input",
+          "placeholder": "__/__/____"
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:dataSincronismoDe_input",
+          "id": "formIU01_23:dataSincronismoDe_input",
+          "placeholder": "__/__/____ __:__"
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:dataSincronismoAte_input",
+          "id": "formIU01_23:dataSincronismoAte_input",
+          "placeholder": "__/__/____ __:__"
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:empreiteira",
+          "id": "formIU01_23:empreiteira",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:localAvaliado",
+          "id": "formIU01_23:localAvaliado",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:lovClassificacaoLocal:autoCompleteLov_input",
+          "id": "formIU01_23:lovClassificacaoLocal:autoCompleteLov_input",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:colaboradorAvaliado",
+          "id": "formIU01_23:colaboradorAvaliado",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:equipamentoAvaliado",
+          "id": "formIU01_23:equipamentoAvaliado",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:servicoAvaliado",
+          "id": "formIU01_23:servicoAvaliado",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:insumoAvaliado",
+          "id": "formIU01_23:insumoAvaliado",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:dscRevisao",
+          "id": "formIU01_23:dscRevisao",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:colaborador",
+          "id": "formIU01_23:colaborador",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:codigoAtendimento",
+          "id": "formIU01_23:codigoAtendimento",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:usuarioResponsavelVerificacao",
+          "id": "formIU01_23:usuarioResponsavelVerificacao",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU01_23:usuarioSincronismo",
+          "id": "formIU01_23:usuarioSincronismo",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU012301:empresa",
+          "id": "formIU012301:empresa",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU012301:nome",
+          "id": "formIU012301:nome",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU012301:empreiteira",
+          "id": "formIU012301:empreiteira",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU012301:responsavel",
+          "id": "formIU012301:responsavel",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU012301:dataRealizacao_input",
+          "id": "formIU012301:dataRealizacao_input",
+          "placeholder": "__/__/____"
+        },
+        {
+          "type": "text",
+          "name": "formIU012301:identificador",
+          "id": "formIU012301:identificador",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU012301:dataValidade_input",
+          "id": "formIU012301:dataValidade_input",
+          "placeholder": "__/__/____"
+        },
+        {
+          "type": "text",
+          "name": "formIU012301:codigoAtendimento",
+          "id": "formIU012301:codigoAtendimento",
+          "placeholder": ""
+        },
+        {
+          "type": "text",
+          "name": "formIU012301:dataAtendimento_input",
+          "id": "formIU012301:dataAtendimento_input",
+          "placeholder": "__/__/____"
+        },
+        {
+          "type": "radio",
+          "name": "form_dialogFiltroRelatorio23:filtroRelatorioTipo",
+          "id": "form_dialogFiltroRelatorio23:filtroRelatorioTipo:0",
+          "placeholder": ""
+        },
+        {
+          "type": "radio",
+          "name": "form_dialogFiltroRelatorio23:filtroRelatorioTipo",
+          "id": "form_dialogFiltroRelatorio23:filtroRelatorioTipo:1",
+          "placeholder": ""
+        },
+        {
+          "type": "radio",
+          "name": "form_dialogFiltroRelatorio23:filtroRelatorioTipo",
+          "id": "form_dialogFiltroRelatorio23:filtroRelatorioTipo:2",
+          "placeholder": ""
+        },
+        {
+          "type": "checkbox",
+          "name": "form_dialogFiltroRelatorio23:filtroRelatorioExibirNC",
+          "id": "form_dialogFiltroRelatorio23:filtroRelatorioExibirNC",
+          "placeholder": ""
+        },
+        {
+          "type": "checkbox",
+          "name": "form_dialogFiltroRelatorio23:filtroRelatorioExibirNA",
+          "id": "form_dialogFiltroRelatorio23:filtroRelatorioExibirNA",
+          "placeholder": ""
+        },
+        {
+          "type": "checkbox",
+          "name": "form_dialogFiltroRelatorio23:filtroRelatorioExibirObservacaoItem",
+          "id": "form_dialogFiltroRelatorio23:filtroRelatorioExibirObservacaoItem",
+          "placeholder": ""
+        },
+        {
+          "type": "checkbox",
+          "name": "form_dialogFiltroRelatorio23:filtroRelatorioExibirAnexos",
+          "id": "form_dialogFiltroRelatorio23:filtroRelatorioExibirAnexos",
+          "placeholder": ""
+        },
+        {
+          "type": "checkbox",
+          "name": "form_dialogFiltroRelatorio23:filtroExibirSomenteNaoConforme",
+          "id": "form_dialogFiltroRelatorio23:filtroExibirSomenteNaoConforme",
+          "placeholder": ""
+        },
+        {
+          "type": "radio",
+          "name": "form_dialogFiltroRelatorio23:filtroTipoSituacaoConformidade",
+          "id": "form_dialogFiltroRelatorio23:filtroTipoSituacaoConformidade:0",
+          "placeholder": ""
+        },
+        {
+          "type": "radio",
+          "name": "form_dialogFiltroRelatorio23:filtroTipoSituacaoConformidade",
+          "id": "form_dialogFiltroRelatorio23:filtroTipoSituacaoConformidade:1",
+          "placeholder": ""
+        },
+        {
+          "type": "radio",
+          "name": "form_dialogFiltroRelatorio23:filtroTipoSituacaoConformidade",
+          "id": "form_dialogFiltroRelatorio23:filtroTipoSituacaoConformidade:2",
+          "placeholder": ""
+        },
+        {
+          "type": "radio",
+          "name": "form_dialogFiltroRelatorio23:filtroTipoSituacaoConformidade",
+          "id": "form_dialogFiltroRelatorio23:filtroTipoSituacaoConformidade:3",
+          "placeholder": ""
+        }
+      ],
+      "selects": [
+        {
+          "name": "formHeaderConfigEmpresa:somLocaldI02_input",
+          "id": "formHeaderConfigEmpresa:somLocaldI02_input",
+          "options": []
+        },
+        {
+          "name": "formHeaderConfigEmpresa:somFusoI02_input",
+          "id": "formHeaderConfigEmpresa:somFusoI02_input",
+          "options": []
+        },
+        {
+          "name": "formIU01_23:filtroNome",
+          "id": "formIU01_23:filtroNome",
+          "options": []
+        },
+        {
+          "name": "formIU01_23:filtroDescricao",
+          "id": "formIU01_23:filtroDescricao",
+          "options": []
+        },
+        {
+          "name": "formIU01_23:filtroIdentificador",
+          "id": "formIU01_23:filtroIdentificador",
+          "options": []
+        },
+        {
+          "name": "formIU01_23:categoria",
+          "id": "formIU01_23:categoria",
+          "options": []
+        },
+        {
+          "name": "formIU01_23:status",
+          "id": "formIU01_23:status",
+          "options": []
+        },
+        {
+          "name": "formIU01_23:tipoAtendimento",
+          "id": "formIU01_23:tipoAtendimento",
+          "options": []
+        },
+        {
+          "name": "formIU01_23:origemBonusPenalidadeNota",
+          "id": "formIU01_23:origemBonusPenalidadeNota",
+          "options": []
+        },
+        {
+          "name": "formIU01_23:verificacaoFormulario",
+          "id": "formIU01_23:verificacaoFormulario",
+          "options": []
+        },
+        {
+          "name": "formIU01_23:filtroRevisao",
+          "id": "formIU01_23:filtroRevisao",
+          "options": []
+        },
+        {
+          "name": "formIU01_23:filtroCodigoAtendimento",
+          "id": "formIU01_23:filtroCodigoAtendimento",
+          "options": []
+        },
+        {
+          "name": "formIU01_23:statusFormulario",
+          "id": "formIU01_23:statusFormulario",
+          "options": []
+        },
+        {
+          "name": "formIU01_23:bonusPenalidadeItens",
+          "id": "formIU01_23:bonusPenalidadeItens",
+          "options": []
+        },
+        {
+          "name": "formIU01_23:table_rppDD",
+          "id": "formIU01_23:table:j_id26",
+          "options": []
+        },
+        {
+          "name": "formIU01_23:table_rppDD",
+          "id": "formIU01_23:table:j_id27",
+          "options": [
+            "20",
+            "30",
+            "40",
+            "50"
+          ]
+        },
+        {
+          "name": "formIU012301:tipoAtendimento",
+          "id": "formIU012301:tipoAtendimento",
+          "options": []
+        },
+        {
+          "name": "formIU012501:statusQuestao",
+          "id": "formIU012501:statusQuestao",
+          "options": []
+        },
+        {
+          "name": "formIU012501:natureza",
+          "id": "formIU012501:natureza",
+          "options": []
+        },
+        {
+          "name": "formIU012501:prioridade",
+          "id": "formIU012501:prioridade",
+          "options": []
+        },
+        {
+          "name": "formIU012501:procedencia",
+          "id": "formIU012501:procedencia",
+          "options": []
+        },
+        {
+          "name": "formIU012501:disposicao",
+          "id": "formIU012501:disposicao",
+          "options": []
+        },
+        {
+          "name": "formIU012501:aprovacaoPlano",
+          "id": "formIU012501:aprovacaoPlano",
+          "options": []
+        },
+        {
+          "name": "formIU012501:eficacia",
+          "id": "formIU012501:eficacia",
+          "options": []
+        },
+        {
+          "name": "formIU0125GestaoAcao:categoriaAcao",
+          "id": "formIU0125GestaoAcao:categoriaAcao",
+          "options": []
+        }
+      ],
+      "tabelas": [
+        {
+          "headers": [],
+          "rows": 46
+        },
+        {
+          "headers": [],
+          "rows": 27
+        },
+        {
+          "headers": [],
+          "rows": 0
+        },
+        {
+          "headers": [],
+          "rows": 16
+        },
+        {
+          "headers": [],
+          "rows": 0
+        },
+        {
+          "headers": [
+            "Obra",
+            "Data de Realização",
+            "Nome"
+          ],
+          "rows": 0
+        },
+        {
+          "headers": [],
+          "rows": 20
+        },
+        {
+          "headers": [],
+          "rows": 0
+        },
+        {
+          "headers": [],
+          "rows": 0
+        },
+        {
+          "headers": [],
+          "rows": 49
+        },
+        {
+          "headers": [],
+          "rows": 32
+        },
+        {
+          "headers": [],
+          "rows": 0
+        },
+        {
+          "headers": [],
+          "rows": 15
+        },
+        {
+          "headers": [],
+          "rows": 5
+        },
+        {
+          "headers": [],
+          "rows": 8
+        }
+      ],
+      "textareas": 8
+    }
+  }
+}

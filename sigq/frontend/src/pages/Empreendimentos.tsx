@@ -1,84 +1,124 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { empreendimentoService } from '@/services/api'
-import { EmpreendimentoItem } from '@/components/EmpreendimentoItem'
-import { EmpreendimentoForm } from '@/components/EmpreendimentoForm'
-import { useState } from 'react'
+import { Card } from '../components/Card'
+import { colors } from '../styles/theme'
+import { EMPREENDIMENTOS } from '../data/mockData'
 
 export function Empreendimentos() {
-  const queryClient = useQueryClient()
-  const [showForm, setShowForm] = useState(false)
-
-  const { data: empreendimentos = [], isLoading } = useQuery({
-    queryKey: ['empreendimentos'],
-    queryFn: () => empreendimentoService.listar(),
-  })
-
-  const createMutation = useMutation({
-    mutationFn: empreendimentoService.criar,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['empreendimentos'] })
-      setShowForm(false)
-    },
-  })
-
-  const deleteMutation = useMutation({
-    mutationFn: empreendimentoService.deletar,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['empreendimentos'] })
-    },
-  })
-
-  const handleCreate = async (obj: any) => {
-    await createMutation.mutateAsync(obj)
-  }
-
-  const handleDelete = async (id: string) => {
-    if (window.confirm('Tem certeza que deseja deletar este empreendimento?')) {
-      await deleteMutation.mutateAsync(id)
-    }
-  }
-
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Empreendimentos</h1>
+    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '24px' }}>
+      {/* Header */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
+        <div>
+          <div style={{ fontSize: 22, fontWeight: 700, color: colors.primaryDark }}>Empreendimentos</div>
+          <div style={{ fontSize: 13, color: colors.textMuted, marginTop: 2 }}>
+            {EMPREENDIMENTOS.length} obras ativas
+          </div>
+        </div>
         <button
-          onClick={() => setShowForm(!showForm)}
-          className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg transition"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 6,
+            padding: '9px 16px',
+            background: colors.primary,
+            color: '#fff',
+            border: 'none',
+            borderRadius: 8,
+            fontSize: 13,
+            fontWeight: 600,
+            cursor: 'pointer',
+            transition: 'background .15s',
+          }}
+          onMouseEnter={e => {
+            (e.target as HTMLElement).style.background = colors.primaryDark
+          }}
+          onMouseLeave={e => {
+            (e.target as HTMLElement).style.background = colors.primary
+          }}
         >
-          {showForm ? 'Cancelar' : 'Novo Empreendimento'}
+          <span style={{ fontSize: 16 }}>+</span> Novo empreendimento
         </button>
       </div>
 
-      {showForm && (
-        <div className="mb-8 bg-white rounded-lg shadow p-6">
-          <EmpreendimentoForm
-            onSubmit={handleCreate}
-            isLoading={createMutation.isPending}
-          />
-        </div>
-      )}
+      {/* Grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))', gap: 16 }}>
+        {EMPREENDIMENTOS.map(e => (
+          <Card
+            key={e.id}
+            borderColor={colors.border}
+            padding="24px"
+          >
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'flex-start',
+                marginBottom: 16,
+              }}
+            >
+              <div>
+                <div style={{ fontSize: 16, fontWeight: 700, color: colors.primaryDark }}>{e.nome}</div>
+                <div style={{ fontSize: 12, color: colors.textMuted, marginTop: 2 }}>
+                  {e.cidade} · {e.blocos} bloco{e.blocos > 1 ? 's' : ''} · {e.unidades} unidades
+                </div>
+              </div>
+              <span
+                style={{
+                  fontSize: 11,
+                  padding: '3px 10px',
+                  background: '#e8f5e9',
+                  color: colors.success,
+                  borderRadius: 99,
+                  fontWeight: 600,
+                }}
+              >
+                Em andamento
+              </span>
+            </div>
 
-      {isLoading ? (
-        <div className="text-center py-12">
-          <p className="text-gray-600">Carregando empreendimentos...</p>
-        </div>
-      ) : empreendimentos.length === 0 ? (
-        <div className="text-center py-12 bg-white rounded-lg">
-          <p className="text-gray-600">Nenhum empreendimento cadastrado</p>
-        </div>
-      ) : (
-        <div className="grid gap-4">
-          {empreendimentos.map((emp) => (
-            <EmpreendimentoItem
-              key={emp.id}
-              empreendimento={emp}
-              onDelete={handleDelete}
-              isDeleting={deleteMutation.isPending}
-            />
-          ))}
-        </div>
-      )}
+            {/* Progress */}
+            <div style={{ marginBottom: 12 }}>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  fontSize: 11,
+                  color: colors.textMuted,
+                  marginBottom: 4,
+                }}
+              >
+                <span>Progresso geral</span>
+                <span style={{ fontWeight: 600, color: colors.primaryDark }}>{e.progresso}%</span>
+              </div>
+              <div style={{ height: 8, background: colors.border, borderRadius: 99 }}>
+                <div
+                  style={{
+                    height: '100%',
+                    width: `${e.progresso}%`,
+                    background: colors.primary,
+                    borderRadius: 99,
+                    transition: 'width .6s',
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Stats */}
+            <div style={{ display: 'flex', gap: 16, borderTop: `1px solid ${colors.border}`, paddingTop: 12 }}>
+              <div style={{ flex: 1, textAlign: 'center' }}>
+                <div style={{ fontSize: 22, fontWeight: 700, color: colors.primaryDark }}>{e.fvs}</div>
+                <div style={{ fontSize: 11, color: colors.textMuted }}>FVS realizadas</div>
+              </div>
+              <div style={{ width: 1, background: colors.border }} />
+              <div style={{ flex: 1, textAlign: 'center' }}>
+                <div style={{ fontSize: 22, fontWeight: 700, color: e.rncs > 5 ? colors.error : colors.primaryDark }}>
+                  {e.rncs}
+                </div>
+                <div style={{ fontSize: 11, color: colors.textMuted }}>RNCs abertas</div>
+              </div>
+            </div>
+          </Card>
+        ))}
+      </div>
     </div>
   )
 }

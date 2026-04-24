@@ -42,3 +42,58 @@ class ApiService {
 }
 
 export const apiService = new ApiService()
+
+// Types
+export interface Empreendimento {
+  id: string
+  nome: string
+  descricao?: string
+  localizacao?: string
+  id_sienge?: string
+  ativo: boolean
+  created_at: string
+  updated_at: string
+}
+
+export interface EmpreendimentoCreate {
+  nome: string
+  descricao?: string
+  localizacao?: string
+  id_sienge?: string
+}
+
+export interface EmpreendimentoUpdate {
+  nome?: string
+  descricao?: string
+  localizacao?: string
+  ativo?: boolean
+}
+
+// Services
+class EmpreendimentoService {
+  async listar(): Promise<Empreendimento[]> {
+    const { data } = await apiService.get('/v1/empreendimentos')
+    return data
+  }
+
+  async buscar(id: string): Promise<Empreendimento> {
+    const { data } = await apiService.get(`/v1/empreendimentos/${id}`)
+    return data
+  }
+
+  async criar(empreendimento: EmpreendimentoCreate): Promise<Empreendimento> {
+    const { data } = await apiService.post('/v1/empreendimentos', empreendimento)
+    return data
+  }
+
+  async atualizar(id: string, empreendimento: EmpreendimentoUpdate): Promise<Empreendimento> {
+    const { data } = await apiService.put(`/v1/empreendimentos/${id}`, empreendimento)
+    return data
+  }
+
+  async deletar(id: string): Promise<void> {
+    await apiService.delete(`/v1/empreendimentos/${id}`)
+  }
+}
+
+export const empreendimentoService = new EmpreendimentoService()

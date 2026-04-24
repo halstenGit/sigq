@@ -1,4 +1,4 @@
-import { api } from './api'
+import { apiService } from './api'
 
 export interface PhotoMetadata {
   latitude?: number
@@ -39,7 +39,8 @@ export const uploadService = {
       }
 
       // Upload
-      const response = await fetch('/v1/evidencias/upload', {
+      const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+      const response = await fetch(`${baseURL}/v1/evidencias/upload`, {
         method: 'POST',
         body: formData,
       })
@@ -57,8 +58,8 @@ export const uploadService = {
 
   async getEvidencia(evidenciaId: string): Promise<UploadResponse> {
     try {
-      const response = await api.get(`/v1/evidencias/${evidenciaId}`)
-      return response.data
+      const { data } = await apiService.get(`/v1/evidencias/${evidenciaId}`)
+      return data
     } catch (error) {
       console.error('Get evidencia error:', error)
       throw error

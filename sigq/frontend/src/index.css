@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Import Halsten Design System */
+@import './styles/halsten.css';
 
 * {
   margin: 0;
@@ -8,19 +7,10 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  line-height: 1.5;
-  color: #333;
-}
-
-#root {
+html, body, #root {
   width: 100%;
   height: 100%;
+  font-family: var(--hs-font-body);
+  color: var(--hs-text-primary);
+  background: var(--hs-bg);
 }
