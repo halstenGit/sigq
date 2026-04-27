@@ -11,6 +11,7 @@ import { Dashboard } from './pages/Dashboard'
 import { Empreendimentos } from './pages/Empreendimentos'
 import { Rncs } from './pages/Rncs'
 import { NovaRnc } from './pages/NovaRnc'
+import { EditarRnc } from './pages/EditarRnc'
 import { Perfil } from './pages/Perfil'
 import { Fvs } from './pages/Fvs'
 import { NovaFvs } from './pages/NovaFvs'
@@ -106,6 +107,7 @@ function AppContent() {
           {pageState.page === 'editar-fvs' && <EditarFvs fvsId={pageState.data?.fvsId} onSuccess={() => handleNavigate('fvs')} onCancel={() => handleNavigate('fvs')} />}
           {pageState.page === 'rncs' && <Rncs onNavigate={handleNavigate} />}
           {pageState.page === 'nova-rnc' && <NovaRnc fvsId={pageState.data?.fvsId} empreendimento={pageState.data?.empreendimento} servico={pageState.data?.servico} onSuccess={() => handleNavigate('rncs')} onCancel={() => handleNavigate('rncs')} />}
+          {pageState.page === 'editar-rnc' && <EditarRnc rncId={pageState.data?.rncId} onSuccess={() => handleNavigate('rncs')} onCancel={() => handleNavigate('rncs')} />}
           {pageState.page === 'perfil' && <Perfil />}
         </div>
       </div>

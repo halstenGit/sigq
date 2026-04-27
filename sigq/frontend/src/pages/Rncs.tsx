@@ -171,6 +171,13 @@ export function Rncs({ onNavigate }: RncsProps) {
                     </div>
                   </div>
 
+                  {rnc.fvsId && (
+                    <div style={{ marginTop: 'var(--sp-3)', padding: 'var(--sp-3)', background: 'var(--bg-2)', borderRadius: 0, fontSize: 12 }}>
+                      <span style={{ color: 'var(--ink-2)', fontWeight: 600 }}>FVS Vinculada:</span>
+                      <div style={{ color: 'var(--ink)', marginTop: '2px', fontFamily: 'var(--font-mono)', fontWeight: 600 }}>{rnc.fvsId}</div>
+                    </div>
+                  )}
+
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--sp-4)', marginTop: 'var(--sp-3)', fontSize: 12 }}>
                     <div>
                       <span style={{ color: 'var(--ink-2)', fontWeight: 600 }}>Abertura:</span>
@@ -185,6 +192,7 @@ export function Rncs({ onNavigate }: RncsProps) {
 
                 <div style={{ display: 'flex', gap: 'var(--sp-2)' }}>
                   <button
+                    onClick={() => onNavigate?.('editar-rnc', { rncId: rnc.id })}
                     style={{
                       padding: 'var(--sp-2) var(--sp-3)',
                       background: 'var(--bg-2)',
@@ -199,10 +207,11 @@ export function Rncs({ onNavigate }: RncsProps) {
                     onMouseEnter={e => (e.currentTarget.style.background = 'var(--bg-1)')}
                     onMouseLeave={e => (e.currentTarget.style.background = 'var(--bg-2)')}
                   >
-                    Edit
+                    ✏️ Editar
                   </button>
                   {rnc.fvsId && (
                     <button
+                      onClick={() => onNavigate?.('fvs')}
                       style={{
                         padding: 'var(--sp-2) var(--sp-3)',
                         background: 'var(--bg-2)',
@@ -217,7 +226,7 @@ export function Rncs({ onNavigate }: RncsProps) {
                       onMouseEnter={e => (e.currentTarget.style.background = 'var(--bg-1)')}
                       onMouseLeave={e => (e.currentTarget.style.background = 'var(--bg-2)')}
                     >
-                      View FVS
+                      📋 Ver FVS
                     </button>
                   )}
                 </div>
