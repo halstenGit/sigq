@@ -105,7 +105,7 @@ export function NovaRnc({ fvsId, empreendimento, servico, onSuccess, onCancel }:
             marginBottom: 'var(--sp-6)',
             padding: 'var(--sp-4)',
             background: '#e8f5e9',
-            border: \1px solid var(--ok)\,
+            border: '1px solid var(--ok)',
             borderRadius: 4,
             display: 'flex',
             alignItems: 'center',
@@ -124,7 +124,7 @@ export function NovaRnc({ fvsId, empreendimento, servico, onSuccess, onCancel }:
       <HalstenCard>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-6)' }}>
           {/* Identificação */}
-          <div style={{ paddingBottom: 'var(--sp-6)', borderBottom: \1px solid var(--bg-2)\ }}>
+          <div style={{ paddingBottom: 'var(--sp-6)', borderBottom: '1px solid var(--bg-2)' }}>
             <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--ink)', margin: 0, marginBottom: 'var(--sp-6)' }}>
               Identificação
             </h2>
@@ -148,7 +148,7 @@ export function NovaRnc({ fvsId, empreendimento, servico, onSuccess, onCancel }:
           </div>
 
           {/* Descrição */}
-          <div style={{ paddingBottom: 'var(--sp-6)', borderBottom: \1px solid var(--bg-2)\ }}>
+          <div style={{ paddingBottom: 'var(--sp-6)', borderBottom: '1px solid var(--bg-2)' }}>
             <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--ink)', margin: 0, marginBottom: 'var(--sp-6)' }}>
               Descrição
             </h2>
@@ -161,7 +161,7 @@ export function NovaRnc({ fvsId, empreendimento, servico, onSuccess, onCancel }:
               style={{
                 width: '100%',
                 padding: 'var(--sp-3)',
-                border: \1px solid var(--bg-2)\,
+                border: '1px solid var(--bg-2)',
                 borderRadius: 4,
                 fontSize: 14,
                 color: 'var(--ink)',
@@ -174,7 +174,7 @@ export function NovaRnc({ fvsId, empreendimento, servico, onSuccess, onCancel }:
           </div>
 
           {/* Classificação */}
-          <div style={{ paddingBottom: 'var(--sp-6)', borderBottom: \1px solid var(--bg-2)\ }}>
+          <div style={{ paddingBottom: 'var(--sp-6)', borderBottom: '1px solid var(--bg-2)' }}>
             <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--ink)', margin: 0, marginBottom: 'var(--sp-6)' }}>
               Classificação
             </h2>
@@ -189,7 +189,7 @@ export function NovaRnc({ fvsId, empreendimento, servico, onSuccess, onCancel }:
           </div>
 
           {/* Responsabilidade */}
-          <div style={{ paddingBottom: 'var(--sp-6)', borderBottom: \1px solid var(--bg-2)\ }}>
+          <div style={{ paddingBottom: 'var(--sp-6)', borderBottom: '1px solid var(--bg-2)' }}>
             <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--ink)', margin: 0, marginBottom: 'var(--sp-6)' }}>
               Responsabilidade
             </h2>
@@ -204,7 +204,7 @@ export function NovaRnc({ fvsId, empreendimento, servico, onSuccess, onCancel }:
           </div>
 
           {/* Prazos */}
-          <div style={{ paddingBottom: 'var(--sp-6)', borderBottom: \1px solid var(--bg-2)\ }}>
+          <div style={{ paddingBottom: 'var(--sp-6)', borderBottom: '1px solid var(--bg-2)' }}>
             <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--ink)', margin: 0, marginBottom: 'var(--sp-6)' }}>
               Prazos
             </h2>
@@ -256,7 +256,7 @@ export function NovaRnc({ fvsId, empreendimento, servico, onSuccess, onCancel }:
                 padding: 'var(--sp-3)',
                 background: 'var(--bg-2)',
                 color: 'var(--ink)',
-                border: \1px solid var(--bg-2)\,
+                border: '1px solid var(--bg-2)',
                 borderRadius: 4,
                 fontSize: 14,
                 fontWeight: 600,
