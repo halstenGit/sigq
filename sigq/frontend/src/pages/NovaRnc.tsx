@@ -4,6 +4,7 @@ import { HalstenCard } from '../components/HalstenCard'
 import { HalstenInput } from '../components/HalstenInput'
 import { HalstenSelect } from '../components/HalstenSelect'
 import { useRnc } from '../contexts/RncContext'
+import { useFvs } from '../contexts/FvsContext'
 import { EMPREENDIMENTOS } from '../data/mockData'
 
 interface NovaRncProps {
@@ -26,6 +27,7 @@ interface FormData {
 
 export function NovaRnc({ fvsId, empreendimento, servico, onSuccess, onCancel }: NovaRncProps) {
   const { addRnc } = useRnc()
+  const { updateFvs } = useFvs()
 
   const [formData, setFormData] = useState<FormData>({
     empreendimento: empreendimento || '',
@@ -75,6 +77,10 @@ export function NovaRnc({ fvsId, empreendimento, servico, onSuccess, onCancel }:
         prazo: formData.prazo,
         fvsId: fvsId,
       })
+
+      if (fvsId) {
+        updateFvs(fvsId, { status: 'com_nc' })
+      }
 
       setSuccess(true)
       setLoading(false)

@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { HalstenCard } from '../components/HalstenCard'
-import { FVS_LIST } from '../data/mockData'
+import { FVS_LIST, RNC_LIST } from '../data/mockData'
 import { useFvs } from '../contexts/FvsContext'
+import { useRnc } from '../contexts/RncContext'
 
 interface FvsProps {
   onNavigate?: (page: string, data?: any) => void
@@ -11,6 +12,7 @@ export function Fvs({ onNavigate }: FvsProps) {
   const [filter, setFilter] = useState('todos')
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const { fvsList } = useFvs()
+  const { rncList, getRncsByFvs } = useRnc()
 
   const allFvs = [...fvsList, ...FVS_LIST]
   const filtered = filter === 'todos' ? allFvs : allFvs.filter(f => f.status === filter)
@@ -130,7 +132,48 @@ export function Fvs({ onNavigate }: FvsProps) {
                     <div style={{ color: 'var(--ink)', fontWeight: 600 }}>{fvs.dataRealizacao}</div>
                   </div>
                 </div>
-                <div style={{ display: 'flex', gap: 'var(--sp-3)' }}>
+
+                {(() => {
+                  const fvsRncs = [...RNC_LIST, ...rncList].filter(r => r.fvsId === fvs.id)
+                  return fvsRncs.length > 0 ? (
+                    <div style={{ marginTop: 'var(--sp-4)', paddingTop: 'var(--sp-4)', borderTop: '1px solid var(--bg-2)' }}>
+                      <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--ink)', marginBottom: 'var(--sp-3)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        Não-Conformidades Vinculadas ({fvsRncs.length})
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-2)' }}>
+                        {fvsRncs.map(rnc => (
+                          <div key={rnc.id} style={{ padding: 'var(--sp-3)', background: 'var(--bg-2)', borderRadius: 4 }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: 'var(--sp-2)' }}>
+                              <div style={{ fontSize: 11, fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--ink)' }}>{rnc.id}</div>
+                              <div style={{
+                                display: 'inline-block',
+                                padding: '2px var(--sp-2)',
+                                background: rnc.gravidade === 'critica' ? '#d32f2f' : rnc.gravidade === 'maior' ? '#f57c00' : rnc.gravidade === 'menor' ? '#fbc02d' : '#7b8fa3',
+                                color: '#fff',
+                                fontSize: 9,
+                                fontWeight: 700,
+                                borderRadius: 0,
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.05em',
+                              }}>
+                                {rnc.gravidade}
+                              </div>
+                            </div>
+                            <div style={{ fontSize: 11, color: 'var(--ink)', marginBottom: 'var(--sp-1)', lineHeight: 1.4 }}>
+                              {rnc.descricao}
+                            </div>
+                            <div style={{ fontSize: 10, color: 'var(--ink-2)', display: 'flex', gap: 'var(--sp-3)' }}>
+                              <span>Status: <strong>{rnc.status.replace('_', ' ')}</strong></span>
+                              <span>Prazo: <strong>{rnc.prazo}</strong></span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null
+                })()}
+
+                <div style={{ display: 'flex', gap: 'var(--sp-3)', marginTop: 'var(--sp-4)' }}>
                   <button
                     onClick={() => onNavigate?.('editar-fvs', { fvsId: fvs.id })}
                     style={{
