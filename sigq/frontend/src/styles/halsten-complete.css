@@ -613,6 +613,162 @@ tr:hover {
   font-weight: 600;
 }
 
+/* HALSTEN COMPONENTS */
+
+/* Cards */
+.hs-card {
+  background: var(--bg);
+  border: 1px solid var(--bg-2);
+  padding: var(--sp-6);
+}
+
+.hs-card:hover {
+  background: var(--bg-1);
+}
+
+.hs-card-header {
+  margin-bottom: var(--sp-6);
+  padding-bottom: var(--sp-6);
+  border-bottom: 1px solid var(--bg-2);
+}
+
+.hs-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+  margin-bottom: var(--sp-1);
+}
+
+.hs-card-subtitle {
+  font-size: 12px;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+/* Buttons */
+.hs-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-4);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.hs-btn-primary {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.hs-btn-primary:hover {
+  opacity: 0.9;
+}
+
+.hs-btn-secondary {
+  background: var(--bg-1);
+  color: var(--ink);
+  border: 1px solid var(--bg-2);
+}
+
+.hs-btn-secondary:hover {
+  background: var(--bg-2);
+}
+
+.hs-btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--bg-2);
+}
+
+.hs-btn-ghost:hover {
+  background: var(--bg-1);
+}
+
+.hs-btn-danger {
+  background: var(--bad);
+  color: white;
+}
+
+.hs-btn-danger:hover {
+  opacity: 0.9;
+}
+
+.hs-btn-sm {
+  padding: var(--sp-1) var(--sp-3);
+  font-size: 12px;
+}
+
+.hs-btn-lg {
+  padding: var(--sp-3) var(--sp-6);
+  font-size: 14px;
+}
+
+.hs-btn-full {
+  width: 100%;
+}
+
+/* Inputs */
+.hs-input {
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--bg-2);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 13px;
+}
+
+.hs-input:focus {
+  outline: none;
+  border-color: var(--ink);
+  background: var(--bg-1);
+}
+
+/* Select */
+.hs-select {
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--bg-2);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.hs-select:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+
+/* Labels */
+.hs-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--sp-1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Badge */
+.hs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: var(--sp-1) var(--sp-2);
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--bg-2);
+  color: var(--ink);
+}
+
 /* RESPONSIVE DESIGN */
 @media (max-width: 1200px) {
   .grid-3 {
