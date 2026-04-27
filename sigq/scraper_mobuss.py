@@ -29,6 +29,7 @@ class MobussScraper:
             "empreendimentos": [],
             "servicos": [],
             "fvs_extraidas": [],
+            "rncs_extraidas": [],
             "estrutura": {},
         }
         self._carregar_dados_ficticios()
@@ -87,6 +88,22 @@ class MobussScraper:
             },
         ]
 
+        # RNCs fictícias vinculadas a FVS
+        self.data["rncs_extraidas"] = [
+            {
+                "id": "RNC-MOCK-0001",
+                "fvsId": "FVS-MOCK-0002",
+                "empreendimento": "Morada de Gaia",
+                "servico": "Revestimento Cerâmico",
+                "descricao": "Juntas irregulares no banheiro, variacao acima do tolerado",
+                "gravidade": "maior",
+                "status": "em_correcao",
+                "responsavel": "Construtora Alfa",
+                "abertura": "24/04/2026",
+                "prazo": "28/04/2026",
+            },
+        ]
+
     def setup_driver(self):
         """Mock - Não precisa de driver"""
         print("[OK] Modo offline ativado (dados fictícios)")
@@ -129,6 +146,11 @@ class MobussScraper:
         """Extrai FVS disponíveis"""
         print(f"[OK] {len(self.data['fvs_extraidas'])} FVS carregada(s)")
         return self.data["fvs_extraidas"]
+
+    def extrair_rncs(self):
+        """Extrai RNCs vinculadas a FVS"""
+        print(f"[OK] {len(self.data['rncs_extraidas'])} RNC(s) carregada(s)")
+        return self.data["rncs_extraidas"]
 
     def extrair_tabelas(self):
         """Mock - Retorna dados de tabela fictícia"""
@@ -208,20 +230,48 @@ class MobussScraper:
                 ws3[f'C{row}'] = opcao.get("value", "")
                 row += 1
 
-            # Aba 4: Resumo
-            ws4 = wb.create_sheet("Resumo")
-            ws4['A1'] = "Métrica"
-            ws4['B1'] = "Quantidade"
+            # Aba 4: RNCs
+            ws4 = wb.create_sheet("RNCs")
+            ws4['A1'] = "ID"
+            ws4['B1'] = "FVS ID"
+            ws4['C1'] = "Empreendimento"
+            ws4['D1'] = "Servico"
+            ws4['E1'] = "Descricao"
+            ws4['F1'] = "Gravidade"
+            ws4['G1'] = "Status"
+            ws4['H1'] = "Responsavel"
+            ws4['I1'] = "Abertura"
+            ws4['J1'] = "Prazo"
+            row = 2
+            for rnc in self.data["rncs_extraidas"]:
+                ws4[f'A{row}'] = rnc.get("id", "")
+                ws4[f'B{row}'] = rnc.get("fvsId", "")
+                ws4[f'C{row}'] = rnc.get("empreendimento", "")
+                ws4[f'D{row}'] = rnc.get("servico", "")
+                ws4[f'E{row}'] = rnc.get("descricao", "")
+                ws4[f'F{row}'] = rnc.get("gravidade", "")
+                ws4[f'G{row}'] = rnc.get("status", "")
+                ws4[f'H{row}'] = rnc.get("responsavel", "")
+                ws4[f'I{row}'] = rnc.get("abertura", "")
+                ws4[f'J{row}'] = rnc.get("prazo", "")
+                row += 1
+
+            # Aba 5: Resumo
+            ws5 = wb.create_sheet("Resumo")
+            ws5['A1'] = "Métrica"
+            ws5['B1'] = "Quantidade"
             resumo = [
                 ("Formulários", len(self.data["formularios"])),
                 ("Campos", len(self.data["campos"])),
                 ("Opções", len(self.data["opcoes"])),
-                ("Divs", self.data["estrutura"].get("pagina", {}).get("divs", 0)),
-                ("Tabelas", self.data["estrutura"].get("pagina", {}).get("tables", 0)),
+                ("Empreendimentos", len(self.data["empreendimentos"])),
+                ("Servicos", len(self.data["servicos"])),
+                ("FVS", len(self.data["fvs_extraidas"])),
+                ("RNCs", len(self.data["rncs_extraidas"])),
             ]
             for idx, (metrica, valor) in enumerate(resumo, start=2):
-                ws4[f'A{idx}'] = metrica
-                ws4[f'B{idx}'] = valor
+                ws5[f'A{idx}'] = metrica
+                ws5[f'B{idx}'] = valor
 
             # Salva
             caminho = "relatorio_mobuss.xlsx"
@@ -245,6 +295,7 @@ class MobussScraper:
             self.extrair_empreendimentos()
             self.extrair_servicos()
             self.extrair_fvs()
+            self.extrair_rncs()
             self.extrair_tabelas()
             self.extrair_menu_navegacao()
 

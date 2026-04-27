@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-27T15:42:59.904315",
+  "timestamp": "2026-04-27T16:24:46.583291",
   "formularios": [
     {
       "id": "form_fvs",
@@ -105,6 +105,20 @@
       "status": "finalizada",
       "dataRealizacao": "23/04/2026",
       "inspetor": "Francisco Neto"
+    }
+  ],
+  "rncs_extraidas": [
+    {
+      "id": "RNC-MOCK-0001",
+      "fvsId": "FVS-MOCK-0002",
+      "empreendimento": "Morada de Gaia",
+      "servico": "Revestimento Cerâmico",
+      "descricao": "Juntas irregulares no banheiro, variacao acima do tolerado",
+      "gravidade": "maior",
+      "status": "em_correcao",
+      "responsavel": "Construtora Alfa",
+      "abertura": "24/04/2026",
+      "prazo": "28/04/2026"
     }
   ],
   "estrutura": {
