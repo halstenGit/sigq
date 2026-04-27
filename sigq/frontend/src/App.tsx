@@ -61,7 +61,6 @@ function AppContent() {
               style={{
                 padding: 'var(--sp-2) var(--sp-3)',
                 border: '1px solid var(--bg-2)',
-                borderRadius: 4,
                 fontSize: 12,
                 fontFamily: 'var(--font-body)',
                 color: 'var(--ink)',

@@ -13,7 +13,7 @@ export function BarChart({ data, title }: BarChartProps) {
   const maxFvs = Math.max(...data.map(d => d.fvs || 0), 1)
 
   return (
-    <div style={{ background: 'var(--bg-1)', border: '1px solid var(--bg-2)', borderRadius: 6, padding: 24 }}>
+    <div style={{ background: 'var(--bg-1)', border: '1px solid var(--bg-2)', padding: 24 }}>
       <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--ink)', marginBottom: 20 }}>
         {title}
       </div>
@@ -49,11 +49,11 @@ export function BarChart({ data, title }: BarChartProps) {
 
       <div style={{ display: 'flex', gap: 16, marginTop: 12 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: 'var(--ink-2)' }}>
-          <div style={{ width: 10, height: 10, borderRadius: 2, background: 'var(--ok)' }} />
+          <div style={{ width: 10, height: 10, background: 'var(--ok)' }} />
           FVS realizadas
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: 'var(--ink-2)' }}>
-          <div style={{ width: 10, height: 10, borderRadius: 2, background: 'var(--bad)', opacity: 0.7 }} />
+          <div style={{ width: 10, height: 10, background: 'var(--bad)', opacity: 0.7 }} />
           Com NCs
         </div>
       </div>
