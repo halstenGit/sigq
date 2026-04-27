@@ -1,7 +1,11 @@
+import { HalstenLabel } from './HalstenLabel'
+
 interface HalstenSelectProps {
   id?: string
+  name?: string
+  label?: string
   value: string | number
-  onChange: (value: string | number) => void
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
   placeholder?: string
   options: Array<{ value: string | number; label: string }>
   disabled?: boolean
@@ -10,6 +14,8 @@ interface HalstenSelectProps {
 
 export function HalstenSelect({
   id,
+  name,
+  label,
   value,
   onChange,
   placeholder,
@@ -18,10 +24,13 @@ export function HalstenSelect({
   required = false,
 }: HalstenSelectProps) {
   return (
-    <select
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-2)' }}>
+      {label && <HalstenLabel required={required}>{label}</HalstenLabel>}
+      <select
       id={id}
+      name={name}
       value={value}
-      onChange={e => onChange(e.target.value)}
+      onChange={onChange}
       disabled={disabled}
       required={required}
       style={{
@@ -49,6 +58,7 @@ export function HalstenSelect({
           {opt.label}
         </option>
       ))}
-    </select>
+      </select>
+    </div>
   )
 }

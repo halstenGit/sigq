@@ -1,13 +1,15 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { HalstenButton } from '../components/HalstenButton'
 import { HalstenCard } from '../components/HalstenCard'
 import { HalstenInput } from '../components/HalstenInput'
 import { HalstenSelect } from '../components/HalstenSelect'
-import { EMPREENDIMENTOS } from '../data/mockData'
+import { EMPREENDIMENTOS, FVS_LIST } from '../data/mockData'
 import { useFvs } from '../contexts/FvsContext'
 
-interface NovaFvsProps {
+interface EditarFvsProps {
+  fvsId: string
   onSuccess?: () => void
+  onCancel?: () => void
 }
 
 interface FormData {
@@ -26,8 +28,9 @@ interface FormData {
   fotos: File[]
 }
 
-export function NovaFvs({ onSuccess }: NovaFvsProps) {
-  const { addFvs } = useFvs()
+export function EditarFvs({ fvsId, onSuccess, onCancel }: EditarFvsProps) {
+  const { updateFvs, getFvsById } = useFvs()
+
   const [formData, setFormData] = useState<FormData>({
     nome: '',
     tipoChecklist: '',
@@ -46,6 +49,43 @@ export function NovaFvs({ onSuccess }: NovaFvsProps) {
 
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    if (!fvsId) {
+      setError('ID da FVS não fornecido')
+      return
+    }
+
+    // Busca primeiro no contexto (FVS criadas)
+    let fvsData = getFvsById(fvsId)
+
+    // Se não encontrar, busca no mockData (FVS de exemplo)
+    if (!fvsData) {
+      fvsData = FVS_LIST.find(f => f.id === fvsId)
+    }
+
+    if (fvsData) {
+      setFormData({
+        nome: fvsData.nome || '',
+        tipoChecklist: fvsData.tipoChecklist || '',
+        empreendimento: fvsData.empreendimento || '',
+        local: fvsData.local || '',
+        pavimento: fvsData.pavimento || '',
+        unidade: fvsData.unidade || '',
+        servico: fvsData.servico || '',
+        nota: fvsData.nota || 5,
+        dataRealizacao: fvsData.dataRealizacao || '',
+        inspetor: fvsData.inspetor || '',
+        empreiteira: fvsData.empreiteira || '',
+        observacoes: fvsData.observacoes || '',
+        fotos: [],
+      })
+      setError('')
+    } else {
+      setError('FVS não encontrada')
+    }
+  }, [fvsId, getFvsById])
 
   const tiposChecklist = [
     { value: 'servico', label: 'Serviço' },
@@ -111,7 +151,7 @@ export function NovaFvs({ onSuccess }: NovaFvsProps) {
     setLoading(true)
 
     setTimeout(() => {
-      addFvs({
+      updateFvs(fvsId, {
         empreendimento: formData.empreendimento,
         local: formData.local,
         dataRealizacao: formData.dataRealizacao,
@@ -128,21 +168,6 @@ export function NovaFvs({ onSuccess }: NovaFvsProps) {
 
       setSuccess(true)
       setLoading(false)
-      setFormData({
-        nome: '',
-        tipoChecklist: '',
-        empreendimento: '',
-        local: '',
-        pavimento: '',
-        unidade: '',
-        servico: '',
-        nota: 5,
-        dataRealizacao: '',
-        inspetor: '',
-        empreiteira: '',
-        observacoes: '',
-        fotos: [],
-      })
 
       setTimeout(() => {
         setSuccess(false)
@@ -151,15 +176,33 @@ export function NovaFvs({ onSuccess }: NovaFvsProps) {
     }, 1000)
   }
 
+  if (error) {
+    return (
+      <div style={{ maxWidth: '900px', margin: '0 auto', padding: 'var(--sp-6)' }}>
+        <div
+          style={{
+            padding: 'var(--sp-4)',
+            background: '#ffebee',
+            border: '1px solid #f44336',
+            borderRadius: 4,
+            color: '#c62828',
+          }}
+        >
+          ❌ {error}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: 'var(--sp-6)' }}>
       {/* Header */}
       <div style={{ marginBottom: 'var(--sp-8)' }}>
         <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ink)', margin: 0 }}>
-          Nova Ficha de Verificação (FVS)
+          Editar Ficha de Verificação (FVS)
         </h1>
         <p style={{ fontSize: 13, color: 'var(--ink-2)', margin: 'var(--sp-1) 0 0 0' }}>
-          Preencha os dados para registrar uma nova FVS
+          Atualize os dados da FVS #{fvsId}
         </p>
       </div>
 
@@ -179,8 +222,8 @@ export function NovaFvs({ onSuccess }: NovaFvsProps) {
         >
           <span style={{ fontSize: 20 }}>✅</span>
           <div>
-            <div style={{ fontWeight: 600, color: 'var(--ink)' }}>FVS criada com sucesso!</div>
-            <div style={{ fontSize: 12, color: 'var(--ink-2)' }}>Você pode visualizá-la na listagem de FVS</div>
+            <div style={{ fontWeight: 600, color: 'var(--ink)' }}>FVS atualizada com sucesso!</div>
+            <div style={{ fontSize: 12, color: 'var(--ink-2)' }}>As alterações foram salvas</div>
           </div>
         </div>
       )}
@@ -377,101 +420,6 @@ export function NovaFvs({ onSuccess }: NovaFvsProps) {
             />
           </div>
 
-          {/* Fotos */}
-          <div style={{ paddingBottom: 'var(--sp-6)', borderBottom: `1px solid var(--bg-2)` }}>
-            <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--ink)', margin: 0, marginBottom: 'var(--sp-6)' }}>
-              📸 Fotos (opcional)
-            </h2>
-            <div
-              style={{
-                border: `2px dashed var(--bg-2)`,
-                borderRadius: 4,
-                padding: 'var(--sp-6)',
-                textAlign: 'center',
-                background: 'var(--bg-1)',
-                cursor: 'pointer',
-                transition: 'all 0.15s',
-              }}
-              onDragOver={e => {
-                e.preventDefault();
-                (e.currentTarget as HTMLElement).style.borderColor = 'var(--ink)'
-              }}
-              onDragLeave={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = 'var(--bg-2)'
-              }}
-              onDrop={e => {
-                e.preventDefault();
-                (e.currentTarget as HTMLElement).style.borderColor = 'var(--bg-2)'
-                if (e.dataTransfer.files) {
-                  setFormData(prev => ({
-                    ...prev,
-                    fotos: [...prev.fotos, ...Array.from(e.dataTransfer.files)],
-                  }))
-                }
-              }}
-            >
-              <input
-                type="file"
-                multiple
-                accept="image/*"
-                onChange={handleFileChange}
-                style={{ display: 'none' }}
-                id="file-input"
-              />
-              <label htmlFor="file-input" style={{ cursor: 'pointer' }}>
-                <div style={{ fontSize: 32, marginBottom: 'var(--sp-3)' }}>📷</div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)', marginBottom: 'var(--sp-1)' }}>
-                  Clique ou arraste fotos aqui
-                </div>
-                <div style={{ fontSize: 12, color: 'var(--ink-2)' }}>PNG, JPG até 10MB cada</div>
-              </label>
-            </div>
-
-            {formData.fotos.length > 0 && (
-              <div style={{ marginTop: 'var(--sp-4)' }}>
-                <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink)', marginBottom: 'var(--sp-3)' }}>
-                  {formData.fotos.length} foto{formData.fotos.length !== 1 ? 's' : ''} carregada{formData.fotos.length !== 1 ? 's' : ''}
-                </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))', gap: 'var(--sp-3)' }}>
-                  {formData.fotos.map((file, index) => (
-                    <div
-                      key={index}
-                      style={{
-                        position: 'relative',
-                        background: 'var(--bg-1)',
-                        borderRadius: 4,
-                        padding: 'var(--sp-2)',
-                        textAlign: 'center',
-                        border: `1px solid var(--bg-2)`,
-                      }}
-                    >
-                      <div style={{ fontSize: 32, marginBottom: 'var(--sp-2)' }}>🖼️</div>
-                      <div style={{ fontSize: 11, color: 'var(--ink-2)', wordBreak: 'break-all', marginBottom: 'var(--sp-2)' }}>
-                        {file.name.substring(0, 15)}
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => removeFile(index)}
-                        style={{
-                          padding: '4px 8px',
-                          background: 'var(--bad)',
-                          color: '#fff',
-                          border: 'none',
-                          borderRadius: 3,
-                          fontSize: 11,
-                          fontWeight: 600,
-                          cursor: 'pointer',
-                        }}
-                      >
-                        Remover
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
           {/* Buttons */}
           <div style={{ display: 'flex', gap: 'var(--sp-3)' }}>
             <button
@@ -491,10 +439,11 @@ export function NovaFvs({ onSuccess }: NovaFvsProps) {
                 opacity: loading ? 0.7 : 1,
               }}
             >
-              {loading ? '⏳ Criando...' : '✅ Criar FVS'}
+              {loading ? '⏳ Salvando...' : '✅ Salvar Alterações'}
             </button>
             <button
-              type="reset"
+              type="button"
+              onClick={onCancel}
               style={{
                 padding: 'var(--sp-3)',
                 background: 'var(--bg-2)',
@@ -513,7 +462,7 @@ export function NovaFvs({ onSuccess }: NovaFvsProps) {
                 (e.target as HTMLElement).style.background = 'var(--bg-2)'
               }}
             >
-              Limpar
+              Cancelar
             </button>
           </div>
         </form>

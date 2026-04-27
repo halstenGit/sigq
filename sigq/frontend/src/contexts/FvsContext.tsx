@@ -33,7 +33,9 @@ export interface FvsData {
 interface FvsContextType {
   fvsList: FvsData[]
   addFvs: (fvs: Omit<FvsData, 'id' | 'status' | 'dataCriacao'>) => void
+  updateFvs: (id: string, fvs: Partial<FvsData>) => void
   removeFvs: (id: string) => void
+  getFvsById: (id: string) => FvsData | undefined
 }
 
 const FvsContext = createContext<FvsContextType | undefined>(undefined)
@@ -74,12 +76,24 @@ export function FvsProvider({ children }: { children: ReactNode }) {
     })
   }
 
+  const updateFvs = (id: string, updates: Partial<FvsData>) => {
+    setFvsList(prev => {
+      const updated = prev.map(f => f.id === id ? { ...f, ...updates } : f)
+      localStorage.setItem('sigq_fvs_list', JSON.stringify(updated))
+      return updated
+    })
+  }
+
   const removeFvs = (id: string) => {
     setFvsList(prev => prev.filter(f => f.id !== id))
   }
 
+  const getFvsById = (id: string) => {
+    return fvsList.find(f => f.id === id)
+  }
+
   return (
-    <FvsContext.Provider value={{ fvsList, addFvs, removeFvs }}>
+    <FvsContext.Provider value={{ fvsList, addFvs, updateFvs, removeFvs, getFvsById }}>
       {children}
     </FvsContext.Provider>
   )

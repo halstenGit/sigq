@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { FvsProvider } from './contexts/FvsContext'
+import { RncProvider } from './contexts/RncContext'
 import { ThemeProvider, useTheme } from './contexts/ThemeContext'
 import { apiService } from './services/api'
 import { Sidebar } from './components/Sidebar'
@@ -9,16 +10,18 @@ import { Login } from './components/Login'
 import { Dashboard } from './pages/Dashboard'
 import { Empreendimentos } from './pages/Empreendimentos'
 import { Rncs } from './pages/Rncs'
+import { NovaRnc } from './pages/NovaRnc'
 import { Perfil } from './pages/Perfil'
 import { Fvs } from './pages/Fvs'
 import { NovaFvs } from './pages/NovaFvs'
+import { EditarFvs } from './pages/EditarFvs'
 
 const queryClient = new QueryClient()
 
 function AppContent() {
   const { token, setToken, logout, isAuthenticated } = useAuth()
   const { theme, toggleTheme } = useTheme()
-  const [currentPage, setCurrentPage] = useState('dashboard')
+  const [pageState, setPageState] = useState<{ page: string; data?: any }>({ page: 'dashboard' })
   const [search, setSearch] = useState('')
 
   useEffect(() => {
@@ -31,11 +34,15 @@ function AppContent() {
 
   const handleLoginSuccess = (newToken: string) => {
     setToken(newToken)
-    setCurrentPage('dashboard')
+    setPageState({ page: 'dashboard' })
   }
 
   const handleLogout = () => {
     logout()
+  }
+
+  const handleNavigate = (page: string, data?: any) => {
+    setPageState({ page, data })
   }
 
   if (!isAuthenticated) {
@@ -44,7 +51,7 @@ function AppContent() {
 
   return (
     <div className="shell">
-      <Sidebar currentPage={currentPage} onNavigate={setCurrentPage} onLogout={handleLogout} />
+      <Sidebar currentPage={pageState.page} onNavigate={handleNavigate} onLogout={handleLogout} />
 
       <div className="main">
         <header className="top">
@@ -92,12 +99,14 @@ function AppContent() {
         </header>
 
         <div className="content">
-          {currentPage === 'dashboard' && <Dashboard />}
-          {currentPage === 'empreendimentos' && <Empreendimentos />}
-          {currentPage === 'fvs' && <Fvs onNavigate={setCurrentPage} />}
-          {currentPage === 'nova-fvs' && <NovaFvs onSuccess={() => setCurrentPage('fvs')} />}
-          {currentPage === 'rncs' && <Rncs />}
-          {currentPage === 'perfil' && <Perfil />}
+          {pageState.page === 'dashboard' && <Dashboard />}
+          {pageState.page === 'empreendimentos' && <Empreendimentos />}
+          {pageState.page === 'fvs' && <Fvs onNavigate={handleNavigate} />}
+          {pageState.page === 'nova-fvs' && <NovaFvs onSuccess={() => handleNavigate('fvs')} />}
+          {pageState.page === 'editar-fvs' && <EditarFvs fvsId={pageState.data?.fvsId} onSuccess={() => handleNavigate('fvs')} onCancel={() => handleNavigate('fvs')} />}
+          {pageState.page === 'rncs' && <Rncs onNavigate={handleNavigate} />}
+          {pageState.page === 'nova-rnc' && <NovaRnc fvsId={pageState.data?.fvsId} empreendimento={pageState.data?.empreendimento} servico={pageState.data?.servico} onSuccess={() => handleNavigate('rncs')} onCancel={() => handleNavigate('rncs')} />}
+          {pageState.page === 'perfil' && <Perfil />}
         </div>
       </div>
     </div>
@@ -110,7 +119,9 @@ export default function App() {
       <AuthProvider>
         <ThemeProvider>
           <FvsProvider>
-            <AppContent />
+            <RncProvider>
+              <AppContent />
+            </RncProvider>
           </FvsProvider>
         </ThemeProvider>
       </AuthProvider>

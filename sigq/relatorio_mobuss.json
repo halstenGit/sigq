@@ -1,0 +1,141 @@
+{
+  "timestamp": "2026-04-27T15:42:59.904315",
+  "formularios": [
+    {
+      "id": "form_fvs",
+      "name": "formFVS",
+      "action": "/submit_fvs",
+      "method": "POST",
+      "campos": [
+        {
+          "tipo": "text",
+          "name": "empreendimento",
+          "required": true
+        },
+        {
+          "tipo": "text",
+          "name": "servico",
+          "required": true
+        },
+        {
+          "tipo": "text",
+          "name": "local",
+          "required": true
+        },
+        {
+          "tipo": "number",
+          "name": "nota",
+          "required": true
+        },
+        {
+          "tipo": "textarea",
+          "name": "observacoes"
+        }
+      ]
+    }
+  ],
+  "campos": [],
+  "opcoes": [],
+  "empreendimentos": [
+    {
+      "id": "E001",
+      "nome": "Soul Residencial",
+      "cidade": "Joinville"
+    },
+    {
+      "id": "E002",
+      "nome": "Morada de Gaia",
+      "cidade": "Joinville"
+    },
+    {
+      "id": "E003",
+      "nome": "Ocean View",
+      "cidade": "Balneário Camboriú"
+    }
+  ],
+  "servicos": [
+    {
+      "id": "S001",
+      "nome": "Estrutura"
+    },
+    {
+      "id": "S002",
+      "nome": "Alvenaria"
+    },
+    {
+      "id": "S003",
+      "nome": "Revestimento Cerâmico"
+    },
+    {
+      "id": "S004",
+      "nome": "Pintura"
+    },
+    {
+      "id": "S005",
+      "nome": "Impermeabilização"
+    }
+  ],
+  "fvs_extraidas": [
+    {
+      "id": "FVS-MOCK-0001",
+      "empreendimento": "Soul Residencial",
+      "servico": "Alvenaria",
+      "local": "BL A - 3º PAV",
+      "nota": 8.5,
+      "status": "finalizada",
+      "dataRealizacao": "25/04/2026",
+      "inspetor": "Marcelo Sena"
+    },
+    {
+      "id": "FVS-MOCK-0002",
+      "empreendimento": "Morada de Gaia",
+      "servico": "Revestimento Cerâmico",
+      "local": "BL B - 2º PAV",
+      "nota": 6.0,
+      "status": "com_nc",
+      "dataRealizacao": "24/04/2026",
+      "inspetor": "Amanda Costa"
+    },
+    {
+      "id": "FVS-MOCK-0003",
+      "empreendimento": "Ocean View",
+      "servico": "Pintura",
+      "local": "BL C - Cobertura",
+      "nota": 9.2,
+      "status": "finalizada",
+      "dataRealizacao": "23/04/2026",
+      "inspetor": "Francisco Neto"
+    }
+  ],
+  "estrutura": {
+    "pagina": {
+      "titulo": "SIGQ - Sistema de Gestão da Qualidade",
+      "url": "https://sigq.halsten.local/fvs",
+      "versao": "0.1.0"
+    },
+    "tabelas": {
+      "total": 3,
+      "colunas": [
+        "ID",
+        "Empreendimento",
+        "Serviço",
+        "Nota",
+        "Status"
+      ]
+    },
+    "menu": [
+      {
+        "text": "Dashboard",
+        "href": "/"
+      },
+      {
+        "text": "FVS",
+        "href": "/fvs"
+      },
+      {
+        "text": "RNCs",
+        "href": "/rncs"
+      }
+    ]
+  }
+}

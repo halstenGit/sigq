@@ -1,28 +1,26 @@
 """
-Script de Scraping do Mobuss - Extrai todos os recursos disponíveis
-Cria relatório detalhado de formulários, campos, opções e estrutura
+Script de Scraping do Mobuss - VERSÃO MOCK COM DADOS FICTÍCIOS
+TODO: Integrar com API real quando disponível
+
+Este script atualmente usa dados fictícios para desenvolvimento.
+Será substituído por integração com API quando pronta.
 """
 
 import json
 import time
 from datetime import datetime
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.options import Options
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 import os
 
-# Configurações
-URL = "https://www.mobuss.com.br/ccweb/htdocs/programs/qualidade/checklist/realizado/iu01_23.jsf"
-EMAIL = "ti@grupoinvestcorp.com.br"
-SENHA = "FT$0luc0#$TI"
+# Configurações - TODO: Mover para .env
+# URL = "https://www.mobuss.com.br/ccweb/htdocs/programs/qualidade/checklist/realizado/iu01_23.jsf"
+# EMAIL = os.getenv("MOBUSS_EMAIL", "user@example.com")
+# SENHA = os.getenv("MOBUSS_PASSWORD", "")
 
 class MobussScraper:
     def __init__(self):
-        self.driver = None
+        """Inicializa scraper com dados fictícios"""
         self.data = {
             "timestamp": datetime.now().isoformat(),
             "formularios": [],
@@ -30,250 +28,133 @@ class MobussScraper:
             "opcoes": [],
             "empreendimentos": [],
             "servicos": [],
+            "fvs_extraidas": [],
             "estrutura": {},
-            "urls_visitadas": []
         }
+        self._carregar_dados_ficticios()
+
+    def _carregar_dados_ficticios(self):
+        """Carrega dados fictícios para desenvolvimento"""
+        print("[MOCK] Carregando dados fictícios de FVS...")
+
+        # Empreendimentos fictícios
+        self.data["empreendimentos"] = [
+            {"id": "E001", "nome": "Soul Residencial", "cidade": "Joinville"},
+            {"id": "E002", "nome": "Morada de Gaia", "cidade": "Joinville"},
+            {"id": "E003", "nome": "Ocean View", "cidade": "Balneário Camboriú"},
+        ]
+
+        # Serviços fictícios
+        self.data["servicos"] = [
+            {"id": "S001", "nome": "Estrutura"},
+            {"id": "S002", "nome": "Alvenaria"},
+            {"id": "S003", "nome": "Revestimento Cerâmico"},
+            {"id": "S004", "nome": "Pintura"},
+            {"id": "S005", "nome": "Impermeabilização"},
+        ]
+
+        # FVS fictícias extraídas
+        self.data["fvs_extraidas"] = [
+            {
+                "id": "FVS-MOCK-0001",
+                "empreendimento": "Soul Residencial",
+                "servico": "Alvenaria",
+                "local": "BL A - 3º PAV",
+                "nota": 8.5,
+                "status": "finalizada",
+                "dataRealizacao": "25/04/2026",
+                "inspetor": "Marcelo Sena",
+            },
+            {
+                "id": "FVS-MOCK-0002",
+                "empreendimento": "Morada de Gaia",
+                "servico": "Revestimento Cerâmico",
+                "local": "BL B - 2º PAV",
+                "nota": 6.0,
+                "status": "com_nc",
+                "dataRealizacao": "24/04/2026",
+                "inspetor": "Amanda Costa",
+            },
+            {
+                "id": "FVS-MOCK-0003",
+                "empreendimento": "Ocean View",
+                "servico": "Pintura",
+                "local": "BL C - Cobertura",
+                "nota": 9.2,
+                "status": "finalizada",
+                "dataRealizacao": "23/04/2026",
+                "inspetor": "Francisco Neto",
+            },
+        ]
 
     def setup_driver(self):
-        """Configura o driver do Selenium"""
-        chrome_options = Options()
-        # chrome_options.add_argument("--headless")  # Descomente para modo headless
-        chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument("--disable-dev-shm-usage")
-
-        self.driver = webdriver.Chrome(options=chrome_options)
-        print("✅ Driver iniciado")
+        """Mock - Não precisa de driver"""
+        print("[OK] Modo offline ativado (dados fictícios)")
 
     def login(self):
-        """Realiza login no Mobuss"""
-        try:
-            print(f"🔐 Acessando: {URL}")
-            self.driver.get(URL)
-
-            # Aguarda carregamento
-            time.sleep(3)
-
-            # Encontra campos de login
-            email_field = self.driver.find_element(By.CSS_SELECTOR, "input[type='email'], input[name*='email'], input[name*='usuario'], input[type='text']")
-            senha_field = self.driver.find_element(By.CSS_SELECTOR, "input[type='password']")
-
-            # Preenche credenciais
-            email_field.clear()
-            email_field.send_keys(EMAIL)
-            time.sleep(1)
-
-            senha_field.clear()
-            senha_field.send_keys(SENHA)
-            time.sleep(1)
-
-            # Clica em login
-            login_btn = self.driver.find_element(By.CSS_SELECTOR, "button[type='submit'], input[type='submit'], button:contains('Entrar'), button:contains('Login')")
-            login_btn.click()
-
-            # Aguarda redirecionamento
-            time.sleep(5)
-            print("✅ Login realizado")
-
-        except Exception as e:
-            print(f"❌ Erro no login: {e}")
-            self.captura_screenshot("erro_login.png")
+        """Mock - Login simulado"""
+        print("[OK] Autenticação simulada (dados fictícios)")
+        time.sleep(1)
 
     def extrair_formularios(self):
-        """Extrai todos os formulários da página"""
-        try:
-            formularios = self.driver.find_elements(By.TAG_NAME, "form")
+        """Mock - Retorna estrutura de formulário fictício"""
+        self.data["formularios"] = [
+            {
+                "id": "form_fvs",
+                "name": "formFVS",
+                "action": "/submit_fvs",
+                "method": "POST",
+                "campos": [
+                    {"tipo": "text", "name": "empreendimento", "required": True},
+                    {"tipo": "text", "name": "servico", "required": True},
+                    {"tipo": "text", "name": "local", "required": True},
+                    {"tipo": "number", "name": "nota", "required": True},
+                    {"tipo": "textarea", "name": "observacoes"},
+                ]
+            }
+        ]
+        print(f"[OK] {len(self.data['formularios'])} formulário(s) carregado(s)")
 
-            for form in formularios:
-                form_data = {
-                    "id": form.get_attribute("id"),
-                    "name": form.get_attribute("name"),
-                    "action": form.get_attribute("action"),
-                    "method": form.get_attribute("method"),
-                    "campos": self.extrair_campos_formulario(form)
-                }
-                self.data["formularios"].append(form_data)
+    def extrair_empreendimentos(self):
+        """Extrai empreendimentos disponíveis"""
+        print(f"[OK] {len(self.data['empreendimentos'])} empreendimento(s) carregado(s)")
+        return self.data["empreendimentos"]
 
-            print(f"✅ {len(formularios)} formulário(s) encontrado(s)")
+    def extrair_servicos(self):
+        """Extrai serviços disponíveis"""
+        print(f"[OK] {len(self.data['servicos'])} serviço(s) carregado(s)")
+        return self.data["servicos"]
 
-        except Exception as e:
-            print(f"❌ Erro ao extrair formulários: {e}")
-
-    def extrair_campos_formulario(self, formulario):
-        """Extrai campos de um formulário específico"""
-        campos = []
-
-        try:
-            # Inputs
-            inputs = formulario.find_elements(By.TAG_NAME, "input")
-            for inp in inputs:
-                campo = {
-                    "tipo": "input",
-                    "input_type": inp.get_attribute("type"),
-                    "name": inp.get_attribute("name"),
-                    "id": inp.get_attribute("id"),
-                    "placeholder": inp.get_attribute("placeholder"),
-                    "required": inp.get_attribute("required"),
-                    "value": inp.get_attribute("value")
-                }
-                campos.append(campo)
-                self.data["campos"].append(campo)
-
-            # Selects
-            selects = formulario.find_elements(By.TAG_NAME, "select")
-            for select in selects:
-                opcoes = []
-                options = select.find_elements(By.TAG_NAME, "option")
-                for opt in options:
-                    opcoes.append({
-                        "value": opt.get_attribute("value"),
-                        "text": opt.text
-                    })
-                    self.data["opcoes"].append({
-                        "select": select.get_attribute("name"),
-                        "option": opt.text,
-                        "value": opt.get_attribute("value")
-                    })
-
-                campo = {
-                    "tipo": "select",
-                    "name": select.get_attribute("name"),
-                    "id": select.get_attribute("id"),
-                    "opcoes": opcoes
-                }
-                campos.append(campo)
-
-            # Textareas
-            textareas = formulario.find_elements(By.TAG_NAME, "textarea")
-            for textarea in textareas:
-                campo = {
-                    "tipo": "textarea",
-                    "name": textarea.get_attribute("name"),
-                    "id": textarea.get_attribute("id")
-                }
-                campos.append(campo)
-                self.data["campos"].append(campo)
-
-            # Buttons
-            buttons = formulario.find_elements(By.TAG_NAME, "button")
-            for btn in buttons:
-                campo = {
-                    "tipo": "button",
-                    "text": btn.text,
-                    "type": btn.get_attribute("type"),
-                    "id": btn.get_attribute("id"),
-                    "name": btn.get_attribute("name")
-                }
-                campos.append(campo)
-
-        except Exception as e:
-            print(f"⚠️ Erro ao extrair campos: {e}")
-
-        return campos
+    def extrair_fvs(self):
+        """Extrai FVS disponíveis"""
+        print(f"[OK] {len(self.data['fvs_extraidas'])} FVS carregada(s)")
+        return self.data["fvs_extraidas"]
 
     def extrair_tabelas(self):
-        """Extrai dados de tabelas"""
-        try:
-            tabelas = self.driver.find_elements(By.TAG_NAME, "table")
-
-            for idx, tabela in enumerate(tabelas):
-                # Cabeçalhos
-                headers = []
-                header_cells = tabela.find_elements(By.TAG_NAME, "th")
-                for cell in header_cells:
-                    headers.append(cell.text)
-
-                # Linhas
-                linhas = []
-                rows = tabela.find_elements(By.TAG_NAME, "tr")
-                for row in rows[1:]:  # Pula cabeçalho
-                    cells = row.find_elements(By.TAG_NAME, "td")
-                    linha_data = {}
-                    for i, cell in enumerate(cells):
-                        if i < len(headers):
-                            linha_data[headers[i]] = cell.text
-                    if linha_data:
-                        linhas.append(linha_data)
-
-                print(f"✅ Tabela {idx + 1}: {len(linhas)} linha(s), {len(headers)} coluna(s)")
-
-        except Exception as e:
-            print(f"❌ Erro ao extrair tabelas: {e}")
+        """Mock - Retorna dados de tabela fictícia"""
+        self.data["estrutura"]["tabelas"] = {
+            "total": len(self.data["fvs_extraidas"]),
+            "colunas": ["ID", "Empreendimento", "Serviço", "Nota", "Status"]
+        }
+        print(f"[OK] Tabela com {len(self.data['fvs_extraidas'])} linha(s)")
 
     def extrair_menu_navegacao(self):
-        """Extrai menu de navegação e links"""
-        try:
-            links = self.driver.find_elements(By.TAG_NAME, "a")
-            menu_items = []
-
-            for link in links:
-                item = {
-                    "text": link.text,
-                    "href": link.get_attribute("href"),
-                    "id": link.get_attribute("id"),
-                    "class": link.get_attribute("class")
-                }
-                if link.text.strip():
-                    menu_items.append(item)
-
-            self.data["estrutura"]["menu"] = menu_items
-            print(f"✅ {len(menu_items)} item(s) de menu encontrado(s)")
-
-        except Exception as e:
-            print(f"❌ Erro ao extrair menu: {e}")
+        """Mock - Menu de navegação fictício"""
+        self.data["estrutura"]["menu"] = [
+            {"text": "Dashboard", "href": "/"},
+            {"text": "FVS", "href": "/fvs"},
+            {"text": "RNCs", "href": "/rncs"},
+        ]
+        print(f"[OK] Menu de navegação carregado")
 
     def extrair_estrutura_pagina(self):
-        """Extrai estrutura geral da página"""
-        try:
-            estrutura = {
-                "titulo": self.driver.title,
-                "url_atual": self.driver.current_url,
-                "divs": len(self.driver.find_elements(By.TAG_NAME, "div")),
-                "forms": len(self.driver.find_elements(By.TAG_NAME, "form")),
-                "tables": len(self.driver.find_elements(By.TAG_NAME, "table")),
-                "inputs": len(self.driver.find_elements(By.TAG_NAME, "input")),
-                "selects": len(self.driver.find_elements(By.TAG_NAME, "select")),
-                "buttons": len(self.driver.find_elements(By.TAG_NAME, "button")),
-            }
-            self.data["estrutura"]["pagina"] = estrutura
-            print(f"✅ Estrutura da página extraída")
-
-        except Exception as e:
-            print(f"❌ Erro ao extrair estrutura: {e}")
-
-    def navegar_secoes(self):
-        """Tenta navegar por outras seções disponíveis"""
-        try:
-            # Procura por abas/seções
-            tabs = self.driver.find_elements(By.CSS_SELECTOR, "[role='tab'], .tab, .aba, li[class*='tab'], li[class*='aba']")
-
-            for tab in tabs[:5]:  # Limita a 5 para não demorar muito
-                try:
-                    titulo = tab.text
-                    if titulo.strip():
-                        tab.click()
-                        time.sleep(2)
-
-                        # Extrai dados da nova seção
-                        self.extrair_formularios()
-                        self.extrair_tabelas()
-
-                        print(f"✅ Seção '{titulo}' processada")
-
-                except Exception as e:
-                    print(f"⚠️ Erro ao clicar na seção: {e}")
-
-        except Exception as e:
-            print(f"⚠️ Erro ao navegar seções: {e}")
-
-    def captura_screenshot(self, nome="screenshot.png"):
-        """Captura screenshot da página"""
-        try:
-            caminho = os.path.join("screenshots", nome)
-            os.makedirs("screenshots", exist_ok=True)
-            self.driver.save_screenshot(caminho)
-            print(f"📸 Screenshot salvo: {caminho}")
-        except Exception as e:
-            print(f"❌ Erro ao capturar screenshot: {e}")
+        """Mock - Estrutura fictícia"""
+        self.data["estrutura"]["pagina"] = {
+            "titulo": "SIGQ - Sistema de Gestão da Qualidade",
+            "url": "https://sigq.halsten.local/fvs",
+            "versao": "0.1.0"
+        }
+        print(f"[OK] Estrutura da página carregada")
 
     def exportar_json(self):
         """Exporta dados em JSON"""
@@ -281,9 +162,9 @@ class MobussScraper:
             caminho = "relatorio_mobuss.json"
             with open(caminho, 'w', encoding='utf-8') as f:
                 json.dump(self.data, f, indent=2, ensure_ascii=False)
-            print(f"✅ JSON exportado: {caminho}")
+            print(f"[OK] JSON exportado: {caminho}")
         except Exception as e:
-            print(f"❌ Erro ao exportar JSON: {e}")
+            print(f"[ERROR] Erro ao exportar JSON: {e}")
 
     def exportar_excel(self):
         """Exporta dados em Excel"""
@@ -345,41 +226,39 @@ class MobussScraper:
             # Salva
             caminho = "relatorio_mobuss.xlsx"
             wb.save(caminho)
-            print(f"✅ Excel exportado: {caminho}")
+            print(f"[OK] Excel exportado: {caminho}")
 
         except Exception as e:
-            print(f"❌ Erro ao exportar Excel: {e}")
+            print(f"[ERROR] Erro ao exportar Excel: {e}")
 
     def executar(self):
-        """Executa o scraping completo"""
+        """Executa o scraping com dados fictícios"""
         try:
-            print("🚀 Iniciando scraping do Mobuss...\n")
+            print(" Iniciando extração de dados (MODO MOCK)...\n")
 
             self.setup_driver()
             self.login()
 
-            print("\n📊 Extraindo dados da página...\n")
+            print("\n Extraindo dados...\n")
             self.extrair_estrutura_pagina()
             self.extrair_formularios()
+            self.extrair_empreendimentos()
+            self.extrair_servicos()
+            self.extrair_fvs()
             self.extrair_tabelas()
             self.extrair_menu_navegacao()
-            self.navegar_secoes()
 
-            print("\n💾 Exportando relatórios...\n")
+            print("\n Exportando relatórios...\n")
             self.exportar_json()
             self.exportar_excel()
 
-            self.captura_screenshot("pagina_inicial.png")
-
-            print("\n✅ Scraping concluído com sucesso!")
+            print("\n[OK] Extração concluída com sucesso!")
+            print(" Dados fictícios carregados")
+            print("[WARN]  TODO: Integrar com API real quando disponível")
 
         except Exception as e:
-            print(f"\n❌ Erro geral: {e}")
-
-        finally:
-            if self.driver:
-                self.driver.quit()
-                print("🔌 Driver fechado")
+            print(f"\n[ERROR] Erro geral: {e}")
+            raise
 
 if __name__ == "__main__":
     scraper = MobussScraper()

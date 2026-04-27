@@ -18,13 +18,38 @@ export function Fvs({ onNavigate }: FvsProps) {
   return (
     <div style={{ maxWidth: 1400, margin: '0 auto', padding: 'var(--sp-8)' }}>
       {/* Header */}
-      <div style={{ marginBottom: 'var(--sp-8)' }}>
-        <h1 style={{ fontSize: 28, fontWeight: 700, color: 'var(--ink)', margin: 0 }}>
-          Fichas de Verificação
-        </h1>
-        <p style={{ fontSize: 13, color: 'var(--ink-2)', margin: 'var(--sp-1) 0 0 0' }}>
-          {filtered.length} fichas encontradas
-        </p>
+      <div style={{ marginBottom: 'var(--sp-8)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        <div>
+          <h1 style={{ fontSize: 28, fontWeight: 700, color: 'var(--ink)', margin: 0 }}>
+            Fichas de Verificação
+          </h1>
+          <p style={{ fontSize: 13, color: 'var(--ink-2)', margin: 'var(--sp-1) 0 0 0' }}>
+            {filtered.length} fichas encontradas
+          </p>
+        </div>
+        <button
+          onClick={() => onNavigate?.('nova-fvs')}
+          style={{
+            padding: 'var(--sp-3) var(--sp-4)',
+            background: 'var(--ink)',
+            color: '#fff',
+            border: 'none',
+            borderRadius: 4,
+            fontSize: 13,
+            fontWeight: 600,
+            cursor: 'pointer',
+            transition: 'opacity 0.15s',
+            whiteSpace: 'nowrap',
+          }}
+          onMouseEnter={e => {
+            (e.target as HTMLElement).style.opacity = '0.9'
+          }}
+          onMouseLeave={e => {
+            (e.target as HTMLElement).style.opacity = '1'
+          }}
+        >
+          + Nova FVS
+        </button>
       </div>
 
       {/* Filters */}
@@ -79,7 +104,7 @@ export function Fvs({ onNavigate }: FvsProps) {
 
             {expandedId === fvs.id && (
               <div style={{ marginTop: 'var(--sp-4)', paddingTop: 'var(--sp-4)', borderTop: '1px solid var(--bg-2)' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--sp-4)', fontSize: 12 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--sp-4)', fontSize: 12, marginBottom: 'var(--sp-6)' }}>
                   <div>
                     <div style={{ color: 'var(--ink-2)', marginBottom: 'var(--sp-1)' }}>Empreendimento</div>
                     <div style={{ color: 'var(--ink)', fontWeight: 600 }}>{fvs.empreendimento}</div>
@@ -104,6 +129,91 @@ export function Fvs({ onNavigate }: FvsProps) {
                     <div style={{ color: 'var(--ink-2)', marginBottom: 'var(--sp-1)' }}>Data</div>
                     <div style={{ color: 'var(--ink)', fontWeight: 600 }}>{fvs.dataRealizacao}</div>
                   </div>
+                </div>
+                <div style={{ display: 'flex', gap: 'var(--sp-3)' }}>
+                  <button
+                    onClick={() => onNavigate?.('editar-fvs', { fvsId: fvs.id })}
+                    style={{
+                      padding: 'var(--sp-2) var(--sp-4)',
+                      background: 'var(--ink)',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: 4,
+                      fontSize: 12,
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      transition: 'opacity 0.15s',
+                    }}
+                    onMouseEnter={e => {
+                      (e.target as HTMLElement).style.opacity = '0.9'
+                    }}
+                    onMouseLeave={e => {
+                      (e.target as HTMLElement).style.opacity = '1'
+                    }}
+                  >
+                    ✏️ Editar
+                  </button>
+                  <button
+                    onClick={() => onNavigate?.('nova-rnc', { fvsId: fvs.id, empreendimento: fvs.empreendimento, servico: fvs.servico })}
+                    style={{
+                      padding: 'var(--sp-2) var(--sp-4)',
+                      background: 'var(--bg-2)',
+                      color: 'var(--ink)',
+                      border: `1px solid var(--bg-2)`,
+                      borderRadius: 4,
+                      fontSize: 12,
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      transition: 'background 0.15s',
+                    }}
+                    onMouseEnter={e => {
+                      (e.target as HTMLElement).style.background = 'var(--bg-1)'
+                    }}
+                    onMouseLeave={e => {
+                      (e.target as HTMLElement).style.background = 'var(--bg-2)'
+                    }}
+                  >
+                    ⚠️ Nova RNC
+                  </button>
+                  <button
+                    onClick={() => {
+                      const text = `
+FVS #${fvs.id}
+Empreendimento: ${fvs.empreendimento}
+Serviço: ${fvs.servico}
+Local: ${fvs.local}
+Pavimento: ${fvs.pavimento}
+Unidade: ${fvs.unidade}
+Inspetor: ${fvs.inspetor}
+Empreiteira: ${fvs.empreiteira}
+Nota: ${fvs.nota}/10
+Status: ${fvs.status}
+Data: ${fvs.dataRealizacao}
+Observações: ${fvs.observacoes || '-'}
+                      `.trim()
+                      navigator.clipboard.writeText(text)
+                      alert('Dados copiados para a área de transferência!')
+                    }}
+                    style={{
+                      padding: 'var(--sp-2) var(--sp-4)',
+                      background: 'var(--bg-2)',
+                      color: 'var(--ink)',
+                      border: `1px solid var(--bg-2)`,
+                      borderRadius: 4,
+                      fontSize: 12,
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      transition: 'background 0.15s',
+                    }}
+                    onMouseEnter={e => {
+                      (e.target as HTMLElement).style.background = 'var(--bg-1)'
+                    }}
+                    onMouseLeave={e => {
+                      (e.target as HTMLElement).style.background = 'var(--bg-2)'
+                    }}
+                  >
+                    📋 Copiar Dados
+                  </button>
                 </div>
               </div>
             )}

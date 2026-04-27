@@ -1,6 +1,6 @@
 interface SidebarProps {
   currentPage: string
-  onNavigate: (page: string) => void
+  onNavigate: (page: string, data?: any) => void
   onLogout: () => void
 }
 
@@ -8,8 +8,8 @@ export function Sidebar({ currentPage, onNavigate, onLogout }: SidebarProps) {
   const navItems = [
     { id: '00', label: 'Dashboard', page: 'dashboard' },
     { id: '01', label: 'Empreendimentos', page: 'empreendimentos' },
-    { id: '02', label: 'RNCs', page: 'rncs' },
-    { id: '03', label: 'FVS', page: 'fvs' },
+    { id: '02', label: 'FVS', page: 'fvs' },
+    { id: '03', label: 'RNCs', page: 'rncs' },
     { id: '04', label: 'Perfil', page: 'perfil' },
   ]
 
@@ -18,8 +18,8 @@ export function Sidebar({ currentPage, onNavigate, onLogout }: SidebarProps) {
       {/* Brand */}
       <div className="brand">
         <div className="logo">SIGQ</div>
-        <div className="product">Quality System</div>
-        <div className="ver">v1.0.0</div>
+        <div className="product">QUALITY SYSTEM</div>
+        <div className="ver">v1.0 · sigq · 2026</div>
       </div>
 
       {/* Navigation */}
