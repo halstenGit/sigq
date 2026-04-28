@@ -1,59 +1,124 @@
-# Deployment no Railway
+# Deployment no Railway - SIGQ
 
-Guia de deployment do SIGQ no Railway.
+Guia completo de deployment do SIGQ no Railway (monorepo com Frontend + Backend).
 
 ## Pré-requisitos
 
 1. Conta no Railway (https://railway.app)
-2. Git instalado e repositório configurado
-3. CLI do Railway instalado (opcional)
+2. Repositório GitHub conectado (halstenGit/sigq)
+3. CLI do Railway (opcional)
 
-## Opção 1: Deployment via GitHub (Recomendado)
+## Deployment no Railway (Passo a Passo)
 
-### Passo 1: Preparar repositório no GitHub
-
-```bash
-git init
-git add .
-git commit -m "Initial commit: SIGQ application ready for Railway"
-git branch -M main
-git remote add origin https://github.com/seu-usuario/sigq.git
-git push -u origin main
-```
-
-### Passo 2: Conectar no Railway
+### Passo 1: Acessar Railway Dashboard
 
 1. Acesse https://railway.app
 2. Clique em "New Project"
-3. Selecione "Deploy from GitHub"
-4. Conecte sua conta GitHub e selecione o repositório `sigq`
-5. Railway vai detectar automaticamente a estrutura
+3. Selecione "Deploy from GitHub repo"
+4. Procure por `halstenGit/sigq` e clique para conectar
 
-### Passo 3: Configurar variáveis de ambiente
+### Passo 2: Detectar e Configurar Serviços
 
-No dashboard do Railway, configure:
+Railway vai detectar um monorepo. Para cada serviço:
 
+#### Backend (FastAPI)
+1. Clique em "Add Service"
+2. Selecione "GitHub repo"
+3. Escolha o commit
+4. Configure:
+   - **Builder**: Docker
+   - **Dockerfile path**: `backend/Dockerfile`
+   - **Build context**: `backend`
+   - **Port**: 8000
+
+#### Frontend (React/Vite)
+1. Clique em "Add Service"
+2. Selecione "GitHub repo"
+3. Escolha o commit
+4. Configure:
+   - **Builder**: Docker
+   - **Dockerfile path**: `frontend/Dockerfile`
+   - **Build context**: `frontend`
+   - **Port**: 3000
+
+#### Database (PostgreSQL)
+1. Clique em "Add Service"
+2. Selecione "PostgreSQL"
+3. Deixar configurações padrão
+
+### Passo 3: Configurar Variáveis de Ambiente
+
+No Backend, adicione:
 ```
-DATABASE_URL: postgresql://... (gerado automaticamente pelo plugin PostgreSQL)
-DEBUG: True
-PYTHONUNBUFFERED: 1
-VITE_API_URL: https://api-seu-projeto.railway.app
+DATABASE_URL = ${{Postgres.DATABASE_URL}}
+PYTHONUNBUFFERED = 1
+DEBUG = False
 ```
 
-## Opção 2: Deployment via Railway CLI
+No Frontend, adicione:
+```
+VITE_API_URL = https://your-backend-service.railway.app
+```
 
-### Passo 1: Instalar Railway CLI
+### Passo 4: Conectar Serviços
+
+1. No Frontend, clique em "Connect"
+2. Procure pelo serviço Backend
+3. Adicione como variável de ambiente: `VITE_API_URL`
+
+1. No Backend, clique em "Connect"
+2. Procure pelo serviço PostgreSQL
+3. Selecione para usar sua DATABASE_URL
+
+### Passo 5: Deploy
+
+1. Cada serviço vai fazer deploy automaticamente
+2. Acompanhe o progresso na aba "Deployments"
+3. Verifique os logs na aba "Logs"
+
+## Solução de Problemas
+
+### Erro: "File does not exist: /app/config/heft.json"
+
+**Causa**: Railway está tentando fazer build da raiz do repositório (onde há SharePoint Framework).
+
+**Solução**: 
+- Especificar `rootDirectory` ou `Build context` como `backend` ou `frontend` para cada serviço
+- Não deixar Railway detectar automaticamente a raiz
+
+### Erro: "Cannot find module"
+
+**Solução no Backend**:
+```bash
+# Verificar se requirements.txt ou pyproject.toml estão em backend/
+cd backend
+pip install -r requirements.txt  # ou -e .
+```
+
+**Solução no Frontend**:
+```bash
+# Verificar se package.json está em frontend/
+cd frontend
+npm ci
+npm run build
+```
+
+## Deployment via Railway CLI (Alternativa)
 
 ```bash
+# Install
 npm i -g @railway/cli
-```
 
-### Passo 2: Login e deploy
-
-```bash
+# Login
 railway login
-railway link  # Seleciona projeto
-railway up
+
+# Link ao projeto
+railway link
+
+# Deploy específico
+railway up --service backend
+railway up --service frontend
+railway up --service postgres
 ```
 
 ## Estrutura do Projeto para Railway
