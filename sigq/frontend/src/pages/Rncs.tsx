@@ -60,39 +60,22 @@ export function Rncs({ onNavigate }: RncsProps) {
   }
 
   return (
-    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: 'var(--sp-6)' }}>
-      {/* Header */}
-      <div style={{ marginBottom: 'var(--sp-8)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <section className="sec">
+      <div className="sec-head">
         <div>
-          <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ink)', margin: 0 }}>
-            Não-Conformidades (RNC)
-          </h1>
-          <p style={{ fontSize: 13, color: 'var(--ink-2)', margin: 'var(--sp-1) 0 0 0' }}>
-            Gerencie as não-conformidades identificadas nas inspeções
-          </p>
+          <div className="no">SEC · 03 · RNC</div>
+          <h1>Não-Conformidades</h1>
+          <p className="lede">Gerencie as não-conformidades identificadas nas inspeções.</p>
         </div>
-        <HalstenButton variant="primary" onClick={() => onNavigate?.('nova-rnc')}>+ Novo RNC</HalstenButton>
+        <HalstenButton variant="primary" onClick={() => onNavigate?.('nova-rnc')}>+ Nova RNC</HalstenButton>
       </div>
 
-      {/* Filters */}
-      <div style={{ marginBottom: 'var(--sp-6)', display: 'flex', gap: 'var(--sp-2)', flexWrap: 'wrap' }}>
+      <div className="pill-seg" style={{ marginBottom: 24, flexWrap: 'wrap' }}>
         {['todos', 'aberta', 'em_analise', 'em_correcao', 'em_verificacao', 'fechada'].map(status => (
           <button
             key={status}
             onClick={() => setFilterStatus(status)}
-            style={{
-              padding: 'var(--sp-2) var(--sp-3)',
-              background: filterStatus === status ? 'var(--ink)' : 'var(--bg-2)',
-              color: filterStatus === status ? '#fff' : 'var(--ink)',
-              border: 'none',
-              borderRadius: 0,
-              fontSize: 12,
-              fontWeight: 600,
-              cursor: 'pointer',
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              transition: 'all 0.15s',
-            }}
+            className={filterStatus === status ? 'on' : ''}
           >
             {status === 'todos' ? 'Todos' : getStatusLabel(status)}
           </button>
@@ -235,6 +218,6 @@ export function Rncs({ onNavigate }: RncsProps) {
           ))
         )}
       </div>
-    </div>
+    </section>
   )
 }

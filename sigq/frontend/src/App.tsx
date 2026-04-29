@@ -19,18 +19,27 @@ import { EditarFvs } from './pages/EditarFvs'
 
 const queryClient = new QueryClient()
 
+const PAGE_LABELS: Record<string, string> = {
+  dashboard: 'Dashboard',
+  empreendimentos: 'Empreendimentos',
+  fvs: 'FVS',
+  'nova-fvs': 'Nova FVS',
+  'editar-fvs': 'Editar FVS',
+  rncs: 'RNCs',
+  'nova-rnc': 'Nova RNC',
+  'editar-rnc': 'Editar RNC',
+  perfil: 'Perfil',
+}
+
 function AppContent() {
   const { token, setToken, logout, isAuthenticated } = useAuth()
-  const { theme, toggleTheme } = useTheme()
+  const { theme, toggleTheme, density, setDensity } = useTheme()
   const [pageState, setPageState] = useState<{ page: string; data?: any }>({ page: 'dashboard' })
   const [search, setSearch] = useState('')
 
   useEffect(() => {
-    if (token) {
-      apiService.setAuthToken(token)
-    } else {
-      apiService.clearAuthToken()
-    }
+    if (token) apiService.setAuthToken(token)
+    else apiService.clearAuthToken()
   }, [token])
 
   const handleLoginSuccess = (newToken: string) => {
@@ -38,64 +47,69 @@ function AppContent() {
     setPageState({ page: 'dashboard' })
   }
 
-  const handleLogout = () => {
-    logout()
-  }
+  const handleNavigate = (page: string, data?: any) => setPageState({ page, data })
 
-  const handleNavigate = (page: string, data?: any) => {
-    setPageState({ page, data })
-  }
+  if (!isAuthenticated) return <Login onSuccess={handleLoginSuccess} />
 
-  if (!isAuthenticated) {
-    return <Login onSuccess={handleLoginSuccess} />
-  }
+  const here = PAGE_LABELS[pageState.page] ?? pageState.page.toUpperCase()
 
   return (
     <div className="shell">
-      <Sidebar currentPage={pageState.page} onNavigate={handleNavigate} onLogout={handleLogout} />
+      <Sidebar currentPage={pageState.page} onNavigate={handleNavigate} onLogout={logout} />
 
       <div className="main">
         <header className="top">
           <div className="crumbs">
-            <span className="here">SIGQ</span>
+            <span>SIGQ</span>
+            <span className="sep">/</span>
+            <span className="here">{here}</span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--sp-4)', flex: 1, justifyContent: 'center' }}>
+          <div className="grow" />
+
+          <div className="search">
+            <span style={{ color: 'var(--muted-2)' }}>⌕</span>
             <input
               type="text"
-              placeholder="Buscar..."
+              placeholder="Buscar FVS, RNC, empreendimento…"
               value={search}
               onChange={e => setSearch(e.target.value)}
-              style={{
-                padding: 'var(--sp-2) var(--sp-3)',
-                border: '1px solid var(--bg-2)',
-                fontSize: 12,
-                fontFamily: 'var(--font-body)',
-                color: 'var(--ink)',
-                backgroundColor: 'var(--bg)',
-                width: 200,
-                outline: 'none',
-              }}
             />
+            <span className="kbd">⌘K</span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--sp-4)' }}>
+          <div className="pill-seg" role="group" aria-label="Densidade">
             <button
-              onClick={toggleTheme}
-              title={`Ativar modo ${theme === 'light' ? 'escuro' : 'claro'}`}
-              style={{
-                background: 'none',
-                border: 'none',
-                fontSize: 18,
-                cursor: 'pointer',
-                color: 'var(--ink-2)',
-              }}
+              className={density === 'compact' ? 'on' : ''}
+              onClick={() => setDensity('compact')}
+              title="Densidade compacta"
             >
-              {theme === 'light' ? '🌙' : '☀️'}
+              Compact
             </button>
-            <div style={{ fontSize: '12px', color: 'var(--muted-1)', whiteSpace: 'nowrap' }}>
-              Sistema de Gestão de Qualidade
-            </div>
+            <button
+              className={density === 'comfortable' ? 'on' : ''}
+              onClick={() => setDensity('comfortable')}
+              title="Densidade confortável"
+            >
+              Comfort
+            </button>
+          </div>
+
+          <div className="pill-seg" role="group" aria-label="Tema">
+            <button
+              className={theme === 'light' ? 'on' : ''}
+              onClick={() => theme !== 'light' && toggleTheme()}
+              title="Modo claro"
+            >
+              Light
+            </button>
+            <button
+              className={theme === 'dark' ? 'on' : ''}
+              onClick={() => theme !== 'dark' && toggleTheme()}
+              title="Modo escuro"
+            >
+              Dark
+            </button>
           </div>
         </header>
 

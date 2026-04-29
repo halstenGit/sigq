@@ -7,7 +7,7 @@ interface HalstenFormProps {
 
 export function HalstenForm({ onSubmit, children }: HalstenFormProps) {
   return (
-    <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-6)' }}>
+    <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
       {children}
     </form>
   )
@@ -23,8 +23,10 @@ export function HalstenFormGroup({ children, columns = 1 }: HalstenFormGroupProp
     <div
       style={{
         display: 'grid',
-        gridTemplateColumns: columns === 1 ? '1fr' : columns === 2 ? '1fr 1fr' : '1fr 1fr 1fr',
-        gap: 'var(--sp-4)',
+        gridTemplateColumns:
+          columns === 1 ? '1fr' :
+          columns === 2 ? '1fr 1fr' : '1fr 1fr 1fr',
+        gap: 16,
       }}
     >
       {children}
@@ -37,9 +39,5 @@ interface HalstenFormFieldProps {
 }
 
 export function HalstenFormField({ children }: HalstenFormFieldProps) {
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-2)' }}>
-      {children}
-    </div>
-  )
+  return <div className="fld">{children}</div>
 }

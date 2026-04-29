@@ -1,24 +1,34 @@
-import { HalstenCard } from './HalstenCard'
-
 interface KPICardProps {
   label: string
   value: string | number
+  unit?: string
   delta?: string
-  icon: string
-  color?: string
+  deltaTone?: 'up' | 'dn' | 'flat'
+  meta?: string
+  bar?: number
+  icon?: string
 }
 
-export function KPICard({ label, value, delta, icon, color }: KPICardProps) {
+export function KPICard({ label, value, unit, delta, deltaTone = 'flat', meta, bar, icon }: KPICardProps) {
   return (
-    <HalstenCard>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-        <span style={{ fontSize: 20 }}>{icon}</span>
-        <div style={{ fontSize: 11, color: 'var(--ink-2)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-          {label}
-        </div>
+    <div className="kpi">
+      <div className="k-name">
+        {icon && <span style={{ marginRight: 6 }}>{icon}</span>}
+        {label}
       </div>
-      <div style={{ fontSize: 30, fontWeight: 700, color: 'var(--ink)', marginBottom: 8 }}>{value}</div>
-      {delta && <div style={{ fontSize: 12, color: color || 'var(--ink-2)', fontWeight: 600 }}>{delta} vs mês anterior</div>}
-    </HalstenCard>
+      <div className="k-val">
+        {value}
+        {unit && <span className="k-unit">{unit}</span>}
+      </div>
+      {(delta || meta) && (
+        <div className="k-meta">
+          {delta && <span className={`delta ${deltaTone}`}>{delta}</span>}
+          {meta && <span>{meta}</span>}
+        </div>
+      )}
+      {typeof bar === 'number' && (
+        <div className="bar"><i style={{ width: `${Math.max(0, Math.min(100, bar))}%` }} /></div>
+      )}
+    </div>
   )
 }

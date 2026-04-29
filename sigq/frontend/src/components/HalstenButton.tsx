@@ -7,6 +7,13 @@ interface HalstenButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   children: React.ReactNode
 }
 
+const VARIANT_CLASS: Record<NonNullable<HalstenButtonProps['variant']>, string> = {
+  primary: 'primary',
+  secondary: '',
+  ghost: 'ghost',
+  danger: 'danger',
+}
+
 export function HalstenButton({
   variant = 'primary',
   size = 'md',
@@ -15,19 +22,13 @@ export function HalstenButton({
   className = '',
   ...props
 }: HalstenButtonProps) {
-  const variantClass = `hs-btn-${variant}`
-  const sizeClass = size !== 'md' ? `hs-btn-${size}` : ''
-  const fullWidthClass = fullWidth ? 'hs-btn-full' : ''
-
   const classes = [
-    'hs-btn',
-    variantClass,
-    sizeClass,
-    fullWidthClass,
+    'btn',
+    VARIANT_CLASS[variant],
+    size === 'sm' ? 'sm' : size === 'lg' ? 'lg' : '',
+    fullWidth ? 'full' : '',
     className,
-  ]
-    .filter(Boolean)
-    .join(' ')
+  ].filter(Boolean).join(' ')
 
   return (
     <button className={classes} {...props}>
