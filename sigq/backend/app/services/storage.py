@@ -1,75 +1,69 @@
-import boto3
+import requests
 import os
 from typing import Optional
-from datetime import timedelta
+from urllib.parse import urljoin
+import logging
+
+logger = logging.getLogger("app")
 
 class R2Storage:
     def __init__(self):
         self.account_id = os.getenv("CLOUDFLARE_ACCOUNT_ID")
-        self.access_key = os.getenv("CLOUDFLARE_ACCESS_KEY")
-        self.secret_key = os.getenv("CLOUDFLARE_SECRET_KEY")
+        self.api_token = os.getenv("CLOUDFLARE_API_TOKEN")
         self.bucket_name = os.getenv("CLOUDFLARE_BUCKET_NAME", "sigq-images")
-        self.endpoint_url = f"https://{self.account_id}.r2.cloudflarestorage.com"
-
-        self.client = boto3.client(
-            "s3",
-            endpoint_url=self.endpoint_url,
-            aws_access_key_id=self.access_key,
-            aws_secret_access_key=self.secret_key,
-            region_name="auto"
+        self.endpoint_url = os.getenv(
+            "CLOUDFLARE_ENDPOINT_URL",
+            f"https://{self.account_id}.r2.cloudflarestorage.com"
         )
-
-    def upload_file(self, file_path: str, object_name: Optional[str] = None) -> str:
-        """Upload arquivo para R2 e retorna URL pública"""
-        if object_name is None:
-            object_name = file_path.split("/")[-1]
-
-        try:
-            self.client.upload_file(
-                file_path,
-                self.bucket_name,
-                object_name,
-                ExtraArgs={'ContentType': self._get_content_type(object_name)}
-            )
-
-            public_url = f"{self.endpoint_url}/{self.bucket_name}/{object_name}"
-            return public_url
-        except Exception as e:
-            raise Exception(f"Erro ao fazer upload: {str(e)}")
+        self.api_base = "https://api.cloudflare.com/client/v4"
+        self.headers = {
+            "Authorization": f"Bearer {self.api_token}",
+            "Content-Type": "application/json"
+        }
 
     def upload_file_bytes(self, file_bytes: bytes, object_name: str) -> str:
-        """Upload de arquivo em bytes para R2"""
+        """Upload de arquivo em bytes para R2 via API"""
         try:
-            self.client.put_object(
-                Bucket=self.bucket_name,
-                Key=object_name,
-                Body=file_bytes,
-                ContentType=self._get_content_type(object_name)
+            # Upload direto via HTTP PUT no endpoint R2
+            upload_url = f"{self.endpoint_url}/{self.bucket_name}/{object_name}"
+
+            headers = {
+                "Content-Type": self._get_content_type(object_name)
+            }
+
+            response = requests.put(
+                upload_url,
+                data=file_bytes,
+                headers=headers,
+                timeout=30
             )
 
-            public_url = f"{self.endpoint_url}/{self.bucket_name}/{object_name}"
-            return public_url
+            if response.status_code not in [200, 201]:
+                logger.error(f"R2 upload failed: {response.status_code} - {response.text}")
+                raise Exception(f"Upload falhou: {response.status_code}")
+
+            logger.info(f"✓ Arquivo uploadado para R2: {object_name}")
+            return upload_url
+
         except Exception as e:
+            logger.error(f"Erro ao fazer upload: {str(e)}")
             raise Exception(f"Erro ao fazer upload: {str(e)}")
-
-    def get_presigned_download_url(self, object_name: str, expiration: int = 3600) -> str:
-        """Gera URL presigned para download"""
-        try:
-            url = self.client.generate_presigned_url(
-                'get_object',
-                Params={'Bucket': self.bucket_name, 'Key': object_name},
-                ExpiresIn=expiration
-            )
-            return url
-        except Exception as e:
-            raise Exception(f"Erro ao gerar URL presigned: {str(e)}")
 
     def delete_file(self, object_name: str) -> bool:
         """Deleta arquivo do R2"""
         try:
-            self.client.delete_object(Bucket=self.bucket_name, Key=object_name)
+            delete_url = f"{self.endpoint_url}/{self.bucket_name}/{object_name}"
+
+            response = requests.delete(delete_url, timeout=30)
+
+            if response.status_code not in [200, 204]:
+                raise Exception(f"Delete falhou: {response.status_code}")
+
+            logger.info(f"✓ Arquivo deletado do R2: {object_name}")
             return True
+
         except Exception as e:
+            logger.error(f"Erro ao deletar arquivo: {str(e)}")
             raise Exception(f"Erro ao deletar arquivo: {str(e)}")
 
     @staticmethod
@@ -83,6 +77,7 @@ class R2Storage:
             ".webp": "image/webp",
             ".pdf": "application/pdf",
             ".txt": "text/plain",
+            ".mp4": "video/mp4",
         }
         ext = "." + filename.split(".")[-1].lower() if "." in filename else ""
         return extensions.get(ext, "application/octet-stream")
