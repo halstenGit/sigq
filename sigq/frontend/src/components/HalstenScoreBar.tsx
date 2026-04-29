@@ -3,44 +3,39 @@ interface HalstenScoreBarProps {
   max?: number
   label?: string
   color?: 'ok' | 'warn' | 'bad'
+  showValue?: boolean
 }
 
-export function HalstenScoreBar({ score, max = 100, label, color }: HalstenScoreBarProps) {
-  const percentage = (score / max) * 100
-
-  const getColor = () => {
-    if (color) {
-      if (color === 'ok') return 'var(--ok)'
-      if (color === 'warn') return 'var(--warn)'
-      if (color === 'bad') return 'var(--bad)'
-    }
-    if (percentage >= 70) return 'var(--ok)'
-    if (percentage >= 40) return 'var(--warn)'
-    return 'var(--bad)'
-  }
+export function HalstenScoreBar({ score, max = 100, label, color, showValue = true }: HalstenScoreBarProps) {
+  const pct = Math.max(0, Math.min(100, (score / max) * 100))
+  const tone = color
+    ? color
+    : pct >= 70 ? 'ok' : pct >= 40 ? 'warn' : 'bad'
 
   return (
     <div>
       {label && (
-        <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--muted-1)', marginBottom: 'var(--sp-2)' }}>
+        <div style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: 10,
+          fontWeight: 700,
+          letterSpacing: '0.14em',
+          textTransform: 'uppercase',
+          color: 'var(--muted-1)',
+          marginBottom: 6,
+        }}>
           {label}
         </div>
       )}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--sp-2)' }}>
-        <div style={{ flex: 1, height: 6, background: 'var(--bg-2)', overflow: 'hidden' }}>
-          <div
-            style={{
-              height: '100%',
-              width: `${percentage}%`,
-              background: getColor(),
-              borderRadius: 3,
-              transition: 'width 600ms ease',
-            }}
-          />
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div className={`score-bar ${tone}`} style={{ flex: 1 }}>
+          <i style={{ width: `${pct}%` }} />
         </div>
-        <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink)', minWidth: 40, textAlign: 'right' }}>
-          {Math.round(percentage)}%
-        </div>
+        {showValue && (
+          <div className="mono" style={{ fontSize: 11.5, fontWeight: 600, color: 'var(--ink)', minWidth: 40, textAlign: 'right' }}>
+            {Math.round(pct)}%
+          </div>
+        )}
       </div>
     </div>
   )

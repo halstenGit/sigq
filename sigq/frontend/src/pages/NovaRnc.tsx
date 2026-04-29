@@ -93,15 +93,13 @@ export function NovaRnc({ fvsId, empreendimento, servico, onSuccess, onCancel }:
   }
 
   return (
-    <div style={{ maxWidth: '900px', margin: '0 auto', padding: 'var(--sp-6)' }}>
-      {/* Header */}
-      <div style={{ marginBottom: 'var(--sp-8)' }}>
-        <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ink)', margin: 0 }}>
-          Registrar Não-Conformidade (RNC)
-        </h1>
-        <p style={{ fontSize: 13, color: 'var(--ink-2)', margin: 'var(--sp-1) 0 0 0' }}>
-          Crie um novo registro de não-conformidade
-        </p>
+    <section className="sec" style={{ maxWidth: 900, margin: '0 auto' }}>
+      <div className="sec-head">
+        <div>
+          <div className="no">SEC · 03 · NOVA RNC</div>
+          <h1>Registrar Não-Conformidade</h1>
+          <p className="lede">Crie um novo registro de não-conformidade.</p>
+        </div>
       </div>
 
       {/* Success Message */}
@@ -281,6 +279,6 @@ export function NovaRnc({ fvsId, empreendimento, servico, onSuccess, onCancel }:
           </div>
         </form>
       </HalstenCard>
-    </div>
+    </section>
   )
 }

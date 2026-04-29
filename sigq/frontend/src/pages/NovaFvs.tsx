@@ -152,15 +152,13 @@ export function NovaFvs({ onSuccess }: NovaFvsProps) {
   }
 
   return (
-    <div style={{ maxWidth: '900px', margin: '0 auto', padding: 'var(--sp-6)' }}>
-      {/* Header */}
-      <div style={{ marginBottom: 'var(--sp-8)' }}>
-        <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ink)', margin: 0 }}>
-          Nova Ficha de Verificação (FVS)
-        </h1>
-        <p style={{ fontSize: 13, color: 'var(--ink-2)', margin: 'var(--sp-1) 0 0 0' }}>
-          Preencha os dados para registrar uma nova FVS
-        </p>
+    <section className="sec" style={{ maxWidth: 900, margin: '0 auto' }}>
+      <div className="sec-head">
+        <div>
+          <div className="no">SEC · 02 · NOVA FVS</div>
+          <h1>Nova Ficha de Verificação</h1>
+          <p className="lede">Preencha os dados para registrar uma nova FVS.</p>
+        </div>
       </div>
 
       {/* Success Message */}
@@ -518,6 +516,6 @@ export function NovaFvs({ onSuccess }: NovaFvsProps) {
           </div>
         </form>
       </HalstenCard>
-    </div>
+    </section>
   )
 }

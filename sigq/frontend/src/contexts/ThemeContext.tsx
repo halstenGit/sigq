@@ -1,65 +1,58 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 type Theme = 'light' | 'dark'
+type Density = 'compact' | 'comfortable'
 
 interface ThemeContextType {
   theme: Theme
+  density: Density
   toggleTheme: () => void
+  setTheme: (t: Theme) => void
+  setDensity: (d: Density) => void
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
+const STORAGE_THEME = 'sigq-theme'
+const STORAGE_DENSITY = 'sigq-density'
+
+function applyAttrs(theme: Theme, density: Density) {
+  const html = document.documentElement
+  html.setAttribute('data-theme', theme)
+  html.setAttribute('data-density', density)
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light')
+  const [theme, setThemeState] = useState<Theme>(() => {
+    const saved = localStorage.getItem(STORAGE_THEME) as Theme | null
+    return saved === 'dark' ? 'dark' : 'light'
+  })
+  const [density, setDensityState] = useState<Density>(() => {
+    const saved = localStorage.getItem(STORAGE_DENSITY) as Density | null
+    return saved === 'comfortable' ? 'comfortable' : 'compact'
+  })
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('sigq-theme') as Theme | null
-    const themeToApply = savedTheme || 'light'
-    setTheme(themeToApply)
-    applyTheme(themeToApply)
-  }, [])
+  useEffect(() => { applyAttrs(theme, density) }, [theme, density])
 
-  const applyTheme = (t: Theme) => {
-    const html = document.documentElement
-    if (t === 'dark') {
-      html.style.setProperty('--bg', '#1A1A1A')
-      html.style.setProperty('--bg-1', '#252525')
-      html.style.setProperty('--bg-2', '#2F2F2F')
-      html.style.setProperty('--muted-1', '#666666')
-      html.style.setProperty('--muted-2', '#444444')
-      html.style.setProperty('--ink', '#F5F5F2')
-      html.style.setProperty('--ink-1', '#EFEFEB')
-      html.style.setProperty('--ink-2', '#CCCCCC')
-    } else {
-      html.style.setProperty('--bg', '#FAFAF7')
-      html.style.setProperty('--bg-1', '#F5F5F2')
-      html.style.setProperty('--bg-2', '#EFEFEB')
-      html.style.setProperty('--muted-1', '#999999')
-      html.style.setProperty('--muted-2', '#CCCCCC')
-      html.style.setProperty('--ink', '#0A0A0A')
-      html.style.setProperty('--ink-1', '#1A1A1A')
-      html.style.setProperty('--ink-2', '#52524E')
-    }
+  const setTheme = (t: Theme) => {
+    setThemeState(t)
+    localStorage.setItem(STORAGE_THEME, t)
   }
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light'
-    setTheme(newTheme)
-    applyTheme(newTheme)
-    localStorage.setItem('sigq-theme', newTheme)
+  const setDensity = (d: Density) => {
+    setDensityState(d)
+    localStorage.setItem(STORAGE_DENSITY, d)
   }
+  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, density, toggleTheme, setTheme, setDensity }}>
       {children}
     </ThemeContext.Provider>
   )
 }
 
 export function useTheme() {
-  const context = useContext(ThemeContext)
-  if (!context) {
-    throw new Error('useTheme must be used within ThemeProvider')
-  }
-  return context
+  const ctx = useContext(ThemeContext)
+  if (!ctx) throw new Error('useTheme must be used within ThemeProvider')
+  return ctx
 }

@@ -18,60 +18,25 @@ export function Fvs({ onNavigate }: FvsProps) {
   const filtered = filter === 'todos' ? allFvs : allFvs.filter(f => f.status === filter)
 
   return (
-    <div style={{ maxWidth: 1400, margin: '0 auto', padding: 'var(--sp-8)' }}>
-      {/* Header */}
-      <div style={{ marginBottom: 'var(--sp-8)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+    <section className="sec">
+      <div className="sec-head">
         <div>
-          <h1 style={{ fontSize: 28, fontWeight: 700, color: 'var(--ink)', margin: 0 }}>
-            Fichas de Verificação
-          </h1>
-          <p style={{ fontSize: 13, color: 'var(--ink-2)', margin: 'var(--sp-1) 0 0 0' }}>
-            {filtered.length} fichas encontradas
-          </p>
+          <div className="no">SEC · 02 · FVS</div>
+          <h1>Fichas de Verificação</h1>
+          <p className="lede">{filtered.length} fichas encontradas.</p>
         </div>
-        <button
-          onClick={() => onNavigate?.('nova-fvs')}
-          style={{
-            padding: 'var(--sp-3) var(--sp-4)',
-            background: 'var(--ink)',
-            color: '#fff',
-            border: 'none',
-            borderRadius: 4,
-            fontSize: 13,
-            fontWeight: 600,
-            cursor: 'pointer',
-            transition: 'opacity 0.15s',
-            whiteSpace: 'nowrap',
-          }}
-          onMouseEnter={e => {
-            (e.target as HTMLElement).style.opacity = '0.9'
-          }}
-          onMouseLeave={e => {
-            (e.target as HTMLElement).style.opacity = '1'
-          }}
-        >
+        <button onClick={() => onNavigate?.('nova-fvs')} className="btn primary">
           + Nova FVS
         </button>
       </div>
 
-      {/* Filters */}
-      <div style={{ display: 'flex', gap: 'var(--sp-2)', marginBottom: 'var(--sp-6)' }}>
+      <div className="pill-seg" style={{ marginBottom: 24 }}>
         {['todos', 'finalizada', 'em_progresso', 'rascunho'].map(status => (
           <button
             key={status}
             onClick={() => setFilter(status)}
-            style={{
-              padding: 'var(--sp-2) var(--sp-4)',
-              background: filter === status ? 'var(--ink)' : 'var(--bg-1)',
-              color: filter === status ? '#fff' : 'var(--ink)',
-              border: '1px solid var(--bg-2)',
-              borderRadius: 4,
-              fontSize: 12,
-              fontWeight: 600,
-              cursor: 'pointer',
-              textTransform: 'capitalize',
-              transition: 'all 0.15s',
-            }}
+            className={filter === status ? 'on' : ''}
+            style={{ textTransform: 'capitalize' }}
           >
             {status === 'todos' ? 'Todos' : status.replace('_', ' ')}
           </button>
@@ -173,50 +138,18 @@ export function Fvs({ onNavigate }: FvsProps) {
                   ) : null
                 })()}
 
-                <div style={{ display: 'flex', gap: 'var(--sp-3)', marginTop: 'var(--sp-4)' }}>
+                <div style={{ display: 'flex', gap: 8, marginTop: 16, flexWrap: 'wrap' }}>
                   <button
                     onClick={() => onNavigate?.('editar-fvs', { fvsId: fvs.id })}
-                    style={{
-                      padding: 'var(--sp-2) var(--sp-4)',
-                      background: 'var(--ink)',
-                      color: '#fff',
-                      border: 'none',
-                      borderRadius: 4,
-                      fontSize: 12,
-                      fontWeight: 600,
-                      cursor: 'pointer',
-                      transition: 'opacity 0.15s',
-                    }}
-                    onMouseEnter={e => {
-                      (e.target as HTMLElement).style.opacity = '0.9'
-                    }}
-                    onMouseLeave={e => {
-                      (e.target as HTMLElement).style.opacity = '1'
-                    }}
+                    className="btn primary sm"
                   >
-                    ✏️ Editar
+                    Editar
                   </button>
                   <button
                     onClick={() => onNavigate?.('nova-rnc', { fvsId: fvs.id, empreendimento: fvs.empreendimento, servico: fvs.servico })}
-                    style={{
-                      padding: 'var(--sp-2) var(--sp-4)',
-                      background: 'var(--bg-2)',
-                      color: 'var(--ink)',
-                      border: `1px solid var(--bg-2)`,
-                      borderRadius: 4,
-                      fontSize: 12,
-                      fontWeight: 600,
-                      cursor: 'pointer',
-                      transition: 'background 0.15s',
-                    }}
-                    onMouseEnter={e => {
-                      (e.target as HTMLElement).style.background = 'var(--bg-1)'
-                    }}
-                    onMouseLeave={e => {
-                      (e.target as HTMLElement).style.background = 'var(--bg-2)'
-                    }}
+                    className="btn sm"
                   >
-                    ⚠️ Nova RNC
+                    Nova RNC
                   </button>
                   <button
                     onClick={() => {
@@ -237,25 +170,9 @@ Observações: ${fvs.observacoes || '-'}
                       navigator.clipboard.writeText(text)
                       alert('Dados copiados para a área de transferência!')
                     }}
-                    style={{
-                      padding: 'var(--sp-2) var(--sp-4)',
-                      background: 'var(--bg-2)',
-                      color: 'var(--ink)',
-                      border: `1px solid var(--bg-2)`,
-                      borderRadius: 4,
-                      fontSize: 12,
-                      fontWeight: 600,
-                      cursor: 'pointer',
-                      transition: 'background 0.15s',
-                    }}
-                    onMouseEnter={e => {
-                      (e.target as HTMLElement).style.background = 'var(--bg-1)'
-                    }}
-                    onMouseLeave={e => {
-                      (e.target as HTMLElement).style.background = 'var(--bg-2)'
-                    }}
+                    className="btn ghost sm"
                   >
-                    📋 Copiar Dados
+                    Copiar dados
                   </button>
                 </div>
               </div>
@@ -263,6 +180,6 @@ Observações: ${fvs.observacoes || '-'}
           </HalstenCard>
         ))}
       </div>
-    </div>
+    </section>
   )
 }

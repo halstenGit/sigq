@@ -9,7 +9,7 @@ interface HalstenCardProps {
 
 export function HalstenCard({ title, subtitle, children, className = '' }: HalstenCardProps) {
   return (
-    <div className={`hs-card ${className}`}>
+    <div className={`card ${className}`.trim()}>
       {(title || subtitle) && (
         <div className="hs-card-header">
           {title && <h3 className="hs-card-title">{title}</h3>}

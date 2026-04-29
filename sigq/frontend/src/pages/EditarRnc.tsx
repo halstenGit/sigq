@@ -125,32 +125,23 @@ export function EditarRnc({ rncId, onSuccess, onCancel }: EditarRncProps) {
 
   if (error) {
     return (
-      <div style={{ maxWidth: '900px', margin: '0 auto', padding: 'var(--sp-6)' }}>
-        <div
-          style={{
-            padding: 'var(--sp-4)',
-            background: '#ffebee',
-            border: '1px solid #f44336',
-            borderRadius: 4,
-            color: '#c62828',
-          }}
-        >
-          Erro: {error}
+      <section className="sec" style={{ maxWidth: 900, margin: '0 auto' }}>
+        <div className="state err">
+          <div className="gl">!</div>
+          <div className="hd">{error}</div>
         </div>
-      </div>
+      </section>
     )
   }
 
   return (
-    <div style={{ maxWidth: '900px', margin: '0 auto', padding: 'var(--sp-6)' }}>
-      {/* Header */}
-      <div style={{ marginBottom: 'var(--sp-8)' }}>
-        <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ink)', margin: 0 }}>
-          Editar Não-Conformidade (RNC)
-        </h1>
-        <p style={{ fontSize: 13, color: 'var(--ink-2)', margin: 'var(--sp-1) 0 0 0' }}>
-          Atualize os dados da RNC #{rncId}
-        </p>
+    <section className="sec" style={{ maxWidth: 900, margin: '0 auto' }}>
+      <div className="sec-head">
+        <div>
+          <div className="no">SEC · 03 · EDITAR RNC</div>
+          <h1>Editar Não-Conformidade</h1>
+          <p className="lede">Atualize os dados da RNC #{rncId}.</p>
+        </div>
       </div>
 
       {/* Success Message */}
@@ -340,6 +331,6 @@ export function EditarRnc({ rncId, onSuccess, onCancel }: EditarRncProps) {
           </div>
         </form>
       </HalstenCard>
-    </div>
+    </section>
   )
 }

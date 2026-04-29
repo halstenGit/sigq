@@ -4,34 +4,31 @@ interface SidebarProps {
   onLogout: () => void
 }
 
-export function Sidebar({ currentPage, onNavigate, onLogout }: SidebarProps) {
-  const navItems = [
-    { id: '00', label: 'Dashboard', page: 'dashboard' },
-    { id: '01', label: 'Empreendimentos', page: 'empreendimentos' },
-    { id: '02', label: 'FVS', page: 'fvs' },
-    { id: '03', label: 'RNCs', page: 'rncs' },
-    { id: '04', label: 'Perfil', page: 'perfil' },
-  ]
+const NAV_ITEMS = [
+  { id: '00', label: 'Dashboard', page: 'dashboard' },
+  { id: '01', label: 'Empreendimentos', page: 'empreendimentos' },
+  { id: '02', label: 'FVS', page: 'fvs' },
+  { id: '03', label: 'RNCs', page: 'rncs' },
+  { id: '04', label: 'Perfil', page: 'perfil' },
+]
 
+export function Sidebar({ currentPage, onNavigate, onLogout }: SidebarProps) {
   return (
     <aside className="side">
-      {/* Brand */}
       <div className="brand">
         <div className="logo">SIGQ</div>
-        <div className="product">QUALITY SYSTEM</div>
-        <div className="ver">v1.0 · sigq · 2026</div>
+        <div className="product">Quality System</div>
+        <div className="ver">v1.0 · Halsten · 2026</div>
       </div>
 
-      {/* Navigation */}
       <nav className="nav">
         <div className="nav-group">
           <div className="nav-label">Menu</div>
-          {navItems.map(item => (
+          {NAV_ITEMS.map(item => (
             <a
               key={item.page}
               onClick={() => onNavigate(item.page)}
-              className={`${currentPage === item.page ? 'on' : ''}`}
-              style={{ cursor: 'pointer' }}
+              className={currentPage === item.page ? 'on' : ''}
             >
               <span className="idx">{item.id}</span>
               {item.label}
@@ -40,23 +37,9 @@ export function Sidebar({ currentPage, onNavigate, onLogout }: SidebarProps) {
         </div>
       </nav>
 
-      {/* Footer */}
       <div className="foot">
-        <button
-          onClick={onLogout}
-          style={{
-            background: 'none',
-            border: 'none',
-            color: 'var(--muted-2)',
-            fontSize: '11px',
-            cursor: 'pointer',
-            textDecoration: 'none',
-            letterSpacing: '0.08em',
-            fontFamily: 'var(--font-mono)',
-          }}
-        >
-          LOGOUT
-        </button>
+        <span>SIGQ · v1.0</span>
+        <button onClick={onLogout} style={{ marginLeft: 'auto' }}>LOGOUT</button>
       </div>
     </aside>
   )

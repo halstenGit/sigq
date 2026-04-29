@@ -24,55 +24,44 @@ export function Perfil() {
     window.location.reload()
   }
 
+  const FieldRow = ({ label, value }: { label: string; value: string }) => (
+    <div className="fld" style={{ marginBottom: 14 }}>
+      <label>{label}</label>
+      <div style={{ fontSize: 13, color: 'var(--ink)', fontFamily: 'var(--font-mono)', padding: '8px 0' }}>
+        {value}
+      </div>
+    </div>
+  )
+
   return (
-    <div style={{ maxWidth: 600, margin: '0 auto', padding: 'var(--sp-8)' }}>
-      <h1 style={{ fontSize: 28, fontWeight: 700, color: 'var(--ink)', margin: 0, marginBottom: 'var(--sp-8)' }}>
-        Meu Perfil
-      </h1>
+    <section className="sec" style={{ maxWidth: 720, margin: '0 auto' }}>
+      <div className="sec-head">
+        <div>
+          <div className="no">SEC · 04 · CONTA</div>
+          <h1>Perfil</h1>
+          <p className="lede">Dados da conta autenticada via SSO.</p>
+        </div>
+      </div>
 
       {isLoading ? (
-        <div style={{ textAlign: 'center', color: 'var(--ink-2)', padding: 'var(--sp-12) var(--sp-6)' }}>
-          Carregando...
+        <div className="state">
+          <div className="hd">Carregando…</div>
         </div>
       ) : userInfo ? (
-        <>
-          <HalstenCard>
-            <div style={{ marginBottom: 'var(--sp-6)' }}>
-              <div style={{ fontSize: 12, color: 'var(--ink-2)', marginBottom: 'var(--sp-1)' }}>Usuário</div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>{userInfo.username}</div>
-            </div>
+        <HalstenCard>
+          <FieldRow label="Usuário" value={userInfo.username} />
+          <FieldRow label="Email" value={userInfo.email} />
 
-            <div style={{ marginBottom: 'var(--sp-6)' }}>
-              <div style={{ fontSize: 12, color: 'var(--ink-2)', marginBottom: 'var(--sp-1)' }}>Email</div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>{userInfo.email}</div>
-            </div>
-
-            <button
-              onClick={handleLogout}
-              style={{
-                width: '100%',
-                padding: 'var(--sp-3)',
-                background: 'var(--ink)',
-                color: '#fff',
-                border: 'none',
-                borderRadius: 4,
-                fontSize: 14,
-                fontWeight: 600,
-                cursor: 'pointer',
-                transition: 'opacity 0.15s',
-              }}
-              onMouseEnter={e => ((e.target as HTMLElement).style.opacity = '0.9')}
-              onMouseLeave={e => ((e.target as HTMLElement).style.opacity = '1')}
-            >
-              Sair
-            </button>
-          </HalstenCard>
-        </>
+          <button onClick={handleLogout} className="btn primary full lg" style={{ marginTop: 12 }}>
+            Sair
+          </button>
+        </HalstenCard>
       ) : (
-        <div style={{ textAlign: 'center', color: 'var(--ink-2)', padding: 'var(--sp-6)' }}>
-          Erro ao carregar perfil
+        <div className="state err">
+          <div className="gl">!</div>
+          <div className="hd">Erro ao carregar perfil</div>
         </div>
       )}
-    </div>
+    </section>
   )
 }
