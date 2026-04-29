@@ -110,7 +110,28 @@ export function NovaFvs({ onSuccess }: NovaFvsProps) {
     e.preventDefault()
     setLoading(true)
 
-    setTimeout(() => {
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+
+      // Upload fotos
+      for (const foto of formData.fotos) {
+        const uploadFormData = new FormData()
+        uploadFormData.append('file', foto)
+
+        const response = await fetch(`${apiUrl}/v1/evidencias/upload`, {
+          method: 'POST',
+          body: uploadFormData,
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          },
+        })
+
+        if (!response.ok) {
+          throw new Error(`Erro ao fazer upload da foto: ${response.statusText}`)
+        }
+      }
+
+      // Criar FVS após upload das fotos
       addFvs({
         empreendimento: formData.empreendimento,
         local: formData.local,
@@ -127,7 +148,6 @@ export function NovaFvs({ onSuccess }: NovaFvsProps) {
       })
 
       setSuccess(true)
-      setLoading(false)
       setFormData({
         nome: '',
         tipoChecklist: '',
@@ -147,8 +167,13 @@ export function NovaFvs({ onSuccess }: NovaFvsProps) {
       setTimeout(() => {
         setSuccess(false)
         onSuccess?.()
+        setLoading(false)
       }, 2000)
-    }, 1000)
+    } catch (error) {
+      console.error('Erro ao criar FVS:', error)
+      setLoading(false)
+      alert(`Erro: ${error instanceof Error ? error.message : 'Erro desconhecido'}`)
+    }
   }
 
   return (
