@@ -1,67 +1,70 @@
-import requests
+import boto3
 import os
 from typing import Optional
-from urllib.parse import urljoin
 import logging
+from botocore.exceptions import ClientError
 
 logger = logging.getLogger("app")
 
 class R2Storage:
     def __init__(self):
         self.account_id = os.getenv("CLOUDFLARE_ACCOUNT_ID")
-        self.api_token = os.getenv("CLOUDFLARE_API_TOKEN")
+        self.access_key = os.getenv("CLOUDFLARE_R2_ACCESS_KEY")
+        self.secret_key = os.getenv("CLOUDFLARE_R2_SECRET_KEY")
         self.bucket_name = os.getenv("CLOUDFLARE_BUCKET_NAME", "sigq-images")
         self.endpoint_url = os.getenv(
             "CLOUDFLARE_ENDPOINT_URL",
             f"https://{self.account_id}.r2.cloudflarestorage.com"
         )
-        self.api_base = "https://api.cloudflare.com/client/v4"
-        self.headers = {
-            "Authorization": f"Bearer {self.api_token}",
-            "Content-Type": "application/json"
-        }
+
+        if not all([self.access_key, self.secret_key]):
+            logger.warning("R2 credentials não configuradas")
+            self.client = None
+            return
+
+        self.client = boto3.client(
+            "s3",
+            endpoint_url=self.endpoint_url,
+            aws_access_key_id=self.access_key,
+            aws_secret_access_key=self.secret_key,
+            region_name="auto"
+        )
 
     def upload_file_bytes(self, file_bytes: bytes, object_name: str) -> str:
-        """Upload de arquivo em bytes para R2 via API"""
+        """Upload seguro via backend para R2 com credenciais protegidas"""
+        if not self.client:
+            raise Exception("R2 storage não configurado")
+
         try:
-            # Upload direto via HTTP PUT no endpoint R2
-            upload_url = f"{self.endpoint_url}/{self.bucket_name}/{object_name}"
+            content_type = self._get_content_type(object_name)
 
-            headers = {
-                "Content-Type": self._get_content_type(object_name)
-            }
-
-            response = requests.put(
-                upload_url,
-                data=file_bytes,
-                headers=headers,
-                timeout=30
+            self.client.put_object(
+                Bucket=self.bucket_name,
+                Key=object_name,
+                Body=file_bytes,
+                ContentType=content_type
             )
 
-            if response.status_code not in [200, 201]:
-                logger.error(f"R2 upload failed: {response.status_code} - {response.text}")
-                raise Exception(f"Upload falhou: {response.status_code}")
-
+            public_url = f"{self.endpoint_url}/{self.bucket_name}/{object_name}"
             logger.info(f"✓ Arquivo uploadado para R2: {object_name}")
-            return upload_url
+            return public_url
 
+        except ClientError as e:
+            logger.error(f"Erro S3/R2: {e}")
+            raise Exception(f"Erro ao fazer upload: {str(e)}")
         except Exception as e:
             logger.error(f"Erro ao fazer upload: {str(e)}")
             raise Exception(f"Erro ao fazer upload: {str(e)}")
 
     def delete_file(self, object_name: str) -> bool:
         """Deleta arquivo do R2"""
+        if not self.client:
+            raise Exception("R2 storage não configurado")
+
         try:
-            delete_url = f"{self.endpoint_url}/{self.bucket_name}/{object_name}"
-
-            response = requests.delete(delete_url, timeout=30)
-
-            if response.status_code not in [200, 204]:
-                raise Exception(f"Delete falhou: {response.status_code}")
-
+            self.client.delete_object(Bucket=self.bucket_name, Key=object_name)
             logger.info(f"✓ Arquivo deletado do R2: {object_name}")
             return True
-
         except Exception as e:
             logger.error(f"Erro ao deletar arquivo: {str(e)}")
             raise Exception(f"Erro ao deletar arquivo: {str(e)}")
