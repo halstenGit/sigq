@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.core.auth import get_current_user
 from app.core.exceptions import InternalServerError
-from app.core.storage import get_storage
+from app.services.storage import get_storage
 from app.models.evidencia import Evidencia
 from app.schemas.evidencia import EvidenciaResponse
 import json
@@ -37,10 +37,9 @@ async def upload_evidencia(
             raise ValueError("Arquivo muito grande (máximo 10MB)")
 
         # Upload para R2
-        url_r2 = storage.upload_photo(
+        url_r2 = storage.upload_file_bytes(
             content,
-            file.filename,
-            file.content_type or "image/jpeg",
+            file.filename
         )
 
         # Salvar registro no banco
